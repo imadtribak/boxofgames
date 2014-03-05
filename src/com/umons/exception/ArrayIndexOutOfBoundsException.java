@@ -17,11 +17,11 @@ package com.umons.exception;
  * 
  */
 
-public class ArrayIndexOuOfBoundsException extends Exception
+public class ArrayIndexOutOfBoundsException extends Exception
 {
 	private static final long serialVersionUID = 1L;
 
-	public ArrayIndexOuOfBoundsException()
+	public ArrayIndexOutOfBoundsException()
 	{
 		System.out.println("You are out of the array, please chooce an other position");
 	}

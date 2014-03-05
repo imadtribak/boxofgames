@@ -1,5 +1,0 @@
-package com.umons.exception;
-
-public class ArrayIndexOuOfBoundsException {
-
-}

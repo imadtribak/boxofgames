@@ -10,8 +10,7 @@
 
 package com.umons.run;
 
-import com.umons.model.Game;
-import com.umons.utility.DisplayMenu;
+import com.umons.model.TicTacToe;
 
 /**
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
@@ -25,6 +24,7 @@ public class Main
 	
 		public static void main(String[] args)
 		{
-			DisplayMenu.printMenu();
+			TicTacToe tic_tac_toe = new TicTacToe();
+			System.out.println(tic_tac_toe.checkWinner());
 		}		
 }

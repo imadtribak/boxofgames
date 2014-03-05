@@ -44,7 +44,7 @@ public class DisplayMenu
 			System.out.println("3. Othello\n");
 			System.out.println("4. Quit\n");
 			choice = sc.nextInt();
-
+		}
 			switch (choice)
 			{
 				case 1:
@@ -69,7 +69,6 @@ public class DisplayMenu
 				default:
 					System.out.println("Please, try again");
 			}
-		}
 		sc.close();
 	}
 }

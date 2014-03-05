@@ -12,7 +12,6 @@ package com.umons.utility;
 
 import java.util.Scanner;
 
-import com.umons.model.Game;
 import com.umons.model.TicTacToe;
 import com.umons.model.FourInALine;
 import com.umons.model.Othello;

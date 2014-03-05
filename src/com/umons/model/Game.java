@@ -10,6 +10,7 @@
 
 package com.umons.model;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -24,7 +25,7 @@ public abstract class Game
 	 * *****************************************************************
 	 */
 
-	private String[][] gameTable;
+	private int[][] gameTable;
 	
 	/**
 	 * This constructor initialize an array with a number of rows and a number of columns
@@ -45,14 +46,14 @@ public abstract class Game
 	 * 			Number of columns
 	 */
 
-	public final String[][] arrayGenerator (int rows, int columns)
+	public int[][] arrayGenerator (int rows, int columns)
 	{
-		String [][] array = new String [rows][columns];
+		int [][] array = new int [rows][columns];
 		for (int i = 0; i < array.length; i++)  
 		{
 			for (int j = 0; j < array.length ; j++)
 			{
-				array[i][j] = "[ ]";
+				array[i][j] = 0;
 			}
 		}
 
@@ -60,7 +61,7 @@ public abstract class Game
 	}
 
 	public abstract boolean checkWinner();
-	//public abstract void letsPlay();
+	public abstract void letsPlay();
 	
 	/** 
 	 * This method will make possible to get the array with his number of rows
@@ -69,7 +70,7 @@ public abstract class Game
 	 * @return gameTable
 	 */
 	
-	public String[][] getGameTable()
+	public int[][] getGameTable()
 	{
 		return gameTable;
 	}
@@ -82,38 +83,58 @@ public abstract class Game
 	 * 			Generate an array
 	 */
 	
-	public void setGameTable(String[][] gameTable)
+	public void setGameTable(int[][] gameTable)
 	{
 		this.gameTable = gameTable;
 	}
 	
 	/**
-	 * This method make possible to "textually represents" an object
+	 * This method make possible to choice a position
 	 * 
 	 * @return gameTable[x][y]
-	 * 			Replacerow and the columns gaven
+	 * 			Replace the row and the column for the value
 	 */
 	
-	/*public int select()
+	public void select(int player)
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Select a row: ");
 		int x = sc.nextInt();
 		System.out.println("Select a column: ");
 		int y = sc.nextInt();
-		return gameTable[x][y] = 'X';
 		sc.close();
+		if(player == 1)
+			gameTable[x][y] = 1;
+		else 
+			gameTable[x][y] = 2;
 	}
-	*/
 	
 	/**
 	 * This method make possible to "textually represents" an object
 	 * 
 	 * @return A string representation of the object.
 	 */
-
+	
+	@Override
 	public String toString()
 	{
-		return gameTable.toString();
+		return "Game [gameTable=" + Arrays.toString(gameTable) + "]";
+	}
+
+	/**
+	 * This method make possible to have a delay
+	 */
+	
+	public void delay(int seconds)
+	{
+	  int time = (int)seconds * 1000;
+	  try
+	  {
+	     Thread.sleep(time);
+	  }
+	  catch(InterruptedException e)
+	  {
+	     e.printStackTrace();
+	  }
 	}
 }

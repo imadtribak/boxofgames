@@ -28,6 +28,8 @@ public class Player
 	private int[] points;
 	private int[] pointsIA;
 	
+	private int position;
+	
 	/**
 	 * This constructor initialize a name and a new array with his number of points
 	 * 
@@ -38,9 +40,20 @@ public class Player
 	 * 			Array with his number of points
 	 */
 	
-	public Player(String name, int[] points)
+	public Player(String name, int[] points, int[] pointsIA)
 	{
 		this.name = name;
 		this.points = points;
+		this.pointsIA = pointsIA;
 	}
+
+	public int getPosition() {
+		return position;
+	} 
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+	
+	
 }

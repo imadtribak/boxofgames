@@ -25,9 +25,46 @@ public class Othello extends Game
 		super(8,8);
 	}
 	
+	/**
+	 * This method check if there are a winner
+	 */
+	
 	@Override
 	public boolean checkWinner()
 	{
 		return true;
+	}
+	
+	/** 
+	 * This method initialize a new game table
+	 */
+	
+	public int[][] arrayGenerator (int rows, int columns)
+	{
+		int [][] array = new int [rows][columns];
+		for (int i = 0; i < array.length; i++)  
+		{
+			for (int j = 0; j < array.length ; j++)
+			{
+				array[i][j] = 0;
+			}
+		}
+		
+		array[3][3] = 2;
+		array[3][4] = 1;
+		array[4][3] = 1;
+		array[4][4] = 2;
+
+		return array;
+	}
+	
+	/** 
+	 * This method make possible to play
+	 */
+
+	@Override
+	public void letsPlay()
+	{
+		// TODO Auto-generated method stub
 	}
 }

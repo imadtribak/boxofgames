@@ -11,7 +11,10 @@
 package com.umons.model;
 
 /**
+ * This class give the possibility to play to Othello
+ * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * 
  */
 
 public class Othello extends Game

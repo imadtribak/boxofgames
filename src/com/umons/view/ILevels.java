@@ -1,17 +1,17 @@
 /**
  ****************************************************
- * @authors    : AGOZZINO Terencio - PIZZIRUSSO Loris
- * @email      : agozzino.terencio@gmail.com
+ * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @email      : agozzino.pizzirusso@gmail.com
  * @file       : ILevels.java
- * @date       : 20 april 2014
- * @projet     : BoxOfGames
+ * @date       : 15 May 2014
+ * @project    : BoxOfGames
  *****************************************************
  */
 
 package com.umons.view;
 
 /**
- * @authors AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
 import java.awt.Color;
@@ -30,7 +30,7 @@ public class ILevels extends JFrame
 	private JTextField txtLevels;
 
 	/**
-	 * Create the frame.
+	 * Create the frame
 	 */
 	
 	public ILevels()

@@ -13,6 +13,8 @@ package com.umons.run;
 import com.umons.model.TicTacToe;
 
 /**
+ * Main class of the program
+ * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 

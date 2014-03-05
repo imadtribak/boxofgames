@@ -14,7 +14,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
+ * This class give the possibility to make the legacy with other games
+ * with same methods
+ * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * 
  */
 
 public abstract class Game 

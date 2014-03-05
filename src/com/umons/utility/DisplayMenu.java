@@ -13,13 +13,17 @@ package com.umons.utility;
 import java.util.Scanner;
 
 import com.umons.model.TicTacToe;
-import com.umons.model.FourInALine;
+import com.umons.model.FourInARow;
 import com.umons.model.Othello;
 
 /**
+ * This class give the possibility to have menu containing the different games:
+ * Tic-Tac-Toe, Four in a Row, Othello
+ * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * 
  */
- 
+
 public class DisplayMenu
 {
 	/**
@@ -53,7 +57,7 @@ public class DisplayMenu
 					break;
 				
 				case 2:
-					FourInALine four_in_a_line = new FourInALine();
+					FourInARow four_in_a_line = new FourInARow();
 					System.out.println(four_in_a_line.getGameTable());
 					break;
 					

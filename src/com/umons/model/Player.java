@@ -11,7 +11,10 @@
 package com.umons.model;
 
 /**
+ * This class give the possibility to initialize a player with his informations
+ * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * 
  */
 
 public class Player

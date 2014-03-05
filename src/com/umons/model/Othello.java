@@ -65,6 +65,6 @@ public class Othello extends Game
 	@Override
 	public void letsPlay()
 	{
-		// TODO Auto-generated method stub
+		// In construction
 	}
 }

@@ -11,7 +11,7 @@
 package com.umons.exception;
 
 /**
- * Exception call when the user try to use an existant location
+ * Exception call when the user try to use an existing location
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  * 

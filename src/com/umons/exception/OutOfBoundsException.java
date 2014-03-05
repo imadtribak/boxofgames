@@ -11,7 +11,7 @@
 package com.umons.exception;
 
 /**
- * Exception call when the user try to use an location out of bounds
+ * Exception call when the user try to use a location out of bounds
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  * 

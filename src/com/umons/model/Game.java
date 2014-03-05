@@ -36,6 +36,9 @@ public abstract class Game
 		gameTable = arrayGenerator(rows, columns);
 	}
 	
+	public abstract boolean checkWinner();
+	public abstract void letsPlay();
+	
 	/**
 	 * This method generate a layout of a game
 	 * 
@@ -56,12 +59,8 @@ public abstract class Game
 				array[i][j] = 0;
 			}
 		}
-
 		return array;
 	}
-
-	public abstract boolean checkWinner();
-	public abstract void letsPlay();
 	
 	/** 
 	 * This method will make possible to get the array with his number of rows
@@ -91,6 +90,9 @@ public abstract class Game
 	/**
 	 * This method make possible to choice a position
 	 * 
+	 * @param player
+	 * 			Number of players
+	 * 
 	 * @return gameTable[x][y]
 	 * 			Replace the row and the column for the value
 	 */
@@ -103,7 +105,7 @@ public abstract class Game
 		System.out.println("Select a column: ");
 		int y = sc.nextInt();
 		sc.close();
-		if(player == 1)
+		if (player == 1)
 			gameTable[x][y] = 1;
 		else 
 			gameTable[x][y] = 2;
@@ -112,7 +114,7 @@ public abstract class Game
 	/**
 	 * This method make possible to "textually represents" an object
 	 * 
-	 * @return A string representation of the object.
+	 * @return A string representation of the object
 	 */
 	
 	@Override
@@ -123,6 +125,9 @@ public abstract class Game
 
 	/**
 	 * This method make possible to have a delay
+	 * 
+	 * @param seconds
+	 * 			Time in seconds
 	 */
 	
 	public void delay(int seconds)

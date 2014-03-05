@@ -44,33 +44,32 @@ public class DisplayMenu
 			System.out.println("3. Othello\n");
 			System.out.println("4. Quit\n");
 			choice = sc.nextInt();
-		}		
 
-		switch (choice)
-		{
-			case 1:
-				TicTacToe tic_tac_toe = new TicTacToe();
-				System.out.println(tic_tac_toe.getGameTable());
-				break;
-			
-			case 2:
-				FourInALine four_in_a_line = new FourInALine();
-				System.out.println(four_in_a_line.getGameTable());
-				break;
+			switch (choice)
+			{
+				case 1:
+					TicTacToe tic_tac_toe = new TicTacToe();
+					System.out.println(tic_tac_toe.getGameTable());
+					break;
 				
-			case 3:
-				Othello othello = new Othello();
-				System.out.println(othello.getGameTable());
-				break;
-
-			case 4:
-				System.exit(0);
-				break;
-				
-			default:
-				System.out.println("Please, try again");
+				case 2:
+					FourInALine four_in_a_line = new FourInALine();
+					System.out.println(four_in_a_line.getGameTable());
+					break;
+					
+				case 3:
+					Othello othello = new Othello();
+					System.out.println(othello.getGameTable());
+					break;
+	
+				case 4:
+					System.exit(0);
+					break;
+					
+				default:
+					System.out.println("Please, try again");
+			}
 		}
-		
 		sc.close();
 	}
 }

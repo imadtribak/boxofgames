@@ -82,9 +82,10 @@ public class TicTacToe extends Game
 			{
 				for (int j = 0; j < getGameTable()[i].length; j++)
 				{
-					
-					
+					/* if (player == 1)
 					//select(p1.getPosition());	
+				else 
+					//select(p2.getPosition());	*/
 				}
 			}
 		}

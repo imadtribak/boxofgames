@@ -23,8 +23,10 @@ public class Player
 	 */
 	
 	private String name;
+	
 	// NOTES: array, each place is a different game. 0 for TicTacToe, 
 	// 1 for Four In A Line and 2 for Othello
+	
 	private int[] points;
 	private int[] pointsIA;
 	
@@ -37,7 +39,10 @@ public class Player
 	 * 			Name of the player
 	 * 
 	 * @param points
-	 * 			Array with his number of points
+	 * 			Array with the number of points of the player
+	 * 
+	 * @param pointsIA
+	 * 			Array with the number of points of the IA
 	 */
 	
 	public Player(String name, int[] points, int[] pointsIA)
@@ -46,14 +51,27 @@ public class Player
 		this.points = points;
 		this.pointsIA = pointsIA;
 	}
+	
+	/** 
+	 * This method will make possible to get the position of a player
+	 * 
+	 * @return position
+	 */
 
-	public int getPosition() {
+	public int getPosition()
+	{
 		return position;
 	} 
-
-	public void setPosition(int position) {
+	
+	/**
+	 * This method make possible to set a position of a player
+	 * 
+	 * @param position
+	 * 			Generate a position
+	 */
+	
+	public void setPosition(int position)
+	{
 		this.position = position;
 	}
-	
-	
 }

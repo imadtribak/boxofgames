@@ -100,7 +100,7 @@ public class FourInARow extends Game
 	}
 	
 	/**
-	 * This method make possible to play to the game
+	 * This method make possible to play to the gamef
 	 */
 	
 	@Override

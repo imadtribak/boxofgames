@@ -4,7 +4,7 @@
  * @email      : agozzino.pizzirusso@gmail.com
  * @file       : Othello.java
  * @date       : 15 May 2014
- * @project    : BoxOfGames
+ * @project    : BoxOfGames lol
  *****************************************************
  */
 

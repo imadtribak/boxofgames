@@ -1,0 +1,4 @@
+08-03-14: Modification de la classe 'DisplayMenu.java'
+
+" J'ai ajouté toutes les exceptions possibles pour l'utilisateur si il rentre un 'String' ou si il
+rentre un autre numéro qui est < 0 et > 4 " par Agozzino Terencio

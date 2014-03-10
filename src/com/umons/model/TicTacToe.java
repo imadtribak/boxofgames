@@ -19,6 +19,10 @@ package com.umons.model;
 
 public class TicTacToe extends Game
 {
+
+	private Player p1;
+	private Player p2;
+
 	/**
 	 * This constructor initialize an array with a number of 3 rows and a number of 3 columns
 	 */
@@ -33,65 +37,63 @@ public class TicTacToe extends Game
 	 */
 	
 	@Override
-	public boolean checkWinner()
+	public int checkWinner(int i, int j)
 	{
 		int[][] array = getGameTable();
+				
+		// NOTE: Je vais être OutOfBounds si je place un 'X' ou un 'O' dans un coin (Problème à régler) 
 		
-
-		array[0][0] = 1;
-		array[1][1] = 1;
-		array[2][2] = 1;
-
-		int i = 0;	
-		int j = 0;
-
-		if (array[i][j] == (array[i][j+1]))
-		{
-			if (array[i][j] == (array[i][j+2]))
-			{
-				return true;
-			}
-		}
-
-		else if (array[i][j] == (array[i+1][j]))
-		{
-			if (array[i][j] == (array[i+2][j]))
-			{
-				return true;
-
-			}
-		}
-
-		else if (array[i][j] == (array[i+1][j+1]))
-		{
-			if (array[i][j] == (array[i+2][j+2]))
-			{
-				return true;
-			}
-		}
-	return false;
+				if (array[i-1][j] == array[i][j] && array[i+1][j] == array[i][j])
+					return 1; // Vertical line
+				
+				if (array[j-1][i] == array[i][j] && array[j+1][i] == array[i][j])
+					return 2; // Horizontal line
+				
+				if (array[i-1][j-1] == array[i][j] && array[i+1][j+1] == array[i][j])
+					return 3; // First diagonal line
+				
+				if (array[i+1][j-1] == array[i][j] && array[i-1][j+1] == array[i][j])
+					return 4; // Second diagonal line
+				
+				if (isDraw()) 
+					return 0;
+				
+				else
+					return -1;	
 	}
-
+	
 	/**
 	 * This method make possible to play to the game
+	 * 
+	 * @param player 
 	 */
 	
 	@Override
 	public void letsPlay()
 	{
-		while (checkWinner() == false)
+		do
 		{
-			for (int i = 0; i < getGameTable().length; i++)
-			{
-				for (int j = 0; j < getGameTable()[i].length; j++)
-				{
-					/* if (player == 1)
-					//select(p1.getPosition());	
-				else 
-					//select(p2.getPosition());	*/
-				}
-			}
+			if (player == 1)
+				select(p1.getPosition());
+			else
+				select(p2.getPosition());	
 		}
-		System.out.println("You won the game !");
+		
+		while (checkWinner() == -1);
+		
+		if (checkWinner(player.select) == 0)
+			System.out.println("The game ends in a tie !");
+		
+		if (checkWinner() == 1)
+			System.out.println(player.getName() + " won the game with his vertical alignment !");
+		
+		if (checkWinner() == 2)
+			System.out.println(player.getName() + " won the game with his horizontal alignment !");
+		
+		if (checkWinner() == 3)
+			System.out.println(player.getName() + " won the game with his first diagonal alignment !");
+		
+		if(checkWinner() == 4)
+			System.out.println(player.getName() + " won the game with his second diagonal alignment !");		
 	}
 }

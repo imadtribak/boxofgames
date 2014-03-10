@@ -29,6 +29,7 @@ public abstract class Game
 	 * *****************************************************************
 	 */
 
+	private Player p1, p2;  
 	private int[][] gameTable;
 	
 	/**
@@ -40,7 +41,7 @@ public abstract class Game
 		gameTable = arrayGenerator(rows, columns);
 	}
 	
-	public abstract boolean checkWinner();
+	public abstract int checkWinner(int i, int j);
 	public abstract void letsPlay();
 	
 	/**
@@ -116,6 +117,29 @@ public abstract class Game
 	}
 	
 	/**
+	 * This method make possible to check if game tied or not
+	 * 
+	 * @return boolean
+	 * 			false if the game isn't tied, true if the game is tied
+	 */
+	
+	public boolean isDraw()
+	{
+		int[][] array = getGameTable();
+		
+		for (int i = 0; i < array.length ; i++)
+		{
+			for (int j = 0; j < array.length ; j++)
+			{
+				if (array[i][j] == 0)
+					return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
 	 * This method make possible to "textually represents" an object
 	 * 
 	 * @return A string representation of the object
@@ -136,14 +160,16 @@ public abstract class Game
 	
 	public void delay(int seconds)
 	{
-	  int time = (int)seconds * 1000;
-	  try
-	  {
+		int time = (int)seconds * 1000;
+		
+		try
+		{
 	     Thread.sleep(time);
-	  }
-	  catch(InterruptedException e)
-	  {
+		}
+	  
+		catch(InterruptedException e)
+		{
 	     e.printStackTrace();
-	  }
+	     }
 	}
 }

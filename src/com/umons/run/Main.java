@@ -10,7 +10,7 @@
 
 package com.umons.run;
 
-import com.umons.model.TicTacToe;
+import com.umons.utility.DisplayMenu;
 
 /**
  * Main class of the program
@@ -26,7 +26,6 @@ public class Main
 	
 		public static void main(String[] args)
 		{
-			TicTacToe tic_tac_toe = new TicTacToe();
-			System.out.println(tic_tac_toe.checkWinner());
+			DisplayMenu.printMenu();
 		}		
 }

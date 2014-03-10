@@ -64,7 +64,7 @@ public class Player
 	public int getPosition()
 	{
 		return position;
-	} 
+	}
 	
 	/**
 	 * This method make possible to set a position of a player
@@ -76,5 +76,28 @@ public class Player
 	public void setPosition(int position)
 	{
 		this.position = position;
+	}
+	
+	/** 
+	 * This method will make possible to get the name of a player
+	 * 
+	 * @return name
+	 */
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	/**
+	 * This method make possible to set a name  of a player
+	 * 
+	 * @param name
+	 * 			Generate a position
+	 */
+
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 }

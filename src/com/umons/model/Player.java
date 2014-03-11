@@ -48,17 +48,18 @@ public class Player
 	 * 			Array with the number of points of the IA
 	 */
 	
-	public Player(String name, int[] points, int[] pointsIA)
+	public Player(/*String name, int[] points, int[] pointsIA*/)
 	{
-		this.name = name;
+		/*this.name = name;
 		this.points = points;
-		this.pointsIA = pointsIA;
+		this.pointsIA = pointsIA;*/
 	}
 	
 	/** 
 	 * This method will make possible to get the position of a player
 	 * 
 	 * @return position
+	 * 			Position of a player
 	 */
 
 	public int getPosition()
@@ -82,6 +83,7 @@ public class Player
 	 * This method will make possible to get the name of a player
 	 * 
 	 * @return name
+	 * 			Name of a player
 	 */
 	
 	public String getName()

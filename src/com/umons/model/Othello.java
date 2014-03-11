@@ -10,6 +10,8 @@
 
 package com.umons.model;
 
+import java.util.List;
+
 /**
  * This class give the possibility to play to Othello
  * 
@@ -23,9 +25,9 @@ public class Othello extends Game
 	 * This constructor initialize an array with a number of 8 rows and a number of 8 columns
 	 */
 	
-	public Othello()
+	public Othello(List<Player>list)
 	{
-		super(8,8);
+		super(8,8, list);
 	}
 	
 	/**
@@ -33,13 +35,23 @@ public class Othello extends Game
 	 */
 	
 	@Override
-	public boolean checkWinner()
+	public int checkWinner(int i, int j)
 	{
-		return true;
+		// Conditions de victoire
+		return 0;
 	}
 	
 	/** 
-	 * This method initialize a new game table
+	 * This method initialize a new game table with his default values
+	 * 
+	 * @param rows
+	 * 			Number of rows
+	 * 
+	 * @param columns
+	 * 			Number of columns
+	 * 
+	 * @return array
+	 * 			New array
 	 */
 	
 	public int[][] arrayGenerator (int rows, int columns)
@@ -61,13 +73,30 @@ public class Othello extends Game
 		return array;
 	}
 	
-	/** 
-	 * This method make possible to play
+	/**
+	 * This method make possible to play to the game
 	 */
-
+	
 	@Override
 	public void letsPlay()
 	{
-		// In construction
+		do
+		{
+			changePlayer();
+			select(getActualPlayer());
+			
+		}while (checkWinner(getLastX(), getLastY()) == -1);
+		
+		if (checkWinner(getLastX(), getLastY()) == 1)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his vertical alignment !");
+		
+		if (checkWinner(getLastX(), getLastY()) == 2)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his horizontal alignment !");
+		
+		if (checkWinner(getLastX(), getLastY()) == 3)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his first diagonal alignment !");
+		
+		if(checkWinner(getLastX(), getLastY()) == 4)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his second diagonal alignment !");		
 	}
 }

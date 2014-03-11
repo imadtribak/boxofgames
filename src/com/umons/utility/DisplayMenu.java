@@ -10,8 +10,11 @@
 
 package com.umons.utility;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import com.umons.model.Player;
 import com.umons.model.TicTacToe;
 import com.umons.model.FourInARow;
 import com.umons.model.Othello;
@@ -29,7 +32,7 @@ public class DisplayMenu
 	/**
 	 * This method print the menu of games
 	 */
-	
+
 	public static void printMenu()
 	{
 		try
@@ -40,41 +43,46 @@ public class DisplayMenu
 			System.out.println("3. Othello\n");
 			System.out.println("4. Quit\n");
 			int choice = sc.nextInt();
-            
-    		while (true)
-    		{
+
+			List<Player> list = new ArrayList<Player>();
+			list.add(new Player());
+			list.add(new Player());
+
+			while (true)
+			{
 				switch (choice)
 				{
-					case 1:
-						TicTacToe tic_tac_toe = new TicTacToe();
-						System.out.println(tic_tac_toe.getGameTable());
-						break;
-						
-					case 2:
-						FourInARow four_in_a_line = new FourInARow();
-						System.out.println(four_in_a_line.getGameTable());
-						break;
-							
-					case 3:
-						Othello othello = new Othello();
-						System.out.println(othello.getGameTable());
-						break;
-			
-					case 4:
-						System.exit(0);
-						break;
-							
-					default:
-						System.out.println("Please, choose a number between 1 and 4\n");
-						printMenu();
+				case 1:
+
+					TicTacToe tic_tac_toe = new TicTacToe(list);
+					tic_tac_toe.letsPlay();
+					break;
+
+				case 2:
+					FourInARow four_in_a_line = new FourInARow(list);
+					four_in_a_line.letsPlay();
+					break;
+
+				case 3:
+					Othello othello = new Othello(list);
+					othello.letsPlay();
+					break;
+
+				case 4:
+					System.exit(0);
+					break;
+
+				default:
+					System.out.println("Please, choose a number between 1 and 4\n");
+					printMenu();
 				}
-				
-			break;
-    		}
-    		
+
+				break;
+			}
+
 			sc.close();
 		}
-		
+
 		catch (Exception ex)
 		{
 			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n");

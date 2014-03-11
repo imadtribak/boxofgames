@@ -10,6 +10,8 @@
 
 package com.umons.model;
 
+import java.util.List;
+
 /**
  * This class give the possibility to play to Tic-Tac-Toe
  * 
@@ -19,21 +21,41 @@ package com.umons.model;
 
 public class TicTacToe extends Game
 {
-
-	private Player p1;
-	private Player p2;
-
 	/**
 	 * This constructor initialize an array with a number of 3 rows and a number of 3 columns
 	 */
 	
-	public TicTacToe()
+	public TicTacToe(List<Player>list)
 	{
-		super(3,3);
+		super(3,3, list);	
 	}
 
 	/**
 	 * This method check if there are a winner
+	 * 
+	 * @param i
+	 * 			Number of row
+	 * 
+	 * @param j
+	 * 			Number of column
+	 * 
+	 * @return -1
+	 * 			No winner
+	 * 
+	 * @return 0
+	 * 			Draw
+	 * 
+	 * @return 1
+	 * 			Winner with vertical line
+	 * 
+	 * @return 2
+	 * 			Winner with horizontal line
+	 * 
+	 * @return 3
+	 * 			Winner with first diagonal line
+	 * 
+	 * @return 4
+	 *  		Winner with second diagonal line
 	 */
 	
 	@Override
@@ -55,8 +77,11 @@ public class TicTacToe extends Game
 				if (array[i+1][j-1] == array[i][j] && array[i-1][j+1] == array[i][j])
 					return 4; // Second diagonal line
 				
-				if (isDraw()) 
+				if (isDraw())
+				{
+					System.out.println("The game ends in a tie !");
 					return 0;
+				}
 				
 				else
 					return -1;	
@@ -64,8 +89,6 @@ public class TicTacToe extends Game
 	
 	/**
 	 * This method make possible to play to the game
-	 * 
-	 * @param player 
 	 */
 	
 	@Override
@@ -73,27 +96,21 @@ public class TicTacToe extends Game
 	{
 		do
 		{
-			if (player == 1)
-				select(p1.getPosition());
-			else
-				select(p2.getPosition());	
-		}
+			changePlayer();
+			select(getActualPlayer());
+			
+		}while (checkWinner(getLastX(), getLastY()) == -1);
 		
-		while (checkWinner() == -1);
+		if (checkWinner(getLastX(), getLastY()) == 1)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his vertical alignment !");
 		
-		if (checkWinner(player.select) == 0)
-			System.out.println("The game ends in a tie !");
+		if (checkWinner(getLastX(), getLastY()) == 2)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his horizontal alignment !");
 		
-		if (checkWinner() == 1)
-			System.out.println(player.getName() + " won the game with his vertical alignment !");
+		if (checkWinner(getLastX(), getLastY()) == 3)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his first diagonal alignment !");
 		
-		if (checkWinner() == 2)
-			System.out.println(player.getName() + " won the game with his horizontal alignment !");
-		
-		if (checkWinner() == 3)
-			System.out.println(player.getName() + " won the game with his first diagonal alignment !");
-		
-		if(checkWinner() == 4)
-			System.out.println(player.getName() + " won the game with his second diagonal alignment !");		
+		if(checkWinner(getLastX(), getLastY()) == 4)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his second diagonal alignment !");		
 	}
 }

@@ -1,4 +1,13 @@
 08-03-14: Modification de la classe 'DisplayMenu.java'
 
-" J'ai ajouté toutes les exceptions possibles pour l'utilisateur si il rentre un 'String' ou si il
-rentre un autre numéro qui est < 0 et > 4 " par Agozzino Terencio
+" Ajout de toutes les exceptions possibles pour l'utilisateur si celui-ci rentre un 'String' ou
+un autre numéro < 0 et > 4 " par Agozzino Terencio
+
+11-03-14: Modification de la classe 'TicTacToe.java' + 'Game.java'
+
+" Ajout de nouveaux 'getters' et 'setters' ainsi que d'ArrayList servant à l'héritage.
+Création de nouvelles méthodes permettant d'avoir accès au joueur actuel et de switcher
+de joueur à chaque tour. "
+
+Remarque: Tic-Tac-Toe bientôt fini, il ne reste plus qu'à finir la méthode 'checkWinner' pour
+déterminé les conditions d'un gagnant.

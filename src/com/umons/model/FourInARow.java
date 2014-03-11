@@ -10,6 +10,8 @@
 
 package com.umons.model;
 
+import java.util.List;
+
 /**
  * This class give the possibility to play to FourInARow
  * 
@@ -23,48 +25,65 @@ public class FourInARow extends Game
 	 * This constructor initialize an array with a number of 6 rows and a number of 7 columns
 	 */
 	
-	public FourInARow()
+	public FourInARow(List<Player>list)
 	{
-		super(6,7);
+		super(6,7, list);
 	}
 	
 	/**
 	 * This method check if there are a winner
+	 * 
+	 * @param i
+	 * 			Number of row
+	 * 
+	 * @param j
+	 * 			Number of column
+	 * 
+	 * @return -1
+	 * 			No winner
+	 * 
+	 * @return 0
+	 * 			Draw
+	 * 
+	 * @return 1
+	 * 			Winner with vertical line
+	 * 
+	 * @return 2
+	 * 			Winner with horizontal line
+	 * 
+	 * @return 3
+	 * 			Winner with first diagonal line
+	 * 
+	 * @return 4
+	 *  		Winner with second diagonal line
 	 */
 
 	
-	/*@Override
+	@Override
 	public int checkWinner(int j)
 	{
 		int[][] array = getGameTable();
 				
-		// NOTE: Je vais être OutOfBounds si je place un 'X' ou un 'O' dans un coin (Problème à régler) 
-		
-				if (array[i-1][j] == array[i][j] && array[i+1][j] == array[i][j])
-					return 1; // Vertical line
-				
-				if (array[j-1][i] == array[i][j] && array[j+1][i] == array[i][j])
-					return 2; // Horizontal line
-				
-				if (array[i-1][j-1] == array[i][j] && array[i+1][j+1] == array[i][j])
-					return 3; // First diagonal line
-				
-				if (array[i+1][j-1] == array[i][j] && array[i-1][j+1] == array[i][j])
-					return 4; // Second diagonal line
+		// Conditions de victoires
 				
 				if (isDraw()) 
 					return 0;
 				
 				else
 					return -1;	
-	} */
-	
+	}
 	
 	/**
 	 * This method check if a pawn already exist in the location
 	 * 
 	 * @param j
 	 * 			Number of column
+	 * 
+	 * @return i
+	 * 			Line before the existing pawn
+	 * 
+	 * @return 5
+	 * 			If no pawn existing
 	 */
 	
 	public int existingPawn(int j)
@@ -88,27 +107,21 @@ public class FourInARow extends Game
 	{
 		do
 		{
-			if (player == 1)
-				select(p1.getPosition());
-			else
-				select(p2.getPosition());	
-		}
+			changePlayer();
+			select(getActualPlayer());
+			
+		}while (checkWinner(getLastX(), getLastY()) == -1);
 		
-		while (checkWinner() == -1);
+		if (checkWinner(getLastX(), getLastY()) == 1)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his vertical alignment !");
 		
-		if (checkWinner(player.select) == 0)
-			System.out.println("The game ends in a tie !");
+		if (checkWinner(getLastX(), getLastY()) == 2)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his horizontal alignment !");
 		
-		if (checkWinner() == 1)
-			System.out.println(player.getName() + " won the game with his vertical alignment !");
+		if (checkWinner(getLastX(), getLastY()) == 3)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his first diagonal alignment !");
 		
-		if (checkWinner() == 2)
-			System.out.println(player.getName() + " won the game with his horizontal alignment !");
-		
-		if (checkWinner() == 3)
-			System.out.println(player.getName() + " won the game with his first diagonal alignment !");
-		
-		if(checkWinner() == 4)
-			System.out.println(player.getName() + " won the game with his second diagonal alignment !");	
+		if(checkWinner(getLastX(), getLastY()) == 4)
+			System.out.println(getListPlayer().get(getActualPlayer()).getName() + " won the game with his second diagonal alignment !");		
 	}
 }

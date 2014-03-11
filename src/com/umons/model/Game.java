@@ -45,7 +45,7 @@ public abstract class Game
 	 * @param columns
 	 *  			Number of columns
 	 * 
-	 * @param List<Player< listPlayer
+	 * @param List<Player> listPlayer
 	 *  			List of players
 	 */
 	

@@ -66,6 +66,9 @@ public abstract class Game
 	 * 
 	 * @param columns
 	 * 			Number of columns
+	 *
+	 * @return array
+	 *			New array
 	 */
 
 	public int[][] arrayGenerator (int rows, int columns)
@@ -82,13 +85,10 @@ public abstract class Game
 	}
 	
 	/**
-	 * This method make possible to choice a position
+	 * This method make possible to choose a position
 	 * 
 	 * @param player
 	 * 			Number of players
-	 * 
-	 * @return gameTable[x][y]
-	 * 			Replace the row and the column for the value
 	 */
 	
 	public final void select(int player)

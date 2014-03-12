@@ -94,6 +94,16 @@ public class TicTacToe extends Game
 	@Override
 	public void letsPlay()
 	{
+		System.out.println("  +---+---+---+");
+		System.out.println("0 | " + " " + " | " + " " + " | " + " " + " | ");
+		System.out.println("  +---+---+---+");
+		System.out.println("1 | " + " " + " | " + " " + " | " + " " + " | ");
+		System.out.println("  +---+---+---+");
+		System.out.println("2 | " + " " + " | " + " " + " | " + " " + " | ");
+		System.out.println("  +---+---+---+");
+		System.out.println("   0   1   2");
+		System.out.println("");
+		
 		do
 		{
 			changePlayer();

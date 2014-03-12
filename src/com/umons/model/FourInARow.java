@@ -11,6 +11,7 @@
 package com.umons.model;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * This class give the possibility to play to FourInARow
@@ -28,6 +29,22 @@ public class FourInARow extends Game
 	public FourInARow(List<Player>list)
 	{
 		super(6,7, list);
+	}
+	
+	public void select(int player)
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select a column: ");
+		int y = sc.nextInt();
+		existingPawn(y);
+		sc.close();
+		if (player == 1)
+			gameTable[x][y] = 1;
+		else 
+			gameTable[x][y] = 2;
+		
+		setLastX(x);
+		setLastY(y);
 	}
 	
 	/**
@@ -58,8 +75,6 @@ public class FourInARow extends Game
 	 *  		Winner with second diagonal line
 	 */
 
-	
-	@Override
 	public int checkWinner(int j)
 	{
 		int[][] array = getGameTable();
@@ -105,6 +120,28 @@ public class FourInARow extends Game
 	@Override
 	public void letsPlay()
 	{
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println("| " + " " + " | " + " " + " | " + " " + " | " + " " + " | " + " "
+		+ " | " + " " + " | " + " " + " | ");
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println("| " + " " + " | " + " " + " | " + " " + " | " + " " + " | " + " "
+		+ " | " + " " + " | " + " " + " | ");
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println("| " + " " + " | " + " " + " | " + " " + " | " + " " + " | " + " "
+		+ " | " + " " + " | " + " " + " | ");
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println("| " + " " + " | " + " " + " | " + " " + " | " + " " + " | " + " "
+		+ " | " + " " + " | " + " " + " | ");
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println("| " + " " + " | " + " " + " | " + " " + " | " + " " + " | " + " "
+		+ " | " + " " + " | " + " " + " | ");
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println("| " + " " + " | " + " " + " | " + " " + " | " + " " + " | " + " "
+		+ " | " + " " + " | " + " " + " | ");
+		System.out.println("+---+---+---+---+---+---+---+");
+		System.out.println("  0   1   2   3   4   5   6");
+		System.out.println("");
+		
 		do
 		{
 			changePlayer();

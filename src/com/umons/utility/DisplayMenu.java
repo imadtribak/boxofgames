@@ -53,7 +53,6 @@ public class DisplayMenu
 				switch (choice)
 				{
 				case 1:
-
 					TicTacToe tic_tac_toe = new TicTacToe(list);
 					tic_tac_toe.letsPlay();
 					break;

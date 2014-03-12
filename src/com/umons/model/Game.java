@@ -47,6 +47,7 @@ public abstract class Game
 	 * 
 	 * @param List<Player> listPlayer
 	 *  			List of players
+	 *  
 	 */
 	
 	public Game(int rows, int columns, List<Player> listPlayer)
@@ -66,9 +67,7 @@ public abstract class Game
 	 * 
 	 * @param columns
 	 * 			Number of columns
-	 *
-	 * @return array
-	 *			New array
+	 * 
 	 */
 
 	public int[][] arrayGenerator (int rows, int columns)
@@ -85,13 +84,14 @@ public abstract class Game
 	}
 	
 	/**
-	 * This method make possible to choose a position
+	 * This method make possible to choice a position
 	 * 
 	 * @param player
 	 * 			Number of players
+	 * 
 	 */
 	
-	public final void select(int player)
+	public void select(int player)
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Select a row: ");
@@ -104,6 +104,8 @@ public abstract class Game
 		else 
 			gameTable[x][y] = 2;
 		
+		// NOTE: Appelle d'une méthode de représentation du tableau (A faire)
+		
 		setLastX(x);
 		setLastY(y);
 	}
@@ -112,6 +114,7 @@ public abstract class Game
 	 * This method make possible to switch player
 	 * 
 	 */
+	
 	public void changePlayer()
 	{
 		actualPlayer = (actualPlayer == 1) ? 1 : 2 ;
@@ -122,6 +125,7 @@ public abstract class Game
 	 * 
 	 * @return boolean
 	 * 			false if the game isn't tied, true if the game is tied
+	 * 
 	 */
 	
 	public boolean isDraw()
@@ -144,6 +148,7 @@ public abstract class Game
 	 * This method make possible to "textually represents" an object
 	 * 
 	 * @return A string representation of the object
+	 * 
 	 */
 	
 	@Override
@@ -157,6 +162,7 @@ public abstract class Game
 	 * 
 	 * @param seconds
 	 * 			Time in seconds
+	 * 
 	 */
 	
 	public void delay(int seconds)
@@ -186,6 +192,7 @@ public abstract class Game
 	 * 
 	 * @return gameTable
 	 * 			The table of the game
+	 * 
 	 */
 	
 	public int[][] getGameTable()
@@ -199,6 +206,7 @@ public abstract class Game
 	 * 
 	 * @param gameTable
 	 * 			Generate an array
+	 * 
 	 */
 	
 	public void setGameTable(int[][] gameTable)
@@ -210,7 +218,8 @@ public abstract class Game
 	 * This method will make possible to get the last X move of a player
 	 * 
 	 * @return lastX
-	 * 			The X position			
+	 * 			The X position		
+	 * 	
 	 */
 	
 	public int getLastX()
@@ -220,6 +229,7 @@ public abstract class Game
 
 	/** 
 	 * This method will make possible to set the last X move of a player
+	 * 
 	 */
 	
 	public void setLastX(int lastX)
@@ -232,6 +242,7 @@ public abstract class Game
 	 * 
 	 * @return lastY
 	 *  			The Y position
+	 *  
 	 */
 	
 	public int getLastY()
@@ -241,6 +252,7 @@ public abstract class Game
 
 	/** 
 	 * This method will make possible to set the last Y move of a player
+	 * 
 	 */
 	
 	public void setLastY(int lastY)
@@ -253,6 +265,7 @@ public abstract class Game
 	 * 
 	 * @return listPlayer
 	 *  			List of players
+	 *  
 	 */
 	
 	public List<Player> getListPlayer()
@@ -262,6 +275,7 @@ public abstract class Game
 	
 	/** 
 	 * This method will make possible to set the last move of a player
+	 * 
 	 */
 
 	public void setListPlayer(List<Player> listPlayer)
@@ -274,6 +288,7 @@ public abstract class Game
 	 * 
 	 * @return actualPlayer
 	 *  			Currently player
+	 *  
 	 */
 	
 	public int getActualPlayer()
@@ -283,6 +298,7 @@ public abstract class Game
 
 	/** 
 	 * This method will make possible to set the last move of a player
+	 * 
 	 */
 	
 	public void setActualPlayer(int actualPlayer)

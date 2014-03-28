@@ -42,7 +42,7 @@ public class TicTacToe extends Game {
 	 * 
 	 */
 	
-	// NOTE: Cette méthode ne marche pas !
+	// NOTE: Cette mï¿½thode ne marche pas !
 	
 	public void printBoardSize() {
 		try {
@@ -179,6 +179,8 @@ public class TicTacToe extends Game {
 	 */
 
 	public int checkWinner(int i, int j, int player) {
+		if (isDraw() == true)
+			return 0;
 		if (BasisCheck(i, j, player, 0, 1) >= 3)
 			return 1;
 		if (BasisCheck(i, j, player, 1, 0) >= 3)
@@ -225,6 +227,9 @@ public class TicTacToe extends Game {
 			select(getActualPlayer());
 			} while (checkWinner(getLastX(), getLastY(), getActualPlayer()) == -1);
 		
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 0)
+			System.out.println(" The game is tied !");
+			
 		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 1)
 			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() + " won the game with his horizontal alignment !");
 		

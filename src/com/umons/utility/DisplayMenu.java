@@ -21,22 +21,19 @@ import com.umons.model.Othello;
 
 /**
  * This class give the possibility to have menu containing the different games:
- * Tic-Tac-Toe, Four in a Row, Othello
+ * Tic-Tac-Toe, Four in a Row, Othello.
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
- * 
  */
 
-public class DisplayMenu
-{
+public class DisplayMenu {
+	
 	/**
-	 * This method print the menu of games
+	 * This method print the menu of games.
 	 */
 
-	public static void printMenu()
-	{
-		try
-		{
+	public static void printMenu() {
+		try {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("1. Tic-Tac-Toe\n");
 			System.out.println("2. Four-In-A-Line\n");
@@ -44,14 +41,12 @@ public class DisplayMenu
 			System.out.println("4. Quit\n");
 			int choice = sc.nextInt();
 
-			List<Player> list = new ArrayList<Player>();
+			List<Object> list = new ArrayList<Object>();
 			list.add(new Player());
 			list.add(new Player());
 
-			while (true)
-			{
-				switch (choice)
-				{
+			while (true) {
+				switch (choice) {
 				case 1:
 					TicTacToe tic_tac_toe = new TicTacToe(list);
 					tic_tac_toe.letsPlay();
@@ -75,16 +70,11 @@ public class DisplayMenu
 					System.out.println("Please, choose a number between 1 and 4\n");
 					printMenu();
 				}
-
 				break;
 			}
-
 			sc.close();
-		}
-
-		catch (Exception ex)
-		{
-			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n");
+		} catch (Exception ex) {
+			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n" + ex.toString());
 			printMenu();
 		}
 	}

@@ -10,299 +10,325 @@
 
 package com.umons.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import com.umons.exception.BoundOutreachedException;
+
 /**
- * This class give the possibility to make the legacy with other games
- * with same methods
+ * <b> Game is the superclass of all games. </b>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
- * 
  */
 
-public abstract class Game 
-{
-	/*
-	 * *****************************************************************
-	 * Attributes
-	 * *****************************************************************
-	 */
-
-	private List<Player> listPlayer;  
-	private int actualPlayer = 1;
+public abstract class Game {
+	
+	private int actualPlayer = 2;
 	private int[][] gameTable;
-	private int lastX = -1 , lastY = -1;
+	private int lastX = -1, lastY = -1;
+
+	private List <Object> listPlayer; 
+
+	public abstract int checkWinner(int i, int j, int player) throws BoundOutreachedException;
+	public abstract void letsPlay() throws BoundOutreachedException;
+	public abstract void displayArray() ;
 	
 	/**
-	 * This constructor initialize an array with a number of rows and a number of columns
-	 * and the list of players
+	 * <b> Constructor that initialize an array. </b>
 	 * 
 	 * @param rows
-	 *  			Number of rows
+	 *			Number of rows
 	 * 
 	 * @param columns
-	 *  			Number of columns
+	 * 			Number of columns
 	 * 
-	 * @param List<Player> listPlayer
-	 *  			List of players
-	 *  
+	 * @param List <Object> listPlayer
+	 *  		List of players
 	 */
-	
-	public Game(int rows, int columns, List<Player> listPlayer)
-	{
+
+	public Game(int rows, int columns, List <Object> listPlayer) {
 		gameTable = arrayGenerator(rows, columns);
 		this.listPlayer = listPlayer;
 	}
-	
-	public abstract int checkWinner(int i, int j);
-	public abstract void letsPlay();
-	
+
 	/**
-	 * This method generate a layout of a game
+	 * <b> Method that generate a layout of a game. </b>
 	 * 
 	 * @param rows
 	 * 			Number of rows
 	 * 
 	 * @param columns
-	 * 			Number of columns
-	 * 
+	 *			Number of columns
 	 */
 
-	public int[][] arrayGenerator (int rows, int columns)
-	{
+	public int[][] arrayGenerator(int rows, int columns) {
 		int [][] array = new int [rows][columns];
-		for (int i = 0; i < array.length; i++)  
-		{
-			for (int j = 0; j < array.length ; j++)
-			{
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array.length; j++) {
 				array[i][j] = 0;
 			}
 		}
 		return array;
 	}
-	
+
 	/**
-	 * This method make possible to choice a position
+	 * <b> Method that make possible to choice a position.  </b>
 	 * 
 	 * @param player
-	 * 			Number of players
-	 * 
+	 * 			Currently player
 	 */
-	
-	public void select(int player)
-	{
+
+	@SuppressWarnings("resource")
+	public void select(int player) {
+		int x = 0, y = 0;
+		boolean success = true;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Select a row: ");
-		int x = sc.nextInt();
-		System.out.println("Select a column: ");
-		int y = sc.nextInt();
-		sc.close();
-		if (player == 1)
+		do {
+			System.out.println("Select a row: ");
+			x = sc.nextInt();
+			System.out.println("Select a column: ");
+			y = sc.nextInt();
+			if (x < gameTable.length) { 
+				if (y < gameTable[x].length) {
+					if (gameTable[x][y] == 0) {
+						success = false;
+					} else {
+						System.out.println("This emplacement is already taken ! \n");
+					}
+				} else {
+					System.out.println("Your column is out of the array ! \n");
+				}
+			} else {
+				System.out.println("Your row is out of the array ! \n");
+			}
+			
+		} while (success);
+
+		if (player == 1) {
 			gameTable[x][y] = 1;
-		else 
+		} else {
 			gameTable[x][y] = 2;
-		
-		// NOTE: Appelle d'une méthode de représentation du tableau (A faire)
-		
+		}
 		setLastX(x);
 		setLastY(y);
 	}
-	
+
 	/**
-	 * This method make possible to switch player
-	 * 
+	 * <b> Method that make possible to switch player. </b>
 	 */
-	
-	public void changePlayer()
-	{
-		actualPlayer = (actualPlayer == 1) ? 1 : 2 ;
+
+	public void changePlayer() {
+		actualPlayer = (actualPlayer == 2) ? 1 : 2;
 	}
-	
+
 	/**
-	 * This method make possible to check if game tied or not
+	 * <b> Method that make possible to check if game tied or not. </b>
 	 * 
 	 * @return boolean
-	 * 			false if the game isn't tied, true if the game is tied
-	 * 
+	 * 			<p> <b>False:</b> game not tied </p>
+	 * 			<b>True:</b> game tied
 	 */
-	
-	public boolean isDraw()
-	{
-		int[][] array = getGameTable();
-		
-		for (int i = 0; i < array.length ; i++)
-		{
-			for (int j = 0; j < array.length ; j++)
-			{
+
+	public boolean isDraw() {
+		int[][] array = getGameTable();	
+		for (int i = 0; i < array.length ; i++) {
+			for (int j = 0; j < array.length ; j++) {
 				if (array[i][j] == 0)
 					return false;
 			}
 		}
-		
 		return true;
 	}
-	
+
 	/**
-	 * This method make possible to "textually represents" an object
+	 * <b> Method that make possible to "textually represents" an object. </b>
 	 * 
 	 * @return A string representation of the object
-	 * 
 	 */
-	
+
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return "Game [gameTable=" + Arrays.toString(gameTable) + "]";
 	}
 
 	/**
-	 * This method make possible to have a delay
+	 * This method make possible to choice the players.
+	 */
+
+	public void choiceOfPlayers() {
+		try {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("######################");
+			System.out.println("##### PLAYER 1 #####");
+			System.out.println("######################\n");
+			System.out.println("1. Human");
+			System.out.println("2. Computer");
+			int player1 = sc.nextInt();
+
+			List<Player> list = new ArrayList<Player>();
+
+			while (true) {
+				switch (player1) {
+				case 1:
+					list.add(new Player());
+					break;
+
+				case 2:
+					AI ai = new AI();
+					ai.easyDifficulty();
+					list.add(ai);
+					break;
+
+				default:
+					System.out.println("Please, choose a number between 1 and 2\n");
+					choiceOfPlayers();
+				}
+
+				System.out.println("######################");
+				System.out.println("##### PLAYER 2 #####");
+				System.out.println("######################\n");
+				System.out.println("1. Human");
+				System.out.println("2. Computer");
+				int player2 = sc.nextInt();
+
+				switch (player2) {
+				case 1:
+					list.add(new Player());
+					break;
+
+				case 2:
+					AI ai = new AI();
+					ai.easyDifficulty();
+					list.add(ai);
+					break;
+
+				default:
+					System.out.println("Please, choose a number between 1 and 2\n");
+					choiceOfPlayers();
+				}
+				break;
+			}
+			sc.close();
+		} catch (Exception ex) {
+			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n");
+			choiceOfPlayers();
+		}	
+	}
+
+	/**
+	 * <b> Method that make possible to have a delay.
 	 * 
 	 * @param seconds
 	 * 			Time in seconds
-	 * 
 	 */
-	
-	public void delay(int seconds)
-	{
-		int time = (int)seconds * 1000;
-		
-		try
-		{
-	     Thread.sleep(time);
+
+	public void delay(int seconds) {
+		int time = (int) seconds * 1000;
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-	  
-		catch(InterruptedException e)
-		{
-	     e.printStackTrace();
-	     }
 	}
-	
-	/*
-	 * *****************************************************************
-	 * Getters & Setters
-	 * *****************************************************************
-	 */
-	
+
 	/** 
-	 * This method will make possible to get the array with his number of rows
-	 * and his number of columns
+	 * <b> Method that make possible to get the array with his number of rows
+	 * and his number of columns </b>
 	 * 
 	 * @return gameTable
-	 * 			The table of the game
-	 * 
+	 * 			Table of the game
 	 */
-	
-	public int[][] getGameTable()
-	{
+
+	public int[][] getGameTable() {
 		return gameTable;
 	}
-	
+
 	/**
-	 * This method make possible to set a new array with a number of rows
-	 * and a number of columns
+	 * <b> Method that set gameTable. </b>
 	 * 
 	 * @param gameTable
 	 * 			Generate an array
-	 * 
 	 */
-	
-	public void setGameTable(int[][] gameTable)
-	{
+
+	public void setGameTable(int[][] gameTable) {
 		this.gameTable = gameTable;
 	}
-	
+
 	/** 
-	 * This method will make possible to get the last X move of a player
+	 * <b> Method that get lastX. </b>
 	 * 
 	 * @return lastX
-	 * 			The X position		
-	 * 	
+	 * 			X position
 	 */
-	
-	public int getLastX()
-	{
+
+	public int getLastX() {
 		return lastX;
 	}
 
 	/** 
-	 * This method will make possible to set the last X move of a player
-	 * 
+	 * <b> Method that set LastX. </b>
 	 */
-	
-	public void setLastX(int lastX)
-	{
+
+	public void setLastX(int lastX) {
 		this.lastX = lastX;
 	}
 
 	/** 
-	 * This method will make possible to get the last Y move of a player
+	 * <b> Method that make getLastY. </b>
 	 * 
 	 * @return lastY
-	 *  			The Y position
-	 *  
+	 *  			Y position
 	 */
-	
-	public int getLastY()
-	{
+
+	public int getLastY() {
 		return lastY;
 	}
 
 	/** 
-	 * This method will make possible to set the last Y move of a player
-	 * 
+	 * <b> Method that set LastY. <b>
 	 */
-	
-	public void setLastY(int lastY)
-	{
+
+	public void setLastY(int lastY) {
 		this.lastY = lastY;
 	}
 
 	/** 
-	 * This method will make possible to get the list of players
+	 * <b> Method that get listPlayer. </b>
 	 * 
 	 * @return listPlayer
 	 *  			List of players
-	 *  
-	 */
-	
-	public List<Player> getListPlayer()
-	{
-		return listPlayer;
-	}
-	
-	/** 
-	 * This method will make possible to set the last move of a player
-	 * 
 	 */
 
-	public void setListPlayer(List<Player> listPlayer)
-	{
+	public List<Object> getListPlayer() {
+		return listPlayer;
+	}
+
+	/** 
+	 * <b> Method that set listPlayer. </b>
+	 */
+
+	public void setListPlayer(List<Object> listPlayer) {
 		this.listPlayer = listPlayer;
 	}
 
 	/** 
-	 * This method will make possible to get the actual player
+	 * <b> Method that get actualPlayer. </b>
 	 * 
 	 * @return actualPlayer
 	 *  			Currently player
-	 *  
 	 */
-	
-	public int getActualPlayer()
-	{
+
+	public int getActualPlayer() {
 		return actualPlayer;
 	}
 
 	/** 
-	 * This method will make possible to set the last move of a player
-	 * 
+	 * <b> Method that set actualPlayer. </b>
 	 */
-	
-	public void setActualPlayer(int actualPlayer)
-	{
+
+	public void setActualPlayer(int actualPlayer) {
 		this.actualPlayer = actualPlayer;
 	}
 }

@@ -13,19 +13,18 @@ package com.umons.run;
 import com.umons.utility.DisplayMenu;
 
 /**
- * Main class of the program
+ * Main class of the program.
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
-public class Main
-{
+public class Main {
+	
 	/**
-	 * Launch the application
+	 * Launch the application.
 	 */
 	
-		public static void main(String[] args)
-		{
+		public static void main(String[] args) {
 			DisplayMenu.printMenu();
 		}		
 }

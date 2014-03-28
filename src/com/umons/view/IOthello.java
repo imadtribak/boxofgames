@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 
-public class IFourInARow extends JFrame {
+public class IOthello extends JFrame {
 
 	private JPanel contentPane;
 
@@ -19,7 +19,7 @@ public class IFourInARow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IFourInARow frame = new IFourInARow();
+					IOthello frame = new IOthello();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,14 +31,14 @@ public class IFourInARow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IFourInARow() {
+	public IOthello() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Four In A Row");
+		setTitle("Othello");
 		setBounds(100, 100, 828, 464);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(6, 7 , 0, 0));
+		contentPane.setLayout(new GridLayout(8, 8 , 0, 0));
 		
 		JButton button = new JButton("");
 		contentPane.add(button);
@@ -165,5 +165,71 @@ public class IFourInARow extends JFrame {
 
 		JButton button41 = new JButton("");
 		contentPane.add(button41);
+		
+		JButton button42 = new JButton("");
+		contentPane.add(button42);
+		
+		JButton button43 = new JButton("");
+		contentPane.add(button43);
+		
+		JButton button44 = new JButton("");
+		contentPane.add(button44);
+		
+		JButton button45 = new JButton("");
+		contentPane.add(button45);
+		
+		JButton button46 = new JButton("");
+		contentPane.add(button46);
+		
+		JButton button47 = new JButton("");
+		contentPane.add(button47);
+		
+		JButton button48 = new JButton("");
+		contentPane.add(button48);
+		
+		JButton button49 = new JButton("");
+		contentPane.add(button49);
+		
+		JButton button50 = new JButton("");
+		contentPane.add(button50);
+		
+		JButton button51 = new JButton("");
+		contentPane.add(button51);
+		
+		JButton button52 = new JButton("");
+		contentPane.add(button52);
+		
+		JButton button53 = new JButton("");
+		contentPane.add(button53);
+		
+		JButton button54 = new JButton("");
+		contentPane.add(button54);
+		
+		JButton button55 = new JButton("");
+		contentPane.add(button55);
+		
+		JButton button56 = new JButton("");
+		contentPane.add(button56);
+		
+		JButton button57 = new JButton("");
+		contentPane.add(button57);
+		
+		JButton button58 = new JButton("");
+		contentPane.add(button58);
+		
+		JButton button59 = new JButton("");
+		contentPane.add(button59);
+		
+		JButton button60 = new JButton("");
+		contentPane.add(button60);
+		
+		JButton button61 = new JButton("");
+		contentPane.add(button61);
+		
+		JButton button62 = new JButton("");
+		contentPane.add(button62);
+		
+		JButton button63 = new JButton("");
+		contentPane.add(button63);
 	}
 }

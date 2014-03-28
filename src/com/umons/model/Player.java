@@ -55,6 +55,10 @@ public class Player
 		this.pointsIA = pointsIA;*/
 	}
 	
+	public Player(String string) {
+		// TODO Auto-generated constructor stub
+	}
+
 	/** 
 	 * This method will make possible to get the position of a player
 	 * 

@@ -11,23 +11,17 @@ import java.util.Random;
 
 public class AI extends Player
 {
-	/*
-	 * *****************************************************************
-	 * Attributes
-	 * *****************************************************************
-	 */
 	
 	 private int[][] gameTable;
 	
 	/**
-	 * This constructor initialize an array
+	 * This constructor initialize an AI.
 	 */
 	 
-	 public AI(int rows, int columns)
-	 {
-			gameTable = arrayGenerator(rows, columns);
-	 }
-	 
+		public AI() {
+			
+		}
+
 		/**
 		 * This method generate a layout of a game
 		 * 
@@ -36,16 +30,12 @@ public class AI extends Player
 		 * 
 		 * @param columns
 		 * 			Number of columns
-		 * 
 		 */
 
-		public int[][] arrayGenerator (int rows, int columns)
-		{
+		public int[][] arrayGenerator (int rows, int columns) {
 			int [][] array = new int [rows][columns];
-			for (int i = 0; i < array.length; i++)  
-			{
-				for (int j = 0; j < array.length ; j++)
-				{
+			for (int i = 0; i < array.length; i++)  {
+				for (int j = 0; j < array.length ; j++) {
 					array[i][j] = 0;
 				}
 			}
@@ -53,63 +43,79 @@ public class AI extends Player
 		}
 	 
 	/**
-	 * This method give the level 'easy' of the computer
+	 * This method give the level 'easy' of the computer.
 	 * 
 	 * @return gameTable[x][y]
-	 * 			
+	 * 			Position in the array.	
 	 */
+		
+	// NOTE: Cette méthode ne fonctionne peut-être pas.
 	
-	public int easyDifficulty()
-	{
+	public int easyDifficulty() {
 		int[][] array = getGameTable();
 		Random move = new Random();
-		for (int i = 0; i < array.length ; i++)
-		{
-			for (int j = 0; j < array.length ; j++)
-			{
-				while (array[i][j] == 0)
-				{
+		for (int i = 0; i < array.length ; i++) {
+			for (int j = 0; j < array.length ; j++) {
+				while (array[i][j] == 0) {
 					int x = move.nextInt(3);
 					int y = move.nextInt(3);
-					return gameTable[x][y];
-				}	
+					if (gameTable[x][y] == 0)
+						return gameTable[x][y];
+				}
 			}
 		}
-		
 		return -1;
 	}
 	
-	/*
-	 * *****************************************************************
-	 * Getters & Setters
-	 * *****************************************************************
-	 */
-	
-	/** 
-	 * This method will make possible to get the array with his number of rows
-	 * and his number of columns
-	 * 
-	 * @return gameTable
-	 * 			The table of the game
-	 * 
-	 */
-	
-	public int[][] getGameTable()
-	{
-		return gameTable;
-	}
 	
 	/**
-	 * This method make possible to set a new array with a number of rows
-	 * and a number of columns
+	 * Method that implement an AI with AlphaBetaNegaMax algorithm
+	 * 
+	 * @param depth
+	 * 			Deep
+	 * 
+	 * @param alpha
+	 * 			alpha
+	 * 
+	 * @param beta
+	 * 			beta
+	 */
+	
+	// NOTE: Cette méthode ne marche pas !
+	
+	/*public int alphaBetaNega(int depth, int alpha, int beta) {
+		
+		if (depth == 0 || gameTable[i][j] == 0)
+			return heuristic(gameTable[i][j]);
+		
+		for (gameTable[x][y]) {
+			beta = Math.max(alpha, -alphaBetaNega(depth -1, -alpha, -beta));
+			if (alpha >= beta)
+				return alpha;
+			alpha = Math.max(alpha, beta);	
+		}
+		return alpha;
+	}
+			
+	public void heuristic(int depth)
+	{
+		if(gameTable[x][y] == getActualPlayer())
+			return -1000;
+	*/
+	
+	public int[][] getGameTable() {
+		return gameTable;
+	}
+
+	/**
+	 * <b> Method that set gameTable. </b>
 	 * 
 	 * @param gameTable
 	 * 			Generate an array
-	 * 
 	 */
-	
-	public void setGameTable(int[][] gameTable)
-	{
+
+	public void setGameTable(int[][] gameTable) {
 		this.gameTable = gameTable;
 	}
+	
 }

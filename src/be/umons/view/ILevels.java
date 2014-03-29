@@ -8,7 +8,7 @@
  *****************************************************
  */
 
-package com.umons.view;
+package be.umons.view;
 
 /**
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris

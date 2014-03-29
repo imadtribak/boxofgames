@@ -8,9 +8,9 @@
  *****************************************************
  */
 
-package com.umons.run;
+package be.umons.run;
 
-import com.umons.utility.DisplayMenu;
+import be.umons.utility.DisplayMenu;
 
 /**
  * Main class of the program.

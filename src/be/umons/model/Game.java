@@ -8,14 +8,14 @@
  *****************************************************
  */
 
-package com.umons.model;
+package be.umons.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import com.umons.exception.BoundOutreachedException;
+import be.umons.exception.BoundOutreachedException;
 
 /**
  * <b> Game is the superclass of all games. </b>
@@ -31,9 +31,7 @@ public abstract class Game {
 
 	private List <Object> listPlayer; 
 
-	public abstract int checkWinner(int i, int j, int player) throws BoundOutreachedException;
 	public abstract void letsPlay() throws BoundOutreachedException;
-	public abstract void displayArray() ;
 	
 	/**
 	 * <b> Constructor that initialize an array. </b>
@@ -82,35 +80,37 @@ public abstract class Game {
 
 	@SuppressWarnings("resource")
 	public void select(int player) {
+		
 		int x = 0, y = 0;
 		boolean success = true;
 		Scanner sc = new Scanner(System.in);
+		
 		do {
 			System.out.println("Select a row: ");
 			x = sc.nextInt();
 			System.out.println("Select a column: ");
 			y = sc.nextInt();
-			if (x < gameTable.length) { 
-				if (y < gameTable[x].length) {
-					if (gameTable[x][y] == 0) {
+			if (x >= 0 && x < gameTable.length) { 
+				if (y >= 0 && y < gameTable[x].length) {
+					if (gameTable[x][y] == 0)
 						success = false;
-					} else {
+					else
 						System.out.println("This emplacement is already taken ! \n");
-					}
-				} else {
+					
+				} else
 					System.out.println("Your column is out of the array ! \n");
-				}
-			} else {
+				
+			} else
 				System.out.println("Your row is out of the array ! \n");
-			}
 			
 		} while (success);
 
-		if (player == 1) {
+		if (player == 1)
 			gameTable[x][y] = 1;
-		} else {
+		
+		else 
 			gameTable[x][y] = 2;
-		}
+		
 		setLastX(x);
 		setLastY(y);
 	}
@@ -217,6 +217,24 @@ public abstract class Game {
 		}	
 	}
 
+	/**
+	 * <b> Method that print the array. </b>
+	 */
+	
+	public void displayArray() {
+		int[][] array = getGameTable();	
+		String display = " / ";
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array[i].length; j++) {
+				if (array[i][j] == 1) display = "X";
+				else if (array[i][j] == 2) display = "O";
+				else display = "/";
+				System.out.print(" | " + display + " | ");
+			}
+			System.out.println("\n");
+		}	
+	}
+	
 	/**
 	 * <b> Method that make possible to have a delay.
 	 * 

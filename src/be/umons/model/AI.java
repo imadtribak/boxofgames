@@ -1,4 +1,4 @@
-package com.umons.model;
+package be.umons.model;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package com.umons.view;
+package be.umons.view;
 
 import java.awt.EventQueue;
 

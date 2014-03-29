@@ -8,7 +8,7 @@
  *****************************************************
  */
 
-package com.umons.model;
+package be.umons.model;
 
 /**
  * This class give the possibility to initialize a player with his informations

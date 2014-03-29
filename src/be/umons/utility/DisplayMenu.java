@@ -8,16 +8,16 @@
  *****************************************************
  */
 
-package com.umons.utility;
+package be.umons.utility;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.umons.model.Player;
-import com.umons.model.TicTacToe;
-import com.umons.model.FourInARow;
-import com.umons.model.Othello;
+import be.umons.model.FourInARow;
+import be.umons.model.Othello;
+import be.umons.model.Player;
+import be.umons.model.TicTacToe;
 
 /**
  * This class give the possibility to have menu containing the different games:

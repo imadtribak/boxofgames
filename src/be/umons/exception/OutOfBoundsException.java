@@ -8,7 +8,7 @@
  *****************************************************
  */
 
-package com.umons.exception;
+package be.umons.exception;
 
 /**
  * Exception call when the user try to use a location out of bounds

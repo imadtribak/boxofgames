@@ -16,26 +16,68 @@ import java.util.Scanner;
 import be.umons.exception.BoundOutreachedException;
 
 /**
- * This class give the possibility to play to Four-In-A-Row.
+ * <b> FourInARow is the class that permit to play to the Four in a Row game. </b>
+ * 
+ * <p> This class extend the class Game. </p>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
 public class FourInARow extends Game {
-	
+
 	/**
 	 * This constructor initialize an array with a number of 6 rows and a number of 7 columns
 	 * 
 	 * @param List <Object> list
 	 * 			List of players
 	 */
-	
-	public FourInARow(List<Object> list) {
+
+	public FourInARow(List <Object> list) {
 		super(6, 7, list);
 	}
 	
 	/**
-	 * <b> Method that make possible to choice a position.  </b>
+	 * <b> Method that print the array. </b>
+	 */
+	
+	public void displayArray() {
+		int[][] array = getGameTable();	
+		String display = " ";
+		System.out.print("\n  ");
+
+		for (int j = 0; j < array[0].length; j++) {
+			System.out.print("  ");
+			System.out.print(" " + j);
+			System.out.print("");
+		}
+		System.out.print("\n   ");
+		for (int j = 0; j < array[0].length; j++) {
+			System.out.print("+---");
+		}
+		System.out.print("+\n");
+
+		for (int i = 0; i < array.length; i++) {
+				System.out.print("  ");
+			
+			for (int j = 0; j < array[i].length; j++) {
+				if (array[i][j] == 0) display = getDISPLAYP1();
+				else if (array[i][j] == 1) display = getDISPLAYP2();
+				else display = " ";
+				System.out.print(" | " + display);
+			}
+			System.out.print(" |");
+			System.out.print("\n   ");
+
+			for (int j = 0; j < array[0].length; j++) {
+				System.out.print("+---");
+			}
+			System.out.print("+\n");	
+		}	
+		System.out.println("");
+	}
+	
+	/**
+	 * <b> Method that make possible to choose a position.  </b>
 	 * 
 	 * @param player
 	 * 			Currently player
@@ -43,42 +85,39 @@ public class FourInARow extends Game {
 	
 	@SuppressWarnings("resource")
 	public void select(int player) {
-		
 		int[][] array = getGameTable();	
 		int x = 5, y = 0;
 		boolean success = true;
 		Scanner sc = new Scanner(System.in);
-		
 		do {
 			System.out.println("Select a column: ");
 			y = sc.nextInt();
 			if (x >= 0 && x < array.length) { 
 				if (y >= 0 && y < array[x].length) {
-					if (array[x][y] == 0)
+					if (array[x][y] == 2)
 						success = false;
 					else {
-						while (array[x][y] != 0)
+						while (array[x][y] != 2)
 							x--;
 						success = false;
 					}
-			} else
+				} else {
+					displayArray();
+					System.out.println("This emplacement is already taken ! \n");
+				}
+			} else {
+				displayArray();
 				System.out.println("Your column is out of the array ! \n");
-				
-		} else
-			System.out.println("Your row is out of the array ! \n");
-			
-	} while (success);
-		
-		if (player == 1) 
+			}
+		} while (success);
+		if (player == 0)
+			array[x][y] = 0;
+		else 
 			array[x][y] = 1;
-		
-		else
-			array[x][y] = 2;
-		
 		setLastX(x);
 		setLastY(y);
 	}
-	
+		
 	/**
 	 * Method that tell if we are inside the array or outside
 	 * 
@@ -96,12 +135,9 @@ public class FourInARow extends Game {
 	 */
 	
 	public int Get(int i, int j) {
-		
 		int[][] array = getGameTable();
-		
 		if (i >= 6 || i < 0 || j >= 7 || j < 0)
 			return -1;
-		
 		else
 			return array[i][j];
 	}
@@ -119,39 +155,31 @@ public class FourInARow extends Game {
 	 * 			Player
 	 * 
 	 * @param di
-	 * 			Random rows number
+	 * 			Random row number
 	 * 
 	 * @param dj
-	 * 			Random columns number
+	 * 			Random column number
 	 * 
 	 * @return count
 	 * 			How many elements are same that my currently move
 	 */
 	
 	public int BasisCheck(int i, int j, int player, int di, int dj) {
-		
 		int count = 1;
-
 		if (Get(i + di, j + dj) == player) {
 			count += 1;
-			
 			if (Get(i + 2 * di, j + 2 * dj) == player)
 				count += 1;
-			
-				if (Get(i + 3 * di, j + 3 * dj) == player)
-					count += 1;
+			if (Get(i + 3 * di, j + 3 * dj) == player)
+				count += 1;
 		}
-		
 		if (Get(i - di, j - dj) == player) {
 			count += 1;
-			
 			if (Get(i - 2 * di, j - 2 * dj) == player)
 				count += 1;
-			
-				if (Get(i - 3 * di, j - 3 * dj) == player)
-					count += 1;
+			if (Get(i - 3 * di, j - 3 * dj) == player)
+				count += 1;
 		}
-		
 		return count;
 	}
 	
@@ -184,64 +212,57 @@ public class FourInARow extends Game {
 	 */
 	
 	public int checkWinner(int i, int j, int player) {
-		
+
 		if (BasisCheck(i, j, player, 0, 1) >= 4)
 			return 1;
-		
+
 		if (BasisCheck(i, j, player, 1, 0) >= 4)
 			return 2;
-		
+
 		if (BasisCheck(i, j, player, 1, 1) >= 4)
 			return 3;
-		
+
 		if (BasisCheck(i, j, player, 1, -1) >= 4)
 			return 4;
-		
-	return -1;
+		return -1;
 	}
-	
+
 	/**
-	 * This method make possible to play to the game.
+	 * Method that make possible to play to the game.
+	 * 
+	 * @throws BoundOutreachedException 
+	 * 			Generate exception
 	 */
 	
 	@Override
 	public void letsPlay() throws BoundOutreachedException {
-		//printBoardSize();
-		//Game.choiceofPlayer();
+		//choiceOfPlayers();
 		do {
 			displayArray();
 			changePlayer();
-			select(getActualPlayer()); 
-			} while (checkWinner(getLastX(), getLastY(), getActualPlayer()) == -1);
-		
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 0) {
-			displayArray();
-			System.out.println(" The game is tied !");
-		}
-		
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 1) {
-			displayArray();
+			select(getActualPlayer());
+			clearConsole();
+		} while (checkWinner(getLastX(), getLastY(), getActualPlayer()) == -1);
+
+		displayArray();
+
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 0)
+			System.out.println("The game is tied !");
+
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 1)
 			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
 					" won the game with his horizontal alignment !");
-		}
-			
-		
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 2) {
-			displayArray();
+
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 2)
 			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
 					" won the game with his vertical alignment !");
-		}
-		
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 3) {
-			displayArray();
+
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 3)
 			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
 					" won the game with his first diagonal alignment !");
-		}
-		
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 4) {
-			displayArray();
+
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 4)
 			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
 					" won the game with his second diagonal alignment !");	
-		}
 	}
 }

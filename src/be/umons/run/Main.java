@@ -13,7 +13,7 @@ package be.umons.run;
 import be.umons.utility.DisplayMenu;
 
 /**
- * Main class of the program.
+ * <b> Main is the class that launch the application. </b>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */

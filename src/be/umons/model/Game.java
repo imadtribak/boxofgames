@@ -24,15 +24,18 @@ import be.umons.exception.BoundOutreachedException;
  */
 
 public abstract class Game {
-	
-	private int actualPlayer = 2;
+
+	private static String DISPLAYP1 = "1";
+	private static String DISPLAYP2 = "2";
+
+	private int actualPlayer = 1;
 	private int[][] gameTable;
 	private int lastX = -1, lastY = -1;
 
 	private List <Object> listPlayer; 
 
 	public abstract void letsPlay() throws BoundOutreachedException;
-	
+
 	/**
 	 * <b> Constructor that initialize an array. </b>
 	 * 
@@ -64,99 +67,19 @@ public abstract class Game {
 	public int[][] arrayGenerator(int rows, int columns) {
 		int [][] array = new int [rows][columns];
 		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array.length; j++) {
-				array[i][j] = 0;
+			for (int j = 0; j < array[i].length; j++) {
+				array[i][j] = 2;
 			}
 		}
 		return array;
 	}
-
-	/**
-	 * <b> Method that make possible to choice a position.  </b>
-	 * 
-	 * @param player
-	 * 			Currently player
-	 */
-
-	@SuppressWarnings("resource")
-	public void select(int player) {
-		
-		int x = 0, y = 0;
-		boolean success = true;
-		Scanner sc = new Scanner(System.in);
-		
-		do {
-			System.out.println("Select a row: ");
-			x = sc.nextInt();
-			System.out.println("Select a column: ");
-			y = sc.nextInt();
-			if (x >= 0 && x < gameTable.length) { 
-				if (y >= 0 && y < gameTable[x].length) {
-					if (gameTable[x][y] == 0)
-						success = false;
-					else
-						System.out.println("This emplacement is already taken ! \n");
-					
-				} else
-					System.out.println("Your column is out of the array ! \n");
-				
-			} else
-				System.out.println("Your row is out of the array ! \n");
-			
-		} while (success);
-
-		if (player == 1)
-			gameTable[x][y] = 1;
-		
-		else 
-			gameTable[x][y] = 2;
-		
-		setLastX(x);
-		setLastY(y);
-	}
-
-	/**
-	 * <b> Method that make possible to switch player. </b>
-	 */
-
-	public void changePlayer() {
-		actualPlayer = (actualPlayer == 2) ? 1 : 2;
-	}
-
-	/**
-	 * <b> Method that make possible to check if game tied or not. </b>
-	 * 
-	 * @return boolean
-	 * 			<p> <b>False:</b> game not tied </p>
-	 * 			<b>True:</b> game tied
-	 */
-
-	public boolean isDraw() {
-		int[][] array = getGameTable();	
-		for (int i = 0; i < array.length ; i++) {
-			for (int j = 0; j < array.length ; j++) {
-				if (array[i][j] == 0)
-					return false;
-			}
-		}
-		return true;
-	}
-
-	/**
-	 * <b> Method that make possible to "textually represents" an object. </b>
-	 * 
-	 * @return A string representation of the object
-	 */
-
-	@Override
-	public String toString() {
-		return "Game [gameTable=" + Arrays.toString(gameTable) + "]";
-	}
-
+	
 	/**
 	 * This method make possible to choice the players.
 	 */
-
+	
+	// NOTE: This method don't working.
+	
 	public void choiceOfPlayers() {
 		try {
 			Scanner sc = new Scanner(System.in);
@@ -211,7 +134,7 @@ public abstract class Game {
 				break;
 			}
 			sc.close();
-		} catch (Exception ex) {
+		} catch (Exception e) {
 			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n");
 			choiceOfPlayers();
 		}	
@@ -220,21 +143,132 @@ public abstract class Game {
 	/**
 	 * <b> Method that print the array. </b>
 	 */
-	
+
 	public void displayArray() {
 		int[][] array = getGameTable();	
-		String display = " / ";
+		String display = " ";
+		System.out.print("\n  ");
+
+		for (int j = 0; j < array[0].length; j++) {
+			System.out.print("  ");
+			System.out.print(" " + j);
+			System.out.print("");
+		}
+		System.out.print("\n   ");
+		for (int j = 0; j < array[0].length; j++) {
+			System.out.print("+---");
+		}
+		System.out.print("+\n");
+
 		for (int i = 0; i < array.length; i++) {
+			System.out.print(" ");
+			System.out.print(i);
+			System.out.print("");
+
 			for (int j = 0; j < array[i].length; j++) {
-				if (array[i][j] == 1) display = "X";
-				else if (array[i][j] == 2) display = "O";
-				else display = "/";
-				System.out.print(" | " + display + " | ");
+				if (array[i][j] == 0) display = DISPLAYP1;
+				else if (array[i][j] == 1) display = DISPLAYP2;
+				else display = " ";
+				System.out.print(" | " + display);
 			}
-			System.out.println("\n");
+			System.out.print(" |");
+			System.out.print("\n   ");
+
+			for (int j = 0; j < array[0].length; j++) {
+				System.out.print("+---");
+			}
+			System.out.print("+\n");	
 		}	
+		System.out.println("");
 	}
-	
+
+	/**
+	 * <b> Method that make possible to switch player. </b>
+	 */
+
+	public void changePlayer() {
+		actualPlayer = (actualPlayer == 1) ? 0 : 1;
+	}
+
+	/**
+	 * <b> Method that make possible to choose a position.  </b>
+	 * 
+	 * @param player
+	 * 			Currently player
+	 */
+
+	@SuppressWarnings("resource")
+	public void select(int player) {
+		int x = 0, y = 0;
+		boolean success = true;
+		Scanner sc = new Scanner(System.in);
+		do {
+			System.out.println("Select a row: ");
+			x = sc.nextInt();
+			System.out.println("Select a column: ");
+			y = sc.nextInt();
+			if (x >= 0 && x < gameTable.length) { 
+				if (y >= 0 && y < gameTable[x].length) {
+					if (gameTable[x][y] == 2)
+						success = false;
+					else {
+						displayArray();
+						System.out.println("This emplacement is already taken ! \n");
+					}
+				} else {
+					displayArray();
+					System.out.println("Your column is out of the array ! \n");
+				}
+			} else {
+				displayArray();
+				System.out.println("Your row is out of the array ! \n");
+			}
+		} while (success);
+		if (player == 0)
+			gameTable[x][y] = 0;
+		else 
+			gameTable[x][y] = 1;
+		setLastX(x);
+		setLastY(y);
+	}
+
+	/**
+	 * <b> Method that clear the console. </b>
+	 */
+
+	public void clearConsole() {
+		try {
+			if (System.getProperty("os.name").startsWith("Windows"))
+				Runtime.getRuntime().exec("cls");
+			else
+				Runtime.getRuntime().exec("clear"); 
+		} catch(Exception e) {
+			for (int i = 0; i < 50; i++)
+				System.out.println();
+		}
+	}
+
+	/**
+	 * Method that tell if a game is end or not.
+	 * 
+	 * @return <b> false </b>
+	 * 			Not empty array
+	 * 
+	 * @return <b> true </b>
+	 *  		Empty array
+	 */
+
+	public boolean endGame() {
+		int[][] array = getGameTable();
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array.length; j++) {
+				if (array[i][j] == 2)
+					return false;
+			}
+		}
+		return true;
+	}
+
 	/**
 	 * <b> Method that make possible to have a delay.
 	 * 
@@ -251,9 +285,19 @@ public abstract class Game {
 		}
 	}
 
+	/**
+	 * <b> Method that make possible to "textually represents" an object. </b>
+	 * 
+	 * @return A string representation of the object
+	 */
+
+	@Override
+	public String toString() {
+		return "Game [gameTable=" + Arrays.toString(gameTable) + "]";
+	}
+
 	/** 
-	 * <b> Method that make possible to get the array with his number of rows
-	 * and his number of columns </b>
+	 * <b> Method that get gameTable. </b>
 	 * 
 	 * @return gameTable
 	 * 			Table of the game
@@ -294,10 +338,10 @@ public abstract class Game {
 	}
 
 	/** 
-	 * <b> Method that make getLastY. </b>
+	 * <b> Method that get lastY. </b>
 	 * 
 	 * @return lastY
-	 *  			Y position
+	 *  		Y position
 	 */
 
 	public int getLastY() {
@@ -305,7 +349,7 @@ public abstract class Game {
 	}
 
 	/** 
-	 * <b> Method that set LastY. <b>
+	 * <b> Method that set lastY. <b>
 	 */
 
 	public void setLastY(int lastY) {
@@ -316,7 +360,7 @@ public abstract class Game {
 	 * <b> Method that get listPlayer. </b>
 	 * 
 	 * @return listPlayer
-	 *  			List of players
+	 *  		List of players
 	 */
 
 	public List<Object> getListPlayer() {
@@ -335,7 +379,7 @@ public abstract class Game {
 	 * <b> Method that get actualPlayer. </b>
 	 * 
 	 * @return actualPlayer
-	 *  			Currently player
+	 *  		Currently player
 	 */
 
 	public int getActualPlayer() {
@@ -348,5 +392,43 @@ public abstract class Game {
 
 	public void setActualPlayer(int actualPlayer) {
 		this.actualPlayer = actualPlayer;
+	}
+
+	/** 
+	 * <b> Method that get DISPLAYP1. </b>
+	 * 
+	 * @return DISPLAYP2
+	 *			Display of the second player
+	 */
+
+	public static String getDISPLAYP1() {
+		return DISPLAYP1;
+	}
+
+	/** 
+	 * <b> Method that set DISPLAYP1. </b>
+	 */
+
+	public static void setDISPLAYP1(String dISPLAYP1) {
+		DISPLAYP1 = dISPLAYP1;
+	}
+
+	/** 
+	 * <b> Method that get DISPLAYP1. </b>
+	 * 
+	 * @return DISPLAYP2
+	 *			Display of the second player
+	 */
+
+	public static String getDISPLAYP2() {
+		return DISPLAYP2;
+	}
+
+	/** 
+	 * <b> Method that set DISPLAYP2. </b>
+	 */
+
+	public static void setDISPLAYP2(String dISPLAYP2) {
+		DISPLAYP2 = dISPLAYP2;
 	}
 }

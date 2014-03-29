@@ -20,16 +20,16 @@ import be.umons.model.Player;
 import be.umons.model.TicTacToe;
 
 /**
- * This class give the possibility to have menu containing the different games:
- * Tic-Tac-Toe, Four in a Row, Othello.
+ * <b> DisplayMenu is the class that permit have menu containing the different games: 
+ * Tic-Tac-Toe, Four in a Row, Othello. </b>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
 public class DisplayMenu {
-	
+
 	/**
-	 * This method print the menu of games.
+	 * <b> Method that make possible to choose a game.  </b>
 	 */
 
 	public static void printMenu() {
@@ -73,8 +73,8 @@ public class DisplayMenu {
 				break;
 			}
 			sc.close();
-		} catch (Exception ex) {
-			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n" + ex.toString());
+		} catch (Exception e) {
+			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n");
 			printMenu();
 		}
 	}

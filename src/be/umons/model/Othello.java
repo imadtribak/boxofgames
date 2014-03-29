@@ -8,11 +8,11 @@
  *****************************************************
  */
 
-package com.umons.model;
+package be.umons.model;
 
 import java.util.List;
 
-import com.umons.exception.BoundOutreachedException;
+import be.umons.exception.BoundOutreachedException;
 
 /**
  * This class give the possibility to play to Othello
@@ -50,69 +50,10 @@ public class Othello extends Game
 	
 	public int Get(int i, int j) {
 		int[][] array = getGameTable();
-		if (i >= 9 || i < 0 || j >= 9 || j < 0)
+		if (i >= 8 || i < 0 || j >= 8 || j < 0)
 			return -1;
 		else
 			return array[i][j];
-	}
-	
-	/**
-	 * Method that count how many elements are same that my currently move
-	 * 
-	 * @param i
-	 * 			Number of rows
-	 * 
-	 * @param j
-	 * 			Number of columns
-	 * 
-	 * @param player
-	 * 			Player
-	 * 
-	 * @param di
-	 * 			Random rows number
-	 * 
-	 * @param dj
-	 * 			Random columns number
-	 * 
-	 * @return count
-	 * 			How many elements are same that my currently move
-	 */
-	
-	// NOTE: A modifier !
-
-	public int BasisCheck(int i, int j, int player, int di, int dj) {
-		int count = 1;
-		if (Get(i + di, j + dj) == player) {
-			count += 1;
-			
-			if (Get(i + 2 * di, j + 2 * dj) == player)
-				count += 1;
-		}
-		if (Get(i - di, j - dj) == player) {
-			count += 1;
-			
-			if (Get(i - 2 * di, j - 2 * dj) == player)
-				count += 1;
-		}
-		return count;
-	}
-	
-	/**
-	 * Method that print the array.
-	 */
-	
-	public void displayArray() {
-		int[][] array = getGameTable();	
-		String display = " / ";
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array[i].length; j++) {
-				if(array[i][j] == 1) display = "*";
-				else if(array[i][j] == 2) display = "O";
-				else display = "/";
-				System.out.print(" | " + display + " | ");
-			}
-			System.out.println("\n");
-		}	
 	}
 	
 	/** 
@@ -130,7 +71,7 @@ public class Othello extends Game
 	
 	public int[][] arrayGenerator()
 	{
-		int [][] array = super.arrayGenerator(8,8);
+		int[][] array = getGameTable();
 		array[3][3] = 2;
 		array[3][4] = 1;
 		array[4][3] = 1;
@@ -140,8 +81,8 @@ public class Othello extends Game
 	}
 	
 	// NOTE: A modifier !
-	
-	/*public boolean autorisedMoves(int player)
+	/*
+	public boolean autorisedMoves(int player)
 	{
 		int[][] array = getGameTable();
 		
@@ -169,6 +110,27 @@ public class Othello extends Game
 	} */
 	
 	/**
+	 * Method that tell if a game is end or not.
+	 * 
+	 * @return <b> false </b>
+	 * 			Not empty array
+	 * 
+	 *  @return <b> true </b>
+	 *  		Empty array
+	 */
+	
+	public boolean endGame() {
+		int[][] array = getGameTable();
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array.length; j++) {
+				if (array[i][j] == 0)
+					return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
 	 * Method that count the number of pawns by two players .
 	 * 
 	 * @return 0
@@ -181,16 +143,13 @@ public class Othello extends Game
 	 * 			Number of pawns by player 2
 	 */
 
-	public int checkWinner()
-	{
+	public int checkWinner() {
 		int[][] array = getGameTable();
 		int countplayer1 = 0;
 		int countplayer2 = 0;
 		
-		for (int i = 0; i < array.length; i++)
-		{
-			for (int j = 0; j < array.length; j++)
-			{
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array.length; j++) {
 				if (array[i][j] == 1)
 					countplayer1 += 1;
 				countplayer2 += 1;
@@ -201,37 +160,42 @@ public class Othello extends Game
 			return 0;
 		
 		else if (countplayer1 > countplayer2)
-			return countplayer1;
+			return 1;
 		
-		return countplayer2;
+		return 2;
 	}
 	
 	/**
 	 * This method make possible to play to the game.
 	 */
 	
-	// NOTE: A modifier !
-	
 	@Override
 	public void letsPlay() throws BoundOutreachedException {
 		//printBoardSize();
 		//Game.choiceofPlayer();
+		arrayGenerator();
 		do {
 			displayArray();
 			changePlayer();
 			select(getActualPlayer()); 
-			} while (checkWinner(getLastX(), getLastY(), getActualPlayer()) == -1);
+			} while (!endGame());
 		
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 1)
-			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() + " won the game with his horizontal alignment !");
+		if (checkWinner() == 0) {
+			displayArray();
+			System.out.println(" The game is tied !");
+		}
 		
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 2)
-			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() + " won the game with his vertical alignment !");
+		if (checkWinner() == 1) {
+			displayArray();
+			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
+					" won the game with his horizontal alignment !");
+		}
+			
 		
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 3)
-			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() + " won the game with his first diagonal alignment !");
-		
-		if(checkWinner(getLastX(), getLastY(), getActualPlayer()) == 4)
-			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() + " won the game with his second diagonal alignment !");		
+		if (checkWinner() == 2) {
+			displayArray();
+			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
+					" won the game with his vertical alignment !");
+		}
 	}
 }

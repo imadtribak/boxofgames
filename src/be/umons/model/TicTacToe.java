@@ -2,66 +2,90 @@
  ****************************************************
  * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
  * @email      : agozzino.pizzirusso@gmail.com
- * @file       : FourInARow.java
+ * @file       : TicTacToe.java
  * @date       : 15 May 2014
  * @project    : BoxOfGames
  *****************************************************
  */
 
-package com.umons.model;
+package be.umons.model;
 
 import java.util.List;
 import java.util.Scanner;
 
-import com.umons.exception.BoundOutreachedException;
+import be.umons.exception.BoundOutreachedException;
 
 /**
- * This class give the possibility to play to FourInARow
+ * <b> TicTacToe is the class that permit to play to the Tic-Tac-Toe game. </b>
+ * 
+ * <p> This class extend the class Game. </p>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
- * 
  */
 
-public class FourInARow extends Game {
+public class TicTacToe extends Game {
+	
 	/**
-	 * This constructor initialize an array with a number of 6 rows and a number of 7 columns
+	 * Constructor that initialize an array with a number of 3 rows and a number of 3 columns
+	 * and a list of player.
+	 * 
+	 * @param List <Object> list
+	 * 			List of players
 	 */
 	
-	public FourInARow(List<Object> list) {
-		super(6,7, list);
+	public TicTacToe(List <Object> list) {
+		super(3, 3, list);	
 	}
 	
-	// NOTE: A modifier !
+	/**
+	 * Method that give the possibility to choice a board size.
+	 * 
+	 */
 	
-	/*@SuppressWarnings("resource")
-	public void select(int player) {
-		int x = 0, y = 0;
-		boolean success = true;
-		Scanner sc = new Scanner(System.in);
-		do {
-			System.out.println("Select a column: ");
-			y = sc.nextInt();
-			if (y < gameTable.length) { 
-				if (getGameTable()[5-x][y] == 0) {
-					return 5;	
-				else
-					System.out.println("This emplacement is already taken ! \n");
-			} else {
-				System.out.println("Your column is out of the array ! \n");
+	// NOTE: Cette méthode ne marche pas !
+	
+	public void printBoardSize() {
+		try {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("######################");
+			System.out.println("##### BOARD SIZE #####");
+			System.out.println("######################\n");
+			System.out.println("1. 3x3\n");
+			System.out.println("2. 4x4\n");
+			System.out.println("3. 5x5\n");
+			System.out.println("4. Quit\n");
+			int choice = sc.nextInt();
+
+			while (true) {
+				switch (choice) {
+					case 1:
+						arrayGenerator(3, 3);
+						break;
+	
+					case 2:
+						arrayGenerator(4, 4);
+						break;
+	
+					case 3:
+						arrayGenerator(5, 5);
+						break;
+	
+					case 4:
+						System.exit(0);
+						break;
+	
+					default:
+						System.out.println("Please, choose a number between 1 and 4\n");
+						printBoardSize();
+				}
+				break;
 			}
-		} else {
-			System.out.println("Your row is out of the array ! \n");
-		}	
-	} while (success);
-	
-		if (player == 1) {
-			gameTable[x][y] = 1;
-		} else {
-			gameTable[x][y] = 2;
+			sc.close();
+		} catch (Exception ex) {
+			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n");
+			printBoardSize();
 		}
-		setLastX(x);
-		setLastY(y);
-	}*/
+	}
 	
 	/**
 	 * Method that tell if we are inside the array or outside
@@ -81,7 +105,7 @@ public class FourInARow extends Game {
 	
 	public int Get(int i, int j) {
 		int[][] array = getGameTable();
-		if (i >= 7 || i < 0 || j >= 8 || j < 0)
+		if (i >= 3 || i < 0 || j >= 3 || j < 0)
 			return -1;
 		else
 			return array[i][j];
@@ -109,8 +133,6 @@ public class FourInARow extends Game {
 	 * 			How many elements are same that my currently move
 	 */
 
-	// NOTE: A modifier !
-	
 	public int BasisCheck(int i, int j, int player, int di, int dj) {
 		int count = 1;
 		if (Get(i + di, j + dj) == player) {
@@ -155,18 +177,24 @@ public class FourInARow extends Game {
 	 * @return 4
 	 *  		Winner with second diagonal line
 	 */
-	
-	// NOTE: A modifier !
 
 	public int checkWinner(int i, int j, int player) {
+		
+		if (isDraw() == true)
+			return 0;
+		
 		if (BasisCheck(i, j, player, 0, 1) >= 3)
 			return 1;
+		
 		if (BasisCheck(i, j, player, 1, 0) >= 3)
 			return 2;
+		
 		if (BasisCheck(i, j, player, 1, 1) >= 3)
 			return 3;
+		
 		if (BasisCheck(i, j, player, 1, -1) >= 3)
 			return 4;
+		
 	return -1;
 	}
 	
@@ -174,25 +202,13 @@ public class FourInARow extends Game {
 	 * Method that print the array.
 	 */
 	
-	public void displayArray() {
-		int[][] array = getGameTable();	
-		String display = " / ";
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array[i].length; j++) {
-				if(array[i][j] == 1) display = "*";
-				else if(array[i][j] == 2) display = "O";
-				else display = "/";
-				System.out.print(" | " + display + " | ");
-			}
-			System.out.println("\n");
-		}	
-	}
 	
 	/**
-	 * This method make possible to play to the game.
+	 * Method that make possible to play to the game.
+	 * 
+	 * @throws BoundOutreachedException 
+	 * 			Generate exception
 	 */
-	
-	// NOTE: A modifier !
 	
 	@Override
 	public void letsPlay() throws BoundOutreachedException {
@@ -201,9 +217,12 @@ public class FourInARow extends Game {
 		do {
 			displayArray();
 			changePlayer();
-			select(getActualPlayer()); 
+			select(getActualPlayer());
 			} while (checkWinner(getLastX(), getLastY(), getActualPlayer()) == -1);
 		
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 0)
+			System.out.println(" The game is tied !");
+			
 		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 1)
 			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() + " won the game with his horizontal alignment !");
 		

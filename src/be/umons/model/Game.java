@@ -25,8 +25,8 @@ import be.umons.exception.BoundOutreachedException;
 
 public abstract class Game {
 
-	private static String DISPLAYP1 = "1";
-	private static String DISPLAYP2 = "2";
+	private static String DISPLAYP1 = "*";
+	private static String DISPLAYP2 = "o";
 
 	private int actualPlayer = 1;
 	private int[][] gameTable;

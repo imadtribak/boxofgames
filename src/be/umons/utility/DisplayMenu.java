@@ -36,7 +36,7 @@ public class DisplayMenu {
 		try {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("1. Tic-Tac-Toe\n");
-			System.out.println("2. Four-In-A-Line\n");
+			System.out.println("2. Four in a Row\n");
 			System.out.println("3. Othello\n");
 			System.out.println("4. Quit\n");
 			int choice = sc.nextInt();
@@ -53,8 +53,8 @@ public class DisplayMenu {
 					break;
 
 				case 2:
-					FourInARow four_in_a_line = new FourInARow(list);
-					four_in_a_line.letsPlay();
+					FourInARow four_in_a_row = new FourInARow(list);
+					four_in_a_row.letsPlay();
 					break;
 
 				case 3:

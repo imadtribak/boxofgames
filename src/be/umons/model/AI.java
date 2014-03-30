@@ -56,10 +56,10 @@ public class AI extends Player
 		Random move = new Random();
 		for (int i = 0; i < array.length ; i++) {
 			for (int j = 0; j < array.length ; j++) {
-				while (array[i][j] == 0) {
+				while (array[i][j] == 2) {
 					int x = move.nextInt(3);
 					int y = move.nextInt(3);
-					if (gameTable[x][y] == 0)
+					if (gameTable[x][y] == 2)
 						return gameTable[x][y];
 				}
 			}

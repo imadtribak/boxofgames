@@ -33,7 +33,53 @@ public class Othello extends Game {
 	public Othello(List <Object> list) {
 		super(8, 8, list);
 	}
+	
+	/** 
+	 * This method initialize a new game table with his default values
+	 * 
+	 * @param rows
+	 * 			Number of rows
+	 * 
+	 * @param columns
+	 * 			Number of columns
+	 * 
+	 * @return array
+	 * 			New array
+	 */
 
+	public int[][] arrayGenerator() {
+		int[][] array = getGameTable();
+		array[3][3] = 1;
+		array[3][4] = 0;
+		array[4][3] = 0;
+		array[4][4] = 1;
+		return array;
+	}
+	
+	/**
+	 * <b> Method that converts the pawns from opposite color,
+	 * ranging between two pieces of the same color. </b>
+	 * 
+	 * @param i
+	 * 			Number of rows
+	 * 
+	 * @param j
+	 * 			Number of columns
+	 * 
+	 * @return array
+	 * 			New array
+	 */
+	
+	public int[][] convertPawns(int row, int column) {
+		int[][] array = getGameTable();
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array[i].length; j++) {
+				
+			}
+		}
+		return array;
+	}
+	
 	/**
 	 * Method that tell if we are inside the array or outside.
 	 * 
@@ -58,30 +104,8 @@ public class Othello extends Game {
 			return array[i][j];
 	}
 
-	/** 
-	 * This method initialize a new game table with his default values
-	 * 
-	 * @param rows
-	 * 			Number of rows
-	 * 
-	 * @param columns
-	 * 			Number of columns
-	 * 
-	 * @return array
-	 * 			New array
-	 */
-
-	public int[][] arrayGenerator() {
-		int[][] array = getGameTable();
-		array[3][3] = 2;
-		array[3][4] = 1;
-		array[4][3] = 1;
-		array[4][4] = 2;
-		return array;
-	}
-
 	/**
-	 * Method that count the number of pawns of two players .
+	 * Method that count the number of pawns of two players.
 	 * 
 	 * @return 0
 	 * 			Draw

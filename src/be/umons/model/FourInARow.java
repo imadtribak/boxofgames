@@ -92,18 +92,13 @@ public class FourInARow extends Game {
 		do {
 			System.out.println("Select a column: ");
 			y = sc.nextInt();
-			if (x >= 0 && x < array.length) { 
-				if (y >= 0 && y < array[x].length) {
-					if (array[x][y] == 2)
-						success = false;
-					else {
-						while (array[x][y] != 2)
-							x--;
-						success = false;
-					}
-				} else {
-					displayArray();
-					System.out.println("This emplacement is already taken ! \n");
+			if (y >= 0 && y < array[x].length) {
+				if (array[x][y] == 2)
+					success = false;
+				else {
+					while (array[x][y] != 2)
+						x--;
+					success = false;
 				}
 			} else {
 				displayArray();
@@ -117,7 +112,7 @@ public class FourInARow extends Game {
 		setLastX(x);
 		setLastY(y);
 	}
-		
+
 	/**
 	 * Method that tell if we are inside the array or outside
 	 * 

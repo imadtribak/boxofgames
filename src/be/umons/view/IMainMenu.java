@@ -7,23 +7,30 @@
  * @project    : BoxOfGames
  *****************************************************
  */
+
 package be.umons.view;
 
-/**
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
- */
-
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+/**
+ * Frame of Main Menu
+ * 
+ * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ */
 
 public class IMainMenu extends JFrame
 {
@@ -34,18 +41,48 @@ public class IMainMenu extends JFrame
 	private JTextField textField;
 
 	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					IMainMenu frame = new IMainMenu();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	/**
 	 * Create the frame.
 	 */
 	
-	public IMainMenu()
-	{
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public IMainMenu() {
+		this.setTitle("Main Menu");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				JFrame frame = (JFrame) e.getSource();
+				
+				int result = JOptionPane.showConfirmDialog(frame,
+						"Are you sure you want to exit the application?",
+						"Exit Application", JOptionPane.YES_NO_OPTION);
+				
+				if (result == JOptionPane.YES_OPTION)
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JButton btnFdsef = new JButton("Quit");
 		btnFdsef.addActionListener(new ActionListener()

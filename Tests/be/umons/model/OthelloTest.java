@@ -48,8 +48,21 @@ public class OthelloTest extends Othello {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testCheckWinnerIfDraw() throws Exception {
+		countplayer1 = 50;
+		countplayer2 = 50;
+		assertTrue(checkWinner() == 0);
 	}
-
+	
+	@Test
+	public void testCheckWinnerForTheFirstPlayer() throws Exception {
+		countplayer1 = 51;
+		assertTrue(checkWinner() == countplayer1);
+	}
+	
+	@Test
+	public void testCheckWinnerForTheSecondPlayer() throws Exception {
+		countplayer2 = 51;
+		assertTrue(checkWinner() == countplayer2);
+	}
 }

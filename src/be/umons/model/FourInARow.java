@@ -129,7 +129,7 @@ public class FourInARow extends Game {
 	 * 			The actual position in the array
 	 */
 	
-	public int Get(int i, int j) {
+	public int get(int i, int j) {
 		int[][] array = getGameTable();
 		if (i >= 6 || i < 0 || j >= 7 || j < 0)
 			return -1;
@@ -138,7 +138,7 @@ public class FourInARow extends Game {
 	}
 	
 	/**
-	 * Method that count how many elements are same that my currently move
+	 * <b> Method that count how many elements are same that my currently move </b>
 	 * 
 	 * @param i
 	 * 			Number of rows
@@ -159,20 +159,20 @@ public class FourInARow extends Game {
 	 * 			How many elements are same that my currently move
 	 */
 	
-	public int BasisCheck(int i, int j, int player, int di, int dj) {
+	public int basisCheck(int i, int j, int player, int di, int dj) {
 		int count = 1;
-		if (Get(i + di, j + dj) == player) {
+		if (get(i + di, j + dj) == player) {
 			count += 1;
-			if (Get(i + 2 * di, j + 2 * dj) == player)
+			if (get(i + 2 * di, j + 2 * dj) == player)
 				count += 1;
-			if (Get(i + 3 * di, j + 3 * dj) == player)
+			if (get(i + 3 * di, j + 3 * dj) == player)
 				count += 1;
 		}
-		if (Get(i - di, j - dj) == player) {
+		if (get(i - di, j - dj) == player) {
 			count += 1;
-			if (Get(i - 2 * di, j - 2 * dj) == player)
+			if (get(i - 2 * di, j - 2 * dj) == player)
 				count += 1;
-			if (Get(i - 3 * di, j - 3 * dj) == player)
+			if (get(i - 3 * di, j - 3 * dj) == player)
 				count += 1;
 		}
 		return count;
@@ -208,16 +208,16 @@ public class FourInARow extends Game {
 	
 	public int checkWinner(int i, int j, int player) {
 
-		if (BasisCheck(i, j, player, 0, 1) >= 4)
+		if (basisCheck(i, j, player, 0, 1) >= 4)
 			return 1;
 
-		if (BasisCheck(i, j, player, 1, 0) >= 4)
+		if (basisCheck(i, j, player, 1, 0) >= 4)
 			return 2;
 
-		if (BasisCheck(i, j, player, 1, 1) >= 4)
+		if (basisCheck(i, j, player, 1, 1) >= 4)
 			return 3;
 
-		if (BasisCheck(i, j, player, 1, -1) >= 4)
+		if (basisCheck(i, j, player, 1, -1) >= 4)
 			return 4;
 		return -1;
 	}

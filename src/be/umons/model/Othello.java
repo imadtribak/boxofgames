@@ -24,10 +24,21 @@ import be.umons.exception.BoundOutreachedException;
 
 public class Othello extends Game {
 
-	private static int countplayer1, countplayer2 = 0;
+	int countplayer1, countplayer2 = 0;
+	int up = 0;
+	int down = 0;
+	int left = 0;
+	int right = 0;
+	int topleft = 0; 
+	int topright = 0;
+	int downleft = 0;
+	int downright = 0;
 	
 	/**
 	 * This constructor initialize an array with a number of 8 rows and a number of 8 columns
+	 * 
+	 * @param List <Object> list
+	 * 			List of players
 	 */
 
 	public Othello(List <Object> list) {
@@ -57,31 +68,7 @@ public class Othello extends Game {
 	}
 	
 	/**
-	 * <b> Method that converts the pawns from opposite color,
-	 * ranging between two pieces of the same color. </b>
-	 * 
-	 * @param i
-	 * 			Number of rows
-	 * 
-	 * @param j
-	 * 			Number of columns
-	 * 
-	 * @return array
-	 * 			New array
-	 */
-	
-	public int[][] convertPawns(int row, int column) {
-		int[][] array = getGameTable();
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array[i].length; j++) {
-				
-			}
-		}
-		return array;
-	}
-	
-	/**
-	 * Method that tell if we are inside the array or outside.
+	 * <b> Method that tell if we are inside the array or outside. </b>
 	 * 
 	 * @param i
 	 * 			Number of rows
@@ -96,16 +83,196 @@ public class Othello extends Game {
 	 * 			The actual position in the array
 	 */
 
-	public int Get(int i, int j) {
+	public int get(int i, int j) {
 		int[][] array = getGameTable();
 		if (i >= 8 || i < 0 || j >= 8 || j < 0)
 			return -1;
 		else
 			return array[i][j];
 	}
-
+	
 	/**
-	 * Method that count the number of pawns of two players.
+	 * <b> Method that count how many elements are same that my currently move </b>
+	 * 
+	 * @param i
+	 * 			Number of rows
+	 * 
+	 * @param j
+	 * 			Number of columns
+	 * 
+	 * @param player
+	 * 			Currently player
+	 * 
+	 * @return <b> false </b>
+	 * 			Converter no possible
+	 * 
+	 * @return <b> true </b>
+	 * 			Converter possible
+	 */
+	
+	public boolean basisCheck(int i, int j, int player) {
+		int[][] array = getGameTable();
+
+		if (get(i, j) != -1) { 
+			while (array[i-1][j] != 2 && array[i-1][j] != player) {
+				for (int y = i-1; y >= 0 && array[y][j] != player; y--) {
+					up += 1;
+				}
+			}
+		}
+
+		if (get(i, j) != -1) { 
+			while (array[i+1][j] != 2 && array[i+1][j] != player) {
+				for (int y = i+1; y >= 0 && array[y][j] != player; y++) {
+					down += 1;
+				}
+			}
+		}
+
+		if (get(i, j) != -1) { 
+			while (array[i][j-1] != 2 && array[i][j-1] != player) {
+				for (int x = j-1; x >= 0 && array[x][j] != player; x--) {
+					left += 1;
+				}
+			}
+		}
+
+		if (get(i, j) != -1) { 
+			while (array[i][j+1] != 2 && array[i][j+1] != player) {
+				for (int x = j+1; x >= 0 && array[x][j] != player; x++) {
+					right += 1;
+				}
+			}
+		}
+
+		if (get(i, j) != -1) { 
+			while (array[i-1][j-1] != 2 && array[i-1][j-1] != player) {
+				for (int y = i-1; y >= 0 && array[y][j] != player; y++) {
+					for (int x = j-1; x >= 0 && array[i][x] != player; x++) {
+						topleft += 1;	
+					}
+				}
+			}
+		}
+
+		if (get(i, j) != -1) { 
+			while (array[i+1][j+1] != 2 && array[i+1][j+1] != player) {
+				for (int y = i+1; y >= 0 && array[y][j] != player; y++) {
+					for (int x = j+1; x >= 0 && array[i][x] != player; x++) {
+						downright += 1;	
+					}
+				}
+			}
+		}
+
+		if (get(i, j) != -1) { 
+			while (array[i-1][j+1] != 2 && array[i-1][j+1] != player) {
+				for (int y = i-1; y >= 0 && array[y][j] != player; y++) {
+					for (int x = j+1; x >= 0 && array[i][x] != player; x++) {
+						topright += 1;	
+					}
+				}
+			}
+		}
+
+		if (get(i, j) != -1) { 
+			while (array[i+1][j-1] != 2 && array[i+1][j-1] != player) {
+				for (int y = i+1; y >= 0 && array[y][j] != player; y++) {
+					for (int x = j-1; x >= 0 && array[i][x] != player; x++) {
+						downleft += 1;	
+					}
+				}
+			}
+		}
+
+		if (up != 0 || down != 0 || left != 0 || right != 0 || topleft != 0
+				|| downright != 0 || topright != 0 || downleft != 0)
+			return true;
+		return false;
+	}
+	
+	/**
+	 * <b> Method that count the number of pawns of two players. </b>
+	 * 
+	 * @param i
+	 * 			Number of rows
+	 * 
+	 * @param j
+	 * 			Number of columns
+	 * 
+	 * @param player
+	 * 			Currently player
+	 */
+
+	public void converter(int i, int j, int player) {
+		int[][] array = getGameTable();
+		
+		if (get(i + 0, j + 1) != -1 && get(i + 1, j + 0) != -1
+				&& get(i + 1, j + 1) != -1 && get(i + 1, j - 1) != -1) {
+			
+			if (basisCheck(i, j, player) == true) {
+
+				if (up != 0) {
+					for (int y = i-1; y <= up; y--) {
+						array[i][y] = player;
+					}
+				}
+
+				if (down != 0) {
+					for (int y = i+1; y <= down; y++) {
+						array[i][y] = player;
+					}
+				}
+
+				if (left != 0) {
+					for (int x = j-1; x <= left; x--) {
+						array[i][x] = player;
+					}
+				}
+
+				if (right != 0) {
+					for (int x = j+1; x <= right; x++) {
+						array[i][x] = player;
+					}
+				}
+
+				if (topleft != 0) {
+					for (int y = i-1; y <= up; y--) {
+						for (int x = j-1; x <= up; x--) {
+							array[i][y] = player;
+						}
+					}
+				}
+
+				if (downright != 0) {
+					for (int y = i+1; y <= up; y++) {
+						for (int x = j+1; x <= up; x++) {
+							array[i][y] = player;
+						}
+					}
+				}
+
+				if (topright != 0) {
+					for (int y = i-1; y <= up; y--) {
+						for (int x = j+1; x <= up; x++) {
+							array[i][y] = player;
+						}
+					}
+				}
+
+				if (downleft != 0) {
+					for (int y = i+1; y <= up; y++) {
+						for (int x = j-1; x <= up; x--) {
+							array[i][y] = player;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * <b> Method that count the number of pawns of two players. </b>
 	 * 
 	 * @return 0
 	 * 			Draw
@@ -154,6 +321,7 @@ public class Othello extends Game {
 			displayArray();
 			changePlayer();
 			select(getActualPlayer()); 
+			converter(getLastX(), getLastY(), getActualPlayer());
 			clearConsole();
 			} while (!endGame());
 		

@@ -13,6 +13,7 @@ package be.umons.model;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import TicTacToe;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,7 +27,7 @@ import org.junit.Test;
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
-public class TicTacToeTest extends TicTacToe {
+public class TicTacToeTest {
 	
 	/**
 	 * <b> Constructor that initialize a list of player. </b>

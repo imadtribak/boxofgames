@@ -11,6 +11,7 @@
 package be.umons.model;
 
 import static org.junit.Assert.*;
+import be.umons.model.TicTacToe;
 
 import java.util.List;
 
@@ -27,17 +28,18 @@ import org.junit.Test;
  */
 
 public class TicTacToeTest extends TicTacToe {
-	
+
+	public TicTacToeTest(List<Object> list) {
+		super(list);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * <b> Constructor that initialize a list of player. </b>
 	 * 
 	 * @param List <Object> listPlayer
 	 *  		List of players
 	 */
-
-	public TicTacToeTest(List <Object> list) {
-		super(list);
-	}
 
 	@Before
 	public void setUp() throws Exception {

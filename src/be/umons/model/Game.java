@@ -212,6 +212,7 @@ public abstract class Game {
 					if (gameTable[x][y] == 2)
 						success = false;
 					else {
+						clearConsole();
 						displayArray();
 						System.out.println("This emplacement is already taken ! \n");
 					}

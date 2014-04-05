@@ -15,62 +15,142 @@ package be.umons.view;
  */
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class IGamesMenu extends JFrame
-{
+import be.umons.exception.BoundOutreachedException;
+import be.umons.model.FourInARow;
+import be.umons.model.Othello;
+import be.umons.model.TicTacToe;
+
+public class IGamesMenu extends JFrame implements ActionListener {
 	
-	private JPanel contentPane;
+	private static final long serialVersionUID = 1L;
+	
 	private JTextField txtCopyright;
 	private JTextField txtGames;
-
+	
+	private JButton btnTicTacToe = new JButton("Tic-Tac-Toe");
+	private JButton btnFourInARow = new JButton("Four in a Row");
+	private JButton btnOthello = new JButton("Othello");
+	
+	/**
+	 * Launch the application.
+	 */
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					IGamesMenu frame = new IGamesMenu();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/**
 	 * Create the frame
 	 */
 	
-	public IGamesMenu()
-	{
+	public IGamesMenu() {
+		setTitle("Games Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.BLACK);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				JFrame frame = (JFrame) e.getSource();
+				
+				int answer = JOptionPane.showConfirmDialog(frame,
+						"Are you sure you want to exit the application?",
+						"Exit Application", JOptionPane.YES_NO_OPTION);
+				
+				if (answer == JOptionPane.YES_OPTION)
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		setBounds(100, 100, 1000, 500);
+		JPanelBackground panel = new JPanelBackground();
+		panel.setBorder(new EmptyBorder(200, 200, 200, 200));
+		setContentPane(panel);
+		panel.setLayout(null);
+		setLocationRelativeTo(null);
 		
-		JButton btnNewButton = new JButton("Tic-Tac-Toe");
-		btnNewButton.setBounds(28, 75, 106, 144);
-		contentPane.add(btnNewButton);
 		
-		JButton btnInA = new JButton("Four in a Row");
-		btnInA.setBounds(160, 75, 114, 144);
-		contentPane.add(btnInA);
+		btnTicTacToe = new JButton(new ImageIcon("Ressource/tictactoe.jpg"));
+		btnTicTacToe.setBounds(157, 166, 165, 165);
+		panel.add(btnTicTacToe);
+		btnTicTacToe.addActionListener(this);
 		
-		JButton btnReversi = new JButton("Reversi");
-		btnReversi.setBounds(303, 75, 106, 144);
-		contentPane.add(btnReversi);
+		btnFourInARow = new JButton(new ImageIcon("Ressource/fourinarow.jpg"));
+		btnFourInARow.setBounds(424, 166, 165, 165);
+		panel.add(btnFourInARow);
+		btnFourInARow.addActionListener(this);
 		
-		txtCopyright = new JTextField();
-		txtCopyright.setHorizontalAlignment(SwingConstants.CENTER);
-		txtCopyright.setText("Copyright 2014 by AGOZZINO Terencio - PIZZIRUSSO Loris");
-		txtCopyright.setBounds(28, 230, 381, 20);
-		contentPane.add(txtCopyright);
-		txtCopyright.setColumns(10);
+		btnOthello = new JButton(new ImageIcon("Ressource/othello.jpg"));
+		btnOthello.setBounds(698, 166, 165, 165);
+		panel.add(btnOthello);
+		btnOthello.addActionListener(this);
 		
-		txtGames = new JTextField();
-		txtGames.setText("GAMES");
-		txtGames.setHorizontalAlignment(SwingConstants.CENTER);
-		txtGames.setFont(new Font("Arial Black", Font.PLAIN, 17));
-		txtGames.setColumns(18);
-		txtGames.setBackground(Color.GRAY);
-		txtGames.setBounds(71, 11, 279, 37);
-		contentPane.add(txtGames);
+		JLabel lab = new JLabel(new ImageIcon("Ressource/copyright.jpg"));
+		lab.setBounds(243, 370, 517, 64);
+		panel.add(lab);
+		
+		JLabel lab2 = new JLabel(new ImageIcon("Ressource/header.jpg"));
+		lab2.setBounds(243, 34, 447, 98);
+		panel.add(lab2);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource(); 
+		List<Object> list = new ArrayList<Object>();
+		if (source == btnTicTacToe) {
+			TicTacToe ttt = new TicTacToe(list);
+			try {
+				ttt.letsPlay();
+			} catch (BoundOutreachedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+		else if (source ==  btnFourInARow) {
+			FourInARow fiar = new FourInARow(list);
+			try {
+				fiar.letsPlay();
+			} catch (BoundOutreachedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+
+		else if (source == btnOthello) { 
+			Othello othello = new Othello(list);
+			try {
+				othello.letsPlay();
+			} catch (BoundOutreachedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
 	}
 }

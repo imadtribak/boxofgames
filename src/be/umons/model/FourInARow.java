@@ -103,6 +103,7 @@ public class FourInARow extends Game {
 			} else {
 				displayArray();
 				System.out.println("Your column is out of the array ! \n");
+				displayPlayer();
 			}
 		} while (success);
 		if (player == 0)

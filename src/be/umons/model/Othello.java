@@ -479,6 +479,7 @@ public class Othello extends Game {
 				clearConsole();
 				displayArray();
 				System.out.println("Movement not allowed, you must take at least one pawn ! \n");
+				displayPlayer();
 				select(getActualPlayer()); 	
 			}
 			converter(getLastX(), getLastY(), getActualPlayer());

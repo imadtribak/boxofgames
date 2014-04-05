@@ -73,13 +73,13 @@ public abstract class Game {
 		}
 		return array;
 	}
-	
+
 	/**
 	 * This method make possible to choice the players.
 	 */
-	
+
 	// NOTE: This method don't working.
-	
+
 	public void choiceOfPlayers() {
 		try {
 			Scanner sc = new Scanner(System.in);
@@ -181,6 +181,22 @@ public abstract class Game {
 		}	
 		System.out.println("");
 	}
+	
+	/**
+	 * <b> Method that print the player. </b>
+	 */
+	
+	public void displayPlayer() {
+		if (getActualPlayer() == 0) {
+			System.out.println("+---------------------+");
+			System.out.println("| Player 1's turn ("+ getDISPLAYP1() + ") |");
+			System.out.println("+---------------------+ \n");
+		} else {
+			System.out.println("+---------------------+");
+			System.out.println("| Player 2's turn ("+ getDISPLAYP2() + ") |");
+			System.out.println("+---------------------+ \n");
+		}
+	}
 
 	/**
 	 * <b> Method that make possible to switch player. </b>
@@ -188,6 +204,7 @@ public abstract class Game {
 
 	public void changePlayer() {
 		actualPlayer = (actualPlayer == 1) ? 0 : 1;
+		displayPlayer();
 	}
 
 	/**
@@ -215,14 +232,19 @@ public abstract class Game {
 						clearConsole();
 						displayArray();
 						System.out.println("This emplacement is already taken ! \n");
+						displayPlayer();
 					}
 				} else {
+					clearConsole();
 					displayArray();
 					System.out.println("Your column is out of the array ! \n");
+					displayPlayer();
 				}
 			} else {
+				clearConsole();
 				displayArray();
 				System.out.println("Your row is out of the array ! \n");
+				displayPlayer();
 			}
 		} while (success);
 		if (player == 0)

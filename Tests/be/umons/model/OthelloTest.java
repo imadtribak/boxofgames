@@ -12,10 +12,11 @@ package be.umons.model;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
+import be.umons.model.Othello;
+
 import org.junit.Test;
 
 /**
@@ -26,43 +27,27 @@ import org.junit.Test;
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
-public class OthelloTest extends Othello {
+public class OthelloTest {
 
-	/**
-	 * <b> Constructor that initialize a list of player. </b>
-	 * 
-	 * @param List <Object> listPlayer
-	 *  		List of players
-	 */
-	
-	public OthelloTest(List <Object> list) {
-		super(list);
-	}
-	
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+	List<Object> list = new ArrayList<Object>();
+	Othello othello = new Othello(list);
 
 	@Test
 	public void testCheckWinnerIfDraw() throws Exception {
-		countplayer1 = 50;
-		countplayer2 = 50;
-		assertTrue(checkWinner() == 0);
+		othello.countplayer1 = 50;
+		othello.countplayer2 = 50;
+		assertTrue(othello.checkWinner() == 0);
 	}
 	
 	@Test
 	public void testCheckWinnerForTheFirstPlayer() throws Exception {
-		countplayer1 = 51;
-		assertTrue(checkWinner() == countplayer1);
+		othello.countplayer1 = 51;
+		assertTrue(othello.checkWinner() == othello.countplayer1);
 	}
 	
 	@Test
 	public void testCheckWinnerForTheSecondPlayer() throws Exception {
-		countplayer2 = 51;
-		assertTrue(checkWinner() == countplayer2);
+		othello.countplayer2 = 51;
+		assertTrue(othello.checkWinner() == othello.countplayer2);
 	}
 }

@@ -48,13 +48,13 @@ public class DisplayMenu {
 			while (true) {
 				switch (choice) {
 				case 1:
-					TicTacToe tic_tac_toe = new TicTacToe(list);
-					tic_tac_toe.letsPlay();
+					TicTacToe ttt = new TicTacToe(list);
+					ttt.letsPlay();
 					break;
 
 				case 2:
-					FourInARow four_in_a_row = new FourInARow(list);
-					four_in_a_row.letsPlay();
+					FourInARow fiar = new FourInARow(list);
+					fiar.letsPlay();
 					break;
 
 				case 3:
@@ -63,6 +63,7 @@ public class DisplayMenu {
 					break;
 
 				case 4:
+					System.out.println("Goodbye !");
 					System.exit(0);
 					break;
 

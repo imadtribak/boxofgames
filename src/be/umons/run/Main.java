@@ -10,7 +10,7 @@
 
 package be.umons.run;
 
-import be.umons.utility.DisplayMenu;
+import be.umons.view.IGamesMenu;
 
 /**
  * <b> Main is the class that launch the application. </b>
@@ -19,12 +19,13 @@ import be.umons.utility.DisplayMenu;
  */
 
 public class Main {
-	
+
 	/**
 	 * Launch the application.
 	 */
-	
-		public static void main(String[] args) {
-			DisplayMenu.printMenu();
-		}		
+
+	public static void main(String[] args) {
+		IGamesMenu frame = new IGamesMenu();
+		frame.setVisible(true);
+	}		
 }

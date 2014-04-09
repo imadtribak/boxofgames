@@ -1,3 +1,13 @@
+/**
+ ****************************************************
+ * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @email      : agozzino.pizzirusso@gmail.com
+ * @file       : IFourInARow.java
+ * @date       : 15 May 2014
+ * @project    : BoxOfGames
+ *****************************************************
+ */
+
 package be.umons.view;
 
 import java.awt.EventQueue;
@@ -8,6 +18,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 
+/**
+ * <b> IFourInARow is the GUI class of a Four in a Row board. </b>
+ * 
+ * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ */
+
 public class IFourInARow extends JFrame {
 
 	private JPanel contentPane;
@@ -15,6 +31,7 @@ public class IFourInARow extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -29,8 +46,9 @@ public class IFourInARow extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Constructor that create the frame.
 	 */
+	
 	public IFourInARow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Four In A Row");

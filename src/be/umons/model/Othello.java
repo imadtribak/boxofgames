@@ -35,7 +35,7 @@ public class Othello extends Game {
 	int downright = 0;
 	
 	/**
-	 * This constructor initialize an array with a number of 8 rows and a number of 8 columns
+	 * This constructor initialize an array with a number of rows and a number of columns.
 	 * 
 	 * @param List <Object> list
 	 * 			List of players
@@ -46,16 +46,7 @@ public class Othello extends Game {
 	}
 	
 	/** 
-	 * This method initialize a new game table with his default values
-	 * 
-	 * @param rows
-	 * 			Number of rows
-	 * 
-	 * @param columns
-	 * 			Number of columns
-	 * 
-	 * @return array
-	 * 			New array
+	 * <b> Method that initialize a new game table with his default values. </b>
 	 */
 
 	public int[][] arrayGenerator() {
@@ -71,7 +62,7 @@ public class Othello extends Game {
 	 * <b> Method that tell if we are inside the array or outside. </b>
 	 * 
 	 * @param i
-	 * 			Number of rows
+	 *			Number of rows
 	 * 
 	 * @param j
 	 * 			Number of columns
@@ -111,210 +102,178 @@ public class Othello extends Game {
 	 */
 	
 	public boolean basisCheck(int i, int j, int player) {
-		int[][] array = getGameTable();
 
-		if (get(i + 0, j + 1 ) != -1 && get(i + 1, j + 0) != -1
-				&& get(i + 1, j + 1) != -1 && get(i + 1, j - 1) != -1) { 
+			for (int x = i - 1; x >= 0; x--) {
 
-			while (i < array.length && j < array[0].length) {
-
-				for (int x = i-1; x >= 0; x--) {
-
-					if (array[x][j] == 2) {
-						if (array[x+1][j] == player)
-							break;
-						up = 0;
+				if (get(x, j) == 2) {
+					if (get(x + 1, j) == player)
 						break;
-					}
-
-					if (array[x][j] != player)
-						up += 1;
-
-					if (array[x][j] == player) {
-						if (array[x+1][j] != player)
-							break;
-						up = 0;
-						break;
-					}
+					up = 0;
+					break;
 				}
-				break;
+
+				if (get(x, j) != player)
+					
+					up += 1;
+
+				if (get(x, j) == player) {
+					if (get(x + 1, j) != player)
+						break;
+					up = 0;
+					break;
+				}
 			}
 
-			while (i < array.length && j < array[0].length) {
+			for (int x = i + 1; x >= 0; x++) {
 
-				for (int x = i+1; x >= 0; x++) {
-
-					if (array[x][j] == 2) {
-						if (array[x-1][j] == player)
-							break;
-						down = 0;
+				if (get(x, j) == 2) {
+					if (get(x - 1, j) == player)
 						break;
-					}
-
-					if (array[x][j] != player)
-						down += 1;
-
-					if (array[x][j] == player) {
-						if (array[x-1][j] != player)
-							break;
-						down = 0;
-						break;
-					}
+					down = 0;
+					break;
 				}
-				break;
+
+				if (get(x, j) != player)
+					down += 1;
+
+				if (get(x, j) == player) {
+					if (get(x - 1, j) != player)
+						break;
+					down = 0;
+					break;
+				}
 			}
 
-			while (i < array.length && j < array[0].length) {
+			for (int y = j - 1; y >= 0; y--) {
 
-				for (int y = j-1; y >= 0; y--) {
-
-					if (array[i][y] == 2) {
-						if (array[i][y+1] == player)
-							break;
-						left = 0;
+				if (get(i, y) == 2) {
+					if (get(i, y + 1) == player)
 						break;
-					}
-
-					if (array[i][y] != player)
-						left += 1;
-
-					if (array[i][y] == player) {
-						if (array[i][y+1] != player)
-							break;
-						left = 0;
-						break;
-					}
+					left = 0;
+					break;
 				}
-				break;
+
+				if (get(i, y) != player)
+					left += 1;
+
+				if (get(i, y) == player) {
+					if (get(i, y + 1) != player)
+						break;
+					left = 0;
+					break;
+				}
 			}
 
-			while (i < array.length && j < array[0].length) {
+			for (int y = j + 1; y >= 0; y++) {
 
-				for (int y = j+1; y >= 0; y++) {
-
-					if (array[i][y] == 2) {
-						if (array[i][y-1] == player)
-							break;
-						right = 0;
+				if (get(i, y) == 2) {
+					if (get(i, y - 1) == player)
 						break;
-					}
-
-					if (array[i][y] != player)
-						right += 1;
-
-					if (array[i][y] == player) {
-						if (array[i][y-1] != player)
-							break;
-						right = 0;
-						break;
-					}
+					right = 0;
+					break;
 				}
-				break;
+
+				if (get(i, y) != player)
+					right += 1;
+
+				if (get(i, y) == player) {
+					if (get(i, y - 1) != player)
+						break;
+					right = 0;
+					break;
+				}
 			}
 
-			while (i < array.length && j < array[0].length) {
-				int x = i-1;
-				int y = j-1;
-				while (x >= 0 && y >= 0) {
+			int x = i - 1;
+			int y = j - 1;
 
-					if (array[x][y] == 2) {
-						if (array[x+1][y+1] == player)
-							break;
-						topleft = 0;
+			while (x >= 0 && y >= 0) {
+				if (get(x, y) == 2) {
+					if (get(x + 1, y + 1) == player)
 						break;
-					}
-
-					if (array[x][y] != player)
-						topleft += 1;
-
-					if (array[x][y] == player) {
-						if (array[x+1][y+1] != player)
-							break;
-						topleft = 0;
-						break;
-					}
-					x--; y--;
+					topleft = 0;
+					break;
 				}
-				break;
+
+				if (get(x, y) != player)
+					topleft += 1;
+
+				if (get(x,  y) == player) {
+					if (get(x + 1, y + 1) != player)
+						break;
+					topleft = 0;
+					break;
+				}
+				x--; 
+				y--;
 			}
 
-			while (i < array.length && j < array[0].length) {
-				int x = i+1;
-				int y = j+1;
-				while (x >= 0 && y >= 0) {
+			/*int x = i - 1;
+			int y = j - 1;
 
-					if (array[x][y] == 2) {
-						if (array[x-1][y-1] == player)
-							break;
-						downright = 0;
+			while (x >= 0 && y >= 0) {
+				if (get(x, y) == 2) {
+					if (get(x-1, y-1) == player)
 						break;
-					}
-
-					if (array[x][y] != player)
-						downright += 1;
-
-					if (array[x][y] == player) {
-						if (array[x-1][y-1] != player)
-							break;
-						downright = 0;
-						break;
-					}
-					x++; y++;
+					downright = 0;
+					break;
 				}
-				break;
+
+				if (get(x, y) != player)
+					downright += 1;
+
+				if (get(x, y) == player) {
+					if (get(x-1, y-1) != player)
+						break;
+					downright = 0;
+					break;
+				}
 			}
 
-			while (i < array.length && j < array[0].length) {
-				int x = i-1;
-				int y = j+1;
-				while (x >= 0 && y >= 0) {
+			int x = i - 1;
+			int y = j - 1;
 
-					if (array[x][y] == 2) {
-						if (array[x+1][y-1] == player)
-							break;
-						topright = 0;
+			while (x >= 0 && y >= 0) {
+				if (get(x, y) == 2) {
+					if (get(x+1, y-1) == player)
 						break;
-					}
-
-					if (array[x][y] != player)
-						topright += 1;
-
-					if (array[x][y] == player) {
-						if (array[y+1][x-1] != player)
-							break;
-						topright = 0;
-						break;
-					}
-					x--; y++;
+					topright = 0;
+					break;
 				}
-				break;
+
+				if (get(x, y) != player)
+					topright += 1;
+
+				if (get(x, y) == player) {
+					if (get(x+1, y-1) != player)
+						break;
+					topright = 0;
+					break;
+				}
 			}
 
-			while (i < array.length && j < array[0].length) {
-				int x = i+1;
-				int y = j-1;
-				while (x >= 0 && y >= 0) {
-					if (array[x][y] == 2) {
-						if (array[x-1][y+1] == player)
-							break;
-						downleft = 0;
-						break;
-					}
 
-					if (array[x][y] != player)
-						downleft += 1;
+			int x = i - 1;
+			int y = j - 1;
 
-					if (array[x][y] == player) {
-						if (array[x-1][y+1] != player)
-							break;
-						downleft = 0;
+			while (x >= 0 && y >= 0) {
+				if (get(x, y) == 2) {
+					if (get(x-1, y+1) == player)
 						break;
-					}
-					x++; y--;
+					downleft = 0;
+					break;
 				}
-				break;
-			}
-		}
+
+				if (get(x, y) != player)
+					downleft += 1;
+
+				if (get(x, y) == player) {
+					if (get(x-1, y+1) != player)
+						break;
+					downleft = 0;
+					break;
+				}
+			}*/
 
 		if (up != 0 || down != 0 || left != 0 || right != 0 || topleft != 0
 				|| downright != 0 || topright != 0 || downleft != 0)

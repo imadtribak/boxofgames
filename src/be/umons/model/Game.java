@@ -100,7 +100,6 @@ public abstract class Game {
 
 				case 2:
 					AI ai = new AI();
-					ai.easyDifficulty();
 					list.add(ai);
 					break;
 
@@ -123,7 +122,6 @@ public abstract class Game {
 
 				case 2:
 					AI ai = new AI();
-					ai.easyDifficulty();
 					list.add(ai);
 					break;
 
@@ -453,5 +451,13 @@ public abstract class Game {
 
 	public static void setDISPLAYP2(String dISPLAYP2) {
 		DISPLAYP2 = dISPLAYP2;
+	}
+	
+	public int getNLines() {
+		return gameTable.length;
+	}
+	
+	public int getNRows() {
+		return gameTable[0].length;
 	}
 }

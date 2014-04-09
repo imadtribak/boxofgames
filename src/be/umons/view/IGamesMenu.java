@@ -10,15 +10,12 @@
 
 package be.umons.view;
 
-/**
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
- */
-
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -30,127 +27,116 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.JToggleButton;
 
 import be.umons.exception.BoundOutreachedException;
-import be.umons.model.FourInARow;
-import be.umons.model.Othello;
-import be.umons.model.TicTacToe;
+import be.umons.view.IMainMenuTicTacToe;
+import be.umons.view.IMainMenuFourInARow;
+import be.umons.view.IMainMenuOthello;
+
+/**
+ * <b> IGamesMenu is the super-class that initialize the menu of the three games: </b>
+ * 
+ * <p> Tic-Tac-Toe </p>
+ * 
+ * <p> Four in a Row </p>
+ * 
+ * <p> Othello </p>
+ * 
+ * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ */
 
 public class IGamesMenu extends JFrame implements ActionListener {
-	
+
 	private static final long serialVersionUID = 1L;
+	private static String OS = System.getProperty("os.name").toLowerCase();
 	
-	private JTextField txtCopyright;
-	private JTextField txtGames;
-	
-	private JButton btnTicTacToe = new JButton("Tic-Tac-Toe");
-	private JButton btnFourInARow = new JButton("Four in a Row");
-	private JButton btnOthello = new JButton("Othello");
-	
+	private JToggleButton btnTicTacToe = new JToggleButton("Tic-Tac-Toe");
+	private JToggleButton btnFourInARow = new JToggleButton("Four in a Row");
+	private JToggleButton btnOthello = new JToggleButton("Othello");
+
 	/**
-	 * Launch the application.
+	 * Constructor that create the frame.
 	 */
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IGamesMenu frame = new IGamesMenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	/**
-	 * Create the frame
-	 */
-	
+
 	public IGamesMenu() {
 		setTitle("Games Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				JFrame frame = (JFrame) e.getSource();
-				
+
 				int answer = JOptionPane.showConfirmDialog(frame,
 						"Are you sure you want to exit the application?",
 						"Exit Application", JOptionPane.YES_NO_OPTION);
-				
+
 				if (answer == JOptionPane.YES_OPTION)
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
 		setBounds(100, 100, 1000, 500);
-		JPanelBackground panel = new JPanelBackground();
+		JPanelBackground panel = new JPanelBackground("Ressource/background.png");
 		panel.setBorder(new EmptyBorder(200, 200, 200, 200));
 		setContentPane(panel);
 		panel.setLayout(null);
 		setLocationRelativeTo(null);
-		
-		
-		btnTicTacToe = new JButton(new ImageIcon("Ressource/tictactoe.jpg"));
-		btnTicTacToe.setBounds(157, 166, 165, 165);
+
+
+		btnTicTacToe = new JToggleButton(new ImageIcon("Ressource/btnTicTacToe.png"));
+		btnTicTacToe.setBounds(200, 166, 165, 165);
 		panel.add(btnTicTacToe);
 		btnTicTacToe.addActionListener(this);
-		
-		btnFourInARow = new JButton(new ImageIcon("Ressource/fourinarow.jpg"));
-		btnFourInARow.setBounds(424, 166, 165, 165);
+		btnTicTacToe.setRolloverIcon(new ImageIcon("Ressource/btnTicTacToe2.png"));
+
+		btnFourInARow = new JToggleButton(new ImageIcon("Ressource/btnFourInARow.png"));
+		btnFourInARow.setBounds(417, 166, 165, 165);
 		panel.add(btnFourInARow);
 		btnFourInARow.addActionListener(this);
-		
-		btnOthello = new JButton(new ImageIcon("Ressource/othello.jpg"));
-		btnOthello.setBounds(698, 166, 165, 165);
+		btnFourInARow.setRolloverIcon(new ImageIcon("Ressource/btnFourInARow2.png"));
+
+		btnOthello = new JToggleButton(new ImageIcon("Ressource/btnOthello.png"));
+		btnOthello.setBounds(635, 166, 165, 165);
 		panel.add(btnOthello);
 		btnOthello.addActionListener(this);
-		
-		JLabel lab = new JLabel(new ImageIcon("Ressource/copyright.jpg"));
+		btnOthello.setRolloverIcon(new ImageIcon("Ressource/btnOthello2.png"));
+
+		JLabel lab = new JLabel(new ImageIcon("Ressource/copyright.png"));
 		lab.setBounds(243, 370, 517, 64);
 		panel.add(lab);
-		
-		JLabel lab2 = new JLabel(new ImageIcon("Ressource/header.jpg"));
-		lab2.setBounds(243, 34, 447, 98);
+
+		JLabel lab2 = new JLabel(new ImageIcon("Ressource/header.png"));
+		lab2.setBounds(313, 34, 447, 98);
 		panel.add(lab2);
+		
+		
+		if (OS.indexOf("win") >= 0)
+			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
+		
+		if (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 ||
+				OS.indexOf("aix") >= 0 || OS.indexOf("mac") >= 0 ||
+				OS.indexOf("sunos") >= 0)
+			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource(); 
-		List<Object> list = new ArrayList<Object>();
 		if (source == btnTicTacToe) {
-			TicTacToe ttt = new TicTacToe(list);
-			try {
-				ttt.letsPlay();
-			} catch (BoundOutreachedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			IMainMenuTicTacToe frame = new IMainMenuTicTacToe();
+			frame.setVisible(true);
+			dispose();
 		}
 
 		else if (source ==  btnFourInARow) {
-			FourInARow fiar = new FourInARow(list);
-			try {
-				fiar.letsPlay();
-			} catch (BoundOutreachedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			IMainMenuFourInARow frame = new IMainMenuFourInARow();
+			frame.setVisible(true);
+			dispose();
 		}
 
 		else if (source == btnOthello) { 
-			Othello othello = new Othello(list);
-			try {
-				othello.letsPlay();
-			} catch (BoundOutreachedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			IMainMenuOthello frame = new IMainMenuOthello();
+			frame.setVisible(true);
+			dispose();
 		}
 	}
 }

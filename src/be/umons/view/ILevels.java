@@ -30,7 +30,7 @@ public class ILevels extends JFrame
 	private JTextField txtLevels;
 
 	/**
-	 * Create the frame
+	 * Constructor that create the frame.
 	 */
 	
 	public ILevels()

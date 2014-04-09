@@ -17,13 +17,7 @@ package be.umons.model;
  * 
  */
 
-public class Player
-{
-	/*
-	 * *****************************************************************
-	 * Attributes
-	 * *****************************************************************
-	 */
+public class Player extends Game {
 	
 	private String name;
 	

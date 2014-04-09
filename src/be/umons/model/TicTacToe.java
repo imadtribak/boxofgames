@@ -26,7 +26,7 @@ import be.umons.exception.BoundOutreachedException;
 public class TicTacToe extends Game {
 
 	/**
-	 * Constructor that initialize an array with a number of 3 rows and a number of 3 columns
+	 * Constructor that initialize an array with a number of rows and a number of columns
 	 * and a list of players.
 	 * 
 	 * @param List <Object> list
@@ -40,7 +40,7 @@ public class TicTacToe extends Game {
 	}
 	
 	/**
-	 * Method that give the possibility to choice a board size.
+	 * <b> Method that give the possibility to choice a board size. </b>
 	 */
 	
 	// NOTE: This method don't working.
@@ -83,7 +83,7 @@ public class TicTacToe extends Game {
 	}
 
 	/**
-	 * Method that tell if we are inside the array or outside.
+	 * <b> Method that tell if we are inside the array or outside. </b>
 	 * 
 	 * @param i
 	 * 			Number of rows
@@ -107,7 +107,7 @@ public class TicTacToe extends Game {
 	}
 	
 	/**
-	 * Method that count how many elements are same that my currently move.
+	 * <b> Method that count how many elements are same that my currently move. </b>
 	 * 
 	 * @param i
 	 * 			Number of rows
@@ -144,7 +144,7 @@ public class TicTacToe extends Game {
 	}
 
 	/**
-	 * Method that tell if they are a winner or not.
+	 * <b> Method that tell if they are a winner or not. </b>
 	 * 
 	 * @param i
 	 * 			Number of rows
@@ -191,7 +191,7 @@ public class TicTacToe extends Game {
 	}
 
 	/**
-	 * Method that make possible to play to the game.
+	 * <b> Method that make possible to play to the game. </b>
 	 * 
 	 * @throws BoundOutreachedException 
 	 * 			Generate exception

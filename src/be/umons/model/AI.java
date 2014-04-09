@@ -2,6 +2,8 @@ package be.umons.model;
 
 import java.util.Random;
 
+import be.umons.model.Game;
+
 /**
  * This class give the possibility to play versus a computer with different levels
  * 
@@ -9,8 +11,7 @@ import java.util.Random;
  * 
  */
 
-public class AI extends Player
-{
+public class AI extends Player {
 	
 	 private int[][] gameTable;
 	
@@ -49,23 +50,49 @@ public class AI extends Player
 	 * 			Position in the array.	
 	 */
 		
-	// NOTE: Cette méthode ne fonctionne peut-être pas.
-	
-	public int easyDifficulty() {
-		int[][] array = getGameTable();
-		Random move = new Random();
-		for (int i = 0; i < array.length ; i++) {
-			for (int j = 0; j < array.length ; j++) {
-				while (array[i][j] == 2) {
-					int x = move.nextInt(3);
-					int y = move.nextInt(3);
-					if (gameTable[x][y] == 2)
-						return gameTable[x][y];
+		public int easyAITicTacToe() {
+			int[][] array = getGameTable();
+			Random Math = new Random();
+			boolean success = true;
+			do {
+				int x = Math.nextInt(3);
+				int y = Math.nextInt(3);
+				if (array[x][y] == 2) {
+					success = false;
+					setLastX(x);
+					setLastY(y);
+					return array[x][y] = 1;
 				}
-			}
+			} while (success);
+			return -1;
 		}
-		return -1;
-	}
+		
+		public int easyAIFourInARow() {
+			int[][] array = getGameTable();
+			Random Math = new Random();
+			int x = 5;
+			boolean success = true;
+			do {
+				int y = Math.nextInt(7);
+				if (y >= 0 && y < array[x].length) {
+					if (array[x][y] == 2) {
+						success = false;
+						setLastX(x);
+						setLastY(y);
+						return array[x][y] = 1;
+					}
+					else {
+						while (array[x][y] != 2)
+							x--;
+						success = false;
+						setLastX(x);
+						setLastY(y);
+						return array[x][y] = 1;
+					}
+				}
+			} while (success);
+			return -1;
+		}
 	
 	
 	/**
@@ -117,5 +144,4 @@ public class AI extends Player
 	public void setGameTable(int[][] gameTable) {
 		this.gameTable = gameTable;
 	}
-	
 }

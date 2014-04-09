@@ -1,3 +1,13 @@
+/**
+ ****************************************************
+ * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @email      : agozzino.pizzirusso@gmail.com
+ * @file       : IOthello.java
+ * @date       : 15 May 2014
+ * @project    : BoxOfGames
+ *****************************************************
+ */
+
 package be.umons.view;
 
 import java.awt.EventQueue;
@@ -8,13 +18,21 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 
+/**
+ * <b> IOthello is the GUI class of a Othello board. </b>
+ * 
+ * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ */
+
 public class IOthello extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -29,8 +47,9 @@ public class IOthello extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Constructor that create the frame.
 	 */
+	
 	public IOthello() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Othello");

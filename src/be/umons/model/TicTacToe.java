@@ -211,8 +211,8 @@ public class TicTacToe extends Game {
 		displayArray();
 
 		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 0)
-			System.out.println("The game is tied !");
-
+			System.out.println("Game is tied !");
+			
 		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 1)
 			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
 					" won the game with his horizontal alignment !");

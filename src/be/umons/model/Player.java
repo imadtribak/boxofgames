@@ -17,7 +17,7 @@ package be.umons.model;
  * 
  */
 
-public class Player extends Game {
+public class Player {
 	
 	private String name;
 	
@@ -42,14 +42,14 @@ public class Player extends Game {
 	 * 			Array with the number of points of the IA
 	 */
 	
-	public Player(/*String name, int[] points, int[] pointsIA*/)
+	public Player(String name/*, int[] points, int[] pointsIA*/)
 	{
-		/*this.name = name;
-		this.points = points;
-		this.pointsIA = pointsIA;*/
+		this.name = name;
+		//this.points = points;
+		//this.pointsIA = pointsIA;*/
 	}
-	
-	public Player(String string) {
+
+	public Player() {
 		// TODO Auto-generated constructor stub
 	}
 

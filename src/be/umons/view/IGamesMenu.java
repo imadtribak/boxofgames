@@ -10,26 +10,22 @@
 
 package be.umons.view;
 
-import java.awt.EventQueue;
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
-import be.umons.exception.BoundOutreachedException;
 import be.umons.view.IMainMenuTicTacToe;
 import be.umons.view.IMainMenuFourInARow;
 import be.umons.view.IMainMenuOthello;
@@ -80,26 +76,31 @@ public class IGamesMenu extends JFrame implements ActionListener {
 		setContentPane(panel);
 		panel.setLayout(null);
 		setLocationRelativeTo(null);
-
+		
+		Border grey = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2);
 
 		btnTicTacToe = new JToggleButton(new ImageIcon("Ressource/btnTicTacToe.png"));
 		btnTicTacToe.setBounds(200, 166, 165, 165);
+		btnTicTacToe.setBorder(new JRoundedBorder(20));
 		panel.add(btnTicTacToe);
 		btnTicTacToe.addActionListener(this);
 		btnTicTacToe.setRolloverIcon(new ImageIcon("Ressource/btnTicTacToe2.png"));
-
+		btnTicTacToe.setBorder(grey);
+		
 		btnFourInARow = new JToggleButton(new ImageIcon("Ressource/btnFourInARow.png"));
 		btnFourInARow.setBounds(417, 166, 165, 165);
 		panel.add(btnFourInARow);
 		btnFourInARow.addActionListener(this);
 		btnFourInARow.setRolloverIcon(new ImageIcon("Ressource/btnFourInARow2.png"));
+		btnFourInARow.setBorder(grey);
 
 		btnOthello = new JToggleButton(new ImageIcon("Ressource/btnOthello.png"));
 		btnOthello.setBounds(635, 166, 165, 165);
 		panel.add(btnOthello);
 		btnOthello.addActionListener(this);
 		btnOthello.setRolloverIcon(new ImageIcon("Ressource/btnOthello2.png"));
-
+		btnOthello.setBorder(grey);
+		
 		JLabel lab = new JLabel(new ImageIcon("Ressource/copyright.png"));
 		lab.setBounds(243, 370, 517, 64);
 		panel.add(lab);

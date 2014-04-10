@@ -10,6 +10,7 @@
 
 package be.umons.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -70,26 +73,30 @@ public class IMainMenuOthello extends JFrame implements ActionListener {
 		setContentPane(panel);
 		panel.setLayout(null);
 		setLocationRelativeTo(null);
-
+		
+		Border grey = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2);
 
 		btnPlay = new JToggleButton(new ImageIcon("Ressource/Games/Othello/btnPlay.png"));
 		btnPlay.setBounds(200, 166, 165, 165);
 		panel.add(btnPlay);
 		btnPlay.addActionListener(this);
 		btnPlay.setRolloverIcon(new ImageIcon("Ressource/Games/Othello/btnPlay2.png"));
-
+		btnPlay.setBorder(grey);
+		
 		btnOptions = new JToggleButton(new ImageIcon("Ressource/Games/Othello/btnOptions.png"));
 		btnOptions.setBounds(417, 166, 165, 165);
 		panel.add(btnOptions);
 		btnOptions.addActionListener(this);
 		btnOptions.setRolloverIcon(new ImageIcon("Ressource/Games/Othello/btnOptions2.png"));
-
+		btnOptions.setBorder(grey);
+		
 		btnQuit = new JToggleButton(new ImageIcon("Ressource/Games/Othello/btnQuit.png"));
 		btnQuit.setBounds(635, 166, 165, 165);
 		panel.add(btnQuit);
 		btnQuit.addActionListener(this);
 		btnQuit.setRolloverIcon(new ImageIcon("Ressource/Games/Othello/btnQuit2.png"));
-
+		btnQuit.setBorder(grey);
+		
 		JLabel lab = new JLabel(new ImageIcon("Ressource/copyright.png"));
 		lab.setBounds(243, 370, 517, 64);
 		panel.add(lab);

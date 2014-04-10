@@ -75,7 +75,7 @@ public abstract class Game {
 	}
 
 	/**
-	 * This method make possible to choice the players.
+	 * <b> This method make possible to choice the players. </b>
 	 */
 
 	// NOTE: This method don't working.
@@ -270,7 +270,7 @@ public abstract class Game {
 	}
 
 	/**
-	 * Method that tell if a game is end or not.
+	 * <b> Method that tell if a game is end or not. </b>
 	 * 
 	 * @return <b> false </b>
 	 * 			Not empty array
@@ -291,7 +291,7 @@ public abstract class Game {
 	}
 
 	/**
-	 * <b> Method that make possible to have a delay.
+	 * <b> Method that make possible to have a delay. </b>
 	 * 
 	 * @param seconds
 	 * 			Time in seconds
@@ -453,11 +453,19 @@ public abstract class Game {
 		DISPLAYP2 = dISPLAYP2;
 	}
 	
-	public int getNLines() {
+	/** 
+	 * <b> Method that get the numbers of rows. </b>
+	 */
+	
+	public int getNRows() {
 		return gameTable.length;
 	}
 	
-	public int getNRows() {
+	/** 
+	 * <b> Method that get the numbers of columns </b>
+	 */
+	
+	public int getNColumns() {
 		return gameTable[0].length;
 	}
 }

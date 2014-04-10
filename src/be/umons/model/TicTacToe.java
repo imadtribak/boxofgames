@@ -26,8 +26,8 @@ import be.umons.exception.BoundOutreachedException;
 public class TicTacToe extends Game {
 
 	/**
-	 * Constructor that initialize an array with a number of rows and a number of columns
-	 * and a list of players.
+	 * <b> Constructor that initialize an array with a number of rows and a number.
+	 * of columns and a list of players. </b>
 	 * 
 	 * @param List <Object> list
 	 * 			List of players
@@ -125,7 +125,7 @@ public class TicTacToe extends Game {
 	 * 			Random column number
 	 * 
 	 * @return count
-	 * 			How many elements are same that my currently move
+	 * 			Same elements
 	 */
 
 	public int basisCheck(int i, int j, int player, int di, int dj) {

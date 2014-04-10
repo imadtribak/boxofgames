@@ -14,6 +14,8 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -42,7 +44,7 @@ import be.umons.view.IMainMenuOthello;
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
-public class IGamesMenu extends JFrame implements ActionListener {
+public class IGamesMenu extends JFrame implements ActionListener, MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private static String OS = System.getProperty("os.name").toLowerCase();
@@ -52,7 +54,7 @@ public class IGamesMenu extends JFrame implements ActionListener {
 	private JToggleButton btnOthello = new JToggleButton("Othello");
 
 	/**
-	 * Constructor that create the frame.
+	 * <b> Constructor that create the frame. </b>
 	 */
 
 	public IGamesMenu() {
@@ -119,6 +121,10 @@ public class IGamesMenu extends JFrame implements ActionListener {
 			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
 	}
 
+	/**
+	 * <b> Method that permit to listen a button. </b>
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource(); 
@@ -139,5 +145,65 @@ public class IGamesMenu extends JFrame implements ActionListener {
 			frame.setVisible(true);
 			dispose();
 		}
+	}
+	
+	/**
+	 * <b> Method that permit to listen a click from the mouse. </b>
+	 */
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * <b> Method that permit to listen the cursor of the mouse. </b>
+	 */
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		Object source = e.getSource();
+		if (source == btnTicTacToe) {
+			//AudioMp3.playSound("Ressource/723.wav");
+		}
+		else if (source ==  btnFourInARow) {
+			//AudioMp3.playSound("Ressource/723.wav");
+		}
+
+		else if (source == btnOthello) { 
+			//AudioMp3.playSound("Ressource/723.wav");
+		}
+
+	}
+
+	/**
+	 * <b> Method that permit to listen the cursor of the mouse. </b>
+	 */
+	
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * <b> Method that permit to listen the cursor of the mouse. </b>
+	 */
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * <b> Method that permit to listen the cursor of the mouse. </b>
+	 */
+	
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -11,10 +11,9 @@
 package be.umons.model;
 
 /**
- * This class give the possibility to initialize a player with his informations
+ * <b> Player is the class that permit to initialize a player with his informations. </b>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
- * 
  */
 
 public class Player {
@@ -26,20 +25,20 @@ public class Player {
 	
 	private int[] points;
 	private int[] pointsIA;
-	
 	private int position;
 	
 	/**
-	 * This constructor initialize a name and a new array with his number of points
+	 * <b> Constructor that initialize a name and a new arrays with his number
+	 * of points. </b>
 	 * 
 	 * @param name
 	 * 			Name of the player
 	 * 
 	 * @param points
-	 * 			Array with the number of points of the player
+	 * 			Points of the player
 	 * 
 	 * @param pointsIA
-	 * 			Array with the number of points of the IA
+	 * 			Points of the IA
 	 */
 	
 	public Player(String name/*, int[] points, int[] pointsIA*/)
@@ -48,13 +47,17 @@ public class Player {
 		//this.points = points;
 		//this.pointsIA = pointsIA;*/
 	}
+	
+	/**
+	 * <b> Default constructor that initialize a player. </b>
+	 */
 
 	public Player() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/** 
-	 * This method will make possible to get the position of a player
+	 * <b> Method that get the position of a player. </b>
 	 * 
 	 * @return position
 	 * 			Position of a player
@@ -66,7 +69,7 @@ public class Player {
 	}
 	
 	/**
-	 * This method make possible to set a position of a player
+	 * <b> Method that set the position of a player. </b>
 	 * 
 	 * @param position
 	 * 			Generate a position
@@ -78,7 +81,7 @@ public class Player {
 	}
 	
 	/** 
-	 * This method will make possible to get the name of a player
+	 * <b> Method that get the name of a player. </b>
 	 * 
 	 * @return name
 	 * 			Name of a player
@@ -90,10 +93,10 @@ public class Player {
 	}
 	
 	/**
-	 * This method make possible to set a name  of a player
+	 * <b> Method that set the name of a player. </b>
 	 * 
 	 * @param name
-	 * 			Generate a position
+	 * 			Name of a player
 	 */
 
 	public void setName(String name)

@@ -35,7 +35,8 @@ public class Othello extends Game {
 	int downright = 0;
 	
 	/**
-	 * This constructor initialize an array with a number of rows and a number of columns.
+	 * <b> Constructor that initialize an array with a number of rows and
+	 *  a number of columns. </b>
 	 * 
 	 * @param List <Object> list
 	 * 			List of players
@@ -83,7 +84,8 @@ public class Othello extends Game {
 	}
 	
 	/**
-	 * <b> Method that count how many elements are same that my currently move. </b>
+	 * <b> Method that count how many elements are same that my currently 
+	 * move.  </b>
 	 * 
 	 * @param i
 	 * 			Number of rows
@@ -282,7 +284,8 @@ public class Othello extends Game {
 	}
 	
 	/**
-	 * <b> Method that convert the pawns from different color between two pawns same color. </b>
+	 * <b> Method that convert the pawns from different color between two 
+	 * pawns same color. </b> 
 	 * 
 	 * @param i
 	 * 			Number of rows
@@ -418,7 +421,7 @@ public class Othello extends Game {
 	}
 		
 	/**
-	 * This method make possible to play to the game.
+	 * <b> Method that make possible to play to the game. </b> 
 	 * 
 	 * @throws BoundOutreachedException 
 	 * 			Generate exception

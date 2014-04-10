@@ -58,7 +58,7 @@ public class ITicTacToe extends JFrame implements ActionListener {
 	TicTacToe ttt = new TicTacToe(list);
 	
 	/**
-	 * Launch the application.
+	 * <b> Launch the application. </b>
 	 */
 
 	public static void main(String[] args) {
@@ -76,7 +76,7 @@ public class ITicTacToe extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Constructor that initialize the frame.
+	 * <b> Constructor that initialize the frame. </b>
 	 */
 	
 	public ITicTacToe() {
@@ -158,6 +158,10 @@ public class ITicTacToe extends JFrame implements ActionListener {
         setVisible(true);
 	}
 	
+	/**
+	 * <b> Method that permit to listen a button. </b>
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Menu item actions
@@ -208,6 +212,16 @@ public class ITicTacToe extends JFrame implements ActionListener {
             System.out.println("Save menu item clicked");
         }		
 	}
+	
+	/**
+	 * <b> Method that permit to add item to a JMenuItem. </b>
+	 * 
+	 * @param name
+	 * 			Name of item
+	 * 
+	 * @return m
+	 * 			Item
+	 */
 	
     private JMenuItem makeMenuItem(String name) {
         JMenuItem m = new JMenuItem(name);

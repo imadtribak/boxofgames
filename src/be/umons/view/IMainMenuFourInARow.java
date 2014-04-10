@@ -2,7 +2,7 @@
  ****************************************************
  * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
  * @email      : agozzino.pizzirusso@gmail.com
- * @file       : IGamesMenu.java
+ * @file       : IMainMenuFourInARow.java
  * @date       : 15 May 2014
  * @project    : BoxOfGames
  *****************************************************
@@ -33,7 +33,8 @@ import be.umons.exception.BoundOutreachedException;
 import be.umons.model.FourInARow;
 
 /**
- * <b> IMainMenuFourInARow is the class that initialize the menu of the Four in a Row game. </b>
+ * <b> IMainMenuFourInARow is the class that initialize the menu of the
+ * Four in a Row game. </b>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
@@ -48,7 +49,7 @@ public class IMainMenuFourInARow extends JFrame implements ActionListener {
 	private JToggleButton btnQuit = new JToggleButton("Quit");
 
 	/**
-	 * Constructor that create the frame
+	 * <b> Constructor that create the frame </b>
 	 */
 
 	public IMainMenuFourInARow() {
@@ -113,6 +114,10 @@ public class IMainMenuFourInARow extends JFrame implements ActionListener {
 			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
 	}
 
+	/**
+	 * <b> Method that permit to listen a button. </b>
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource(); 

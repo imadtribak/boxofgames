@@ -2,7 +2,7 @@
  ****************************************************
  * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
  * @email      : agozzino.pizzirusso@gmail.com
- * @file       : MainMenu.java
+ * @file       : DisplayMenu.java
  * @date       : 15 May 2014
  * @project    : BoxOfGames
  *****************************************************

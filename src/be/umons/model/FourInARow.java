@@ -26,7 +26,8 @@ import be.umons.exception.BoundOutreachedException;
 public class FourInARow extends Game {
 
 	/**
-	 * This constructor initialize an array with a number of 6 rows and a number of 7 columns
+	 * <b> Constructor initialize an array with a number of 6 rows and a number
+	 * of 7 columns </b>
 	 * 
 	 * @param List <Object> list
 	 * 			List of players
@@ -77,7 +78,7 @@ public class FourInARow extends Game {
 	}
 	
 	/**
-	 * <b> Method that make possible to choose a position.  </b>
+	 * <b> Method that make possible to choose a position. </b>
 	 * 
 	 * @param player
 	 * 			Currently player
@@ -115,7 +116,7 @@ public class FourInARow extends Game {
 	}
 
 	/**
-	 * Method that tell if we are inside the array or outside
+	 * <b> Method that tell if we are inside the array or outside. </b>
 	 * 
 	 * @param i
 	 * 			Number of rows
@@ -180,7 +181,7 @@ public class FourInARow extends Game {
 	}
 	
 	/**
-	 * Method that tell if they are a winner or not.
+	 * <b> Method that tell if they are a winner or not. </b>
 	 * 
 	 * @param i
 	 * 			Number of rows
@@ -224,7 +225,7 @@ public class FourInARow extends Game {
 	}
 
 	/**
-	 * Method that make possible to play to the game.
+	 * <b> Method that make possible to play to the game. </b>
 	 * 
 	 * @throws BoundOutreachedException 
 	 * 			Generate exception

@@ -21,7 +21,7 @@ import be.umons.view.IGamesMenu;
 public class Main {
 
 	/**
-	 * Launch the application.
+	 * <b> Launch the application. </b>
 	 */
 
 	public static void main(String[] args) {

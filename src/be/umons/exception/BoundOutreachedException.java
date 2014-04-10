@@ -11,14 +11,13 @@
 package be.umons.exception;
 
 /**
- * Exception call when the user try to use an existing location
+ * <b> Exception call when the user try to use an existing location. </b>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
- * 
  */
 
-public class BoundOutreachedException extends Exception
-{
+public class BoundOutreachedException extends Exception {
+	
 	private static final long serialVersionUID = 1L;
 
 	public BoundOutreachedException()

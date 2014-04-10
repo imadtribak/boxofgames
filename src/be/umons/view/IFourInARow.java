@@ -29,7 +29,7 @@ public class IFourInARow extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
+	 * <b> Launch the application. </b>
 	 */
 	
 	public static void main(String[] args) {
@@ -46,7 +46,7 @@ public class IFourInARow extends JFrame {
 	}
 
 	/**
-	 * Constructor that create the frame.
+	 * <b> Constructor that create the frame. </b>
 	 */
 	
 	public IFourInARow() {
@@ -58,18 +58,15 @@ public class IFourInARow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(6, 7 , 0, 0));
 		
-		JButton button = new JButton("");
-		contentPane.add(button);
-		
 		JButton button1 = new JButton("");
 		contentPane.add(button1);
 		
 		JButton button2 = new JButton("");
-		contentPane.add(button2);		
-	
+		contentPane.add(button2);
+		
 		JButton button3 = new JButton("");
-		contentPane.add(button3);
-
+		contentPane.add(button3);		
+	
 		JButton button4 = new JButton("");
 		contentPane.add(button4);
 
@@ -77,10 +74,10 @@ public class IFourInARow extends JFrame {
 		contentPane.add(button5);
 
 		JButton button6 = new JButton("");
-		contentPane.add(button6);	
+		contentPane.add(button6);
 
 		JButton button7 = new JButton("");
-		contentPane.add(button7);
+		contentPane.add(button7);	
 
 		JButton button8 = new JButton("");
 		contentPane.add(button8);
@@ -117,7 +114,7 @@ public class IFourInARow extends JFrame {
 
 		JButton button19 = new JButton("");
 		contentPane.add(button19);
-		
+
 		JButton button20 = new JButton("");
 		contentPane.add(button20);
 		
@@ -125,11 +122,11 @@ public class IFourInARow extends JFrame {
 		contentPane.add(button21);
 		
 		JButton button22 = new JButton("");
-		contentPane.add(button22);		
-	
+		contentPane.add(button22);
+		
 		JButton button23 = new JButton("");
-		contentPane.add(button23);
-
+		contentPane.add(button23);		
+	
 		JButton button24 = new JButton("");
 		contentPane.add(button24);
 
@@ -137,10 +134,10 @@ public class IFourInARow extends JFrame {
 		contentPane.add(button25);
 
 		JButton button26 = new JButton("");
-		contentPane.add(button26);	
+		contentPane.add(button26);
 
 		JButton button27 = new JButton("");
-		contentPane.add(button27);
+		contentPane.add(button27);	
 
 		JButton button28 = new JButton("");
 		contentPane.add(button28);
@@ -177,11 +174,14 @@ public class IFourInARow extends JFrame {
 
 		JButton button39 = new JButton("");
 		contentPane.add(button39);
-		
+
 		JButton button40 = new JButton("");
 		contentPane.add(button40);
-
+		
 		JButton button41 = new JButton("");
 		contentPane.add(button41);
+
+		JButton button42 = new JButton("");
+		contentPane.add(button42);
 	}
 }

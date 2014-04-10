@@ -29,7 +29,7 @@ public class JPanelBackground extends JPanel {
 	private BufferedImage background;
 
 	/**
-	 * This constructor initialize a new background
+	 * <b> Constructor that initialize a new background </b>
 	 * 
 	 * @param String bgRessource
 	 * 			The repertory of the file

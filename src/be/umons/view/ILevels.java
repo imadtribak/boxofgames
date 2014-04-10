@@ -24,17 +24,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class ILevels extends JFrame
-{
+public class ILevels extends JFrame {
+	
 	private JPanel contentPane;
 	private JTextField txtLevels;
 
 	/**
-	 * Constructor that create the frame.
+	 * <b> Constructor that create the frame. </b>
 	 */
 	
-	public ILevels()
-	{
+	public ILevels() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

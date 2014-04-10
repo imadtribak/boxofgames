@@ -11,14 +11,13 @@
 package be.umons.exception;
 
 /**
- * Exception call when the user try to use a location out of bounds
+ * <b> Exception call when the user try to use a location out of bounds. </b>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
- * 
  */
 
-public class OutOfBoundsException extends Exception
-{
+public class OutOfBoundsException extends Exception {
+	
 	private static final long serialVersionUID = 1L;
 
 	public OutOfBoundsException()

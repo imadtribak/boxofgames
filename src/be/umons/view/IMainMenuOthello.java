@@ -49,7 +49,7 @@ public class IMainMenuOthello extends JFrame implements ActionListener {
 	private JToggleButton btnQuit = new JToggleButton("Quit");
 
 	/**
-	 * Constructor that create the frame.
+	 * <b> Constructor that create the frame. </b>
 	 */
 
 	public IMainMenuOthello() {
@@ -114,6 +114,10 @@ public class IMainMenuOthello extends JFrame implements ActionListener {
 			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
 	}
 
+	/**
+	 * <b> Method that permit to listen a button. </b>
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource(); 

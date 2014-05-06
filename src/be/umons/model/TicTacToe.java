@@ -10,6 +10,7 @@
 
 package be.umons.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ import be.umons.exception.BoundOutreachedException;
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
-public class TicTacToe extends Game {
+public class TicTacToe extends AGame {
 
 	/**
 	 * <b> Constructor that initialize an array with a number of rows and a number.
@@ -39,49 +40,6 @@ public class TicTacToe extends Game {
 		setDISPLAYP2("O");
 	}
 	
-	/**
-	 * <b> Method that give the possibility to choice a board size. </b>
-	 */
-	
-	// NOTE: This method don't working.
-	
-	public void printBoardSize() {
-		try {
-			Scanner sc = new Scanner(System.in);
-			System.out.println("######################");
-			System.out.println("##### BOARD SIZE #####");
-			System.out.println("######################\n");
-			System.out.println("1. 3x3\n");
-			System.out.println("2. 4x4\n");
-			System.out.println("3. 5x5\n");
-			int choice = sc.nextInt();
-			
-			while (true) {
-				switch (choice) {
-					case 1:
-						break;
-	
-					case 2:
-						arrayGenerator(4, 4);
-						break;
-	
-					case 3:
-						arrayGenerator(5, 5);
-						break;
-
-					default:
-						System.out.println("Please, choose a number between 1 and 3\n");
-						printBoardSize();
-				}
-				break;
-			}
-			sc.close();
-		} catch (Exception e) {
-			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n");
-			printBoardSize();
-		}
-	}
-
 	/**
 	 * <b> Method that tell if we are inside the array or outside. </b>
 	 * 
@@ -159,10 +117,10 @@ public class TicTacToe extends Game {
 	 * 			No winner
 	 * 
 	 * @return 1
-	 * 			Winner with vertical line
+	 * 			Winner with horizontal line
 	 * 
 	 * @return 2
-	 * 			Winner with horizontal line
+	 * 			Winner with vertical line
 	 * 
 	 * @return 3
 	 * 			Winner with first diagonal line
@@ -173,21 +131,84 @@ public class TicTacToe extends Game {
 
 	public int checkWinner(int i, int j, int player) {
 
-		if (endGame() == true)
-			return 0;
-
 		if (basisCheck(i, j, player, 0, 1) >= 3)
 			return 1;
 
 		if (basisCheck(i, j, player, 1, 0) >= 3)
 			return 2;
 
-		if (basisCheck(i, j, player, 1, 1) >= 3)
-			return 3;
-
 		if (basisCheck(i, j, player, 1, -1) >= 3)
+			return 3;
+		
+		if (basisCheck(i, j, player, 1, 1) >= 3)
 			return 4;
+		
+		else if (endGame() == true)
+			return 0;
 		return -1;
+	}
+	
+	public void choiceOfPlayers() {
+		try {
+			@SuppressWarnings("resource")
+			Scanner sc = new Scanner(System.in);
+			System.out.println("######################");
+			System.out.println("###### PLAYER 1 ######");
+			System.out.println("######################\n");
+			System.out.println("1. Human");
+			System.out.println("2. Computer");
+			int player1 = sc.nextInt();
+			List<Object> list = new ArrayList<Object>();	
+			
+			AI ai;
+
+			while (true) {
+				switch (player1) {
+				case 1:
+					list.add(new Player());
+					break;
+
+				case 2:
+					ai = new AI(this);
+					ai.setGameTable(getGameTable());
+					list.add(ai);
+					break;
+
+				default:
+					System.out.println("Please, choose a number between 1 and 2\n");
+					choiceOfPlayers();
+				}
+
+				System.out.println("######################");
+				System.out.println("###### PLAYER 2 ######");
+				System.out.println("######################\n");
+				System.out.println("1. Human");
+				System.out.println("2. Computer");
+				int player2 = sc.nextInt();
+
+				switch (player2) {
+				case 1:
+					list.add(new Player());
+					break;
+
+				case 2:
+					ai = new AI(this);
+					ai.setGameTable(getGameTable());
+					list.add(ai);
+					
+					break;
+
+				default:
+					System.out.println("Please, choose a number between 1 and 2\n");
+					choiceOfPlayers();
+				}
+				break;
+			}
+			setListPlayer(list);
+		} catch (Exception e) {
+			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n");
+			choiceOfPlayers();
+		}	
 	}
 
 	/**
@@ -199,12 +220,10 @@ public class TicTacToe extends Game {
 	
 	@Override
 	public void letsPlay() throws BoundOutreachedException {
-		//printBoardSize();
-		//choiceOfPlayers();
+		choiceOfPlayers();
 		do {
 			displayArray();
 			changePlayer();
-			select(getActualPlayer());
 			clearConsole();
 		} while (checkWinner(getLastX(), getLastY(), getActualPlayer()) == -1);
 
@@ -212,21 +231,42 @@ public class TicTacToe extends Game {
 
 		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 0)
 			System.out.println("Game is tied !");
-			
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 1)
-			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
-					" won the game with his horizontal alignment !");
 
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 2)
-			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
-					" won the game with his vertical alignment !");
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 1) {
+			if (getActualPlayer() == 0) 
+				System.out.println("The player 1 ("+ getDISPLAYP1() + ") won the game with his "
+						+ "horizontal alignment !");
+			if (getActualPlayer() == 1)
+				System.out.println("The player 2 ("+ getDISPLAYP2() + ") won the game with his "
+						+ "horizontal alignment ! ");
+		}
 
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 3)
-			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
-					" won the game with his first diagonal alignment !");
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 2) {
+			if (getActualPlayer() == 0) 
+				System.out.println("The player 1 ("+ getDISPLAYP1() + ") won the game with his "
+						+ " vertical alignment !");
+			if (getActualPlayer() == 1)
+				System.out.println("The player 2 ("+ getDISPLAYP2() + ") won the game with his "
+						+ "vertical alignment !");
+		}
 
-		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 4)
-			System.out.println(((Player) getListPlayer().get(getActualPlayer())).getName() +
-					" won the game with his second diagonal alignment !");	
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 3) {
+			if (getActualPlayer() == 0) 
+				System.out.println("The player 1 ("+ getDISPLAYP1() + ") won the game with his "
+						+ "first diagonal alignment !");
+			if (getActualPlayer() == 1)
+				System.out.println("The player 2 ("+ getDISPLAYP2() + ") won the game with his "
+						+ "first diagonal alignment !");
+		}
+
+
+		if (checkWinner(getLastX(), getLastY(), getActualPlayer()) == 4) {
+			if (getActualPlayer() == 0) 
+				System.out.println("The player 1 ("+ getDISPLAYP1() + ") won the game with his "
+						+ "second diagonal alignment !");
+			if (getActualPlayer() == 1)
+				System.out.println("The player 2 ("+ getDISPLAYP2() + ") won the game with his "
+						+ "second diagonal alignment !");
+		}
 	}
 }

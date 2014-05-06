@@ -34,73 +34,65 @@ public class FourInARowTest {
 	
 	@Test
 	public void testCheckWinnerForTheFirstPlayerWithHorizontal() throws Exception {
-		int[][] array = fiar.getGameTable();
-		array[5][0] = 0;
-		array[5][1] = 0;
-		array[5][2] = 0;
+		fiar.getGameTable()[5][0] = 0;
+		fiar.getGameTable()[5][1] = 0;
+		fiar.getGameTable()[5][2] = 0;
 		assertTrue(fiar.checkWinner(5, 3, 0) == 1);
 	}
 	
 	@Test
 	public void testCheckWinnerForTheFirstPlayerWithVertical() throws Exception {
-		int[][] array = fiar.getGameTable();
-		array[5][0] = 0;
-		array[4][0] = 0;
-		array[3][0] = 0;
+		fiar.getGameTable()[5][0] = 0;
+		fiar.getGameTable()[4][0] = 0;
+		fiar.getGameTable()[3][0] = 0;
 		assertTrue(fiar.checkWinner(2, 0, 0) == 2);
 	}
 	
 	@Test
 	public void testCheckWinnerForTheFirstPlayerWithFirstDiagonal() throws Exception {
-		int[][] array = fiar.getGameTable();
-		array[5][0] = 0;
-		array[4][1] = 0;
-		array[3][2] = 0;
-		assertTrue(fiar.checkWinner(2, 1, 0) == 3);
+		fiar.getGameTable()[5][0] = 0;
+		fiar.getGameTable()[4][1] = 0;
+		fiar.getGameTable()[3][2] = 0;
+		assertTrue(fiar.checkWinner(2, 3, 0) == 3);
 	}
 	
 	@Test
 	public void testCheckWinnerForTheFirstPlayerWithSecondDiagonal() throws Exception {
-		int[][] array = fiar.getGameTable();
-		array[0][0] = 0;
-		array[1][1] = 0;
-		array[2][2] = 0;
+		fiar.getGameTable()[0][0] = 0;
+		fiar.getGameTable()[1][1] = 0;
+		fiar.getGameTable()[2][2] = 0;
 		assertTrue(fiar.checkWinner(3, 3, 0) == 4);
 	}
 	
 	@Test
 	public void testCheckWinnerForTheSecondPlayerWithHorizontal() throws Exception {
-		int[][] array = fiar.getGameTable();
-		array[5][0] = 0;
-		array[5][1] = 0;
-		array[5][2] = 0;
+		fiar.getGameTable()[5][0] = 1;
+		fiar.getGameTable()[5][1] = 1;
+		fiar.getGameTable()[5][2] = 1;
 		assertTrue(fiar.checkWinner(5, 3, 1) == 1);
 	}
 	
 	@Test
 	public void testCheckWinnerForTheSecondPlayerWithVertical() throws Exception {
-		int[][] array = fiar.getGameTable();
-		array[5][0] = 0;
-		array[4][0] = 0;
-		array[3][0] = 0;
+		fiar.getGameTable()[5][0] = 1;
+		fiar.getGameTable()[4][0] = 1;
+		fiar.getGameTable()[3][0] = 1;
 		assertTrue(fiar.checkWinner(2, 0, 1) == 2);
 	}
 	
 	@Test
-	public void testCheckWinnerForTheSecondPlayerWithFirstDiagonal() throws Exception {
-		int[][] array = fiar.getGameTable();
-		array[5][0] = 0;
-		array[4][1] = 0;
-		array[3][2] = 0;
-		assertTrue(fiar.checkWinner(2, 1, 1) == 3);
+	public void testCheckWinnerForThSecondPlayerWithFirstDiagonal() throws Exception {
+		fiar.getGameTable()[5][0] = 1;
+		fiar.getGameTable()[4][1] = 1;
+		fiar.getGameTable()[3][2] = 1;
+		assertTrue(fiar.checkWinner(2, 3, 1) == 3);
 	}
 	
 	@Test
 	public void testCheckWinnerForTheSecondPlayerWithSecondDiagonal() throws Exception {
-		int[][] array = fiar.getGameTable();
-		array[0][0] = 0;
-		array[1][1] = 0;
-		array[2][2] = 0;
+		fiar.getGameTable()[0][0] = 1;
+		fiar.getGameTable()[1][1] = 1;
+		fiar.getGameTable()[2][2] = 1;
 		assertTrue(fiar.checkWinner(3, 3, 1) == 4);
 	}
 }

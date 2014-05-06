@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
-public class JPanelBackground extends JPanel {
+public class JPanelBackGround extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private BufferedImage background;
@@ -35,7 +35,7 @@ public class JPanelBackground extends JPanel {
 	 * 			The repertory of the file
 	 */
 	
-	public JPanelBackground(String bgRessource) {
+	public JPanelBackGround(String bgRessource) {
 		try {                
 			background = ImageIO.read(new File(bgRessource));
 		} catch (IOException ex) {

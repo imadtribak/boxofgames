@@ -10,7 +10,15 @@
 
 package be.umons.run;
 
-import be.umons.view.IGamesMenu;
+import java.util.ArrayList;
+import java.util.List;
+
+import be.umons.exception.BoundOutreachedException;
+import be.umons.model.FourInARow;
+import be.umons.model.Player;
+import be.umons.model.TicTacToe;
+import be.umons.utility.Sound;
+import be.umons.view.GamesMenu;
 
 /**
  * <b> Main is the class that launch the application. </b>
@@ -22,10 +30,17 @@ public class Main {
 
 	/**
 	 * <b> Launch the application. </b>
+	 * @throws Exception 
 	 */
 
-	public static void main(String[] args) {
-		IGamesMenu frame = new IGamesMenu();
-		frame.setVisible(true);
+	public static void main(String[] args) throws Exception {
+		
+		List <Object> list = new ArrayList <Object>();
+		TicTacToe ttt = new TicTacToe(list);
+		ttt.letsPlay();
+		//GamesMenu frame = new GamesMenu();
+		//frame.setVisible(true);
+		//Sound sound = new Sound("Ressource/Sound/Welcome.mp3");
+		//sound.play();
 	}		
 }

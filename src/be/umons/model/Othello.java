@@ -1,7 +1,7 @@
 /**
  ****************************************************
- * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
- * @email      : agozzino.pizzirusso@gmail.com
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
  * @file       : Othello.java
  * @date       : 15 May 2014
  * @project    : BoxOfGames
@@ -10,7 +10,9 @@
 
 package be.umons.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import be.umons.exception.BoundOutreachedException;
 
@@ -19,20 +21,20 @@ import be.umons.exception.BoundOutreachedException;
  * 
  * <p> This class extend the class Game. </p>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
-public class Othello extends Game {
+public class Othello extends AGame {
 
-	int countplayer1, countplayer2 = 0;
-	int up = 0;
-	int down = 0;
-	int left = 0;
-	int right = 0;
-	int topleft = 0; 
-	int topright = 0;
-	int downleft = 0;
-	int downright = 0;
+	public int countplayer1, countplayer2 = 0;
+	private int up = 0;
+	private int down = 0;
+	private int left = 0;
+	private int right = 0;
+	private int topleft = 0; 
+	private int topright = 0;
+	private int downleft = 0;
+	private int downright = 0;
 	
 	/**
 	 * <b> Constructor that initialize an array with a number of rows and
@@ -83,6 +85,8 @@ public class Othello extends Game {
 			return array[i][j];
 	}
 	
+	
+	
 	/**
 	 * <b> Method that count how many elements are same that my currently 
 	 * move.  </b>
@@ -114,8 +118,7 @@ public class Othello extends Game {
 					break;
 				}
 
-				if (get(x, j) != player)
-					
+				if (get(x, j) != player)		
 					up += 1;
 
 				if (get(x, j) == player) {
@@ -185,98 +188,119 @@ public class Othello extends Game {
 					break;
 				}
 			}
-
-			int x = i - 1;
-			int y = j - 1;
-
-			while (x >= 0 && y >= 0) {
-				if (get(x, y) == 2) {
-					if (get(x + 1, y + 1) == player)
+			
+			while (i < getNRows() && j < getNColumns()) {
+				
+				int x = i - 1;
+				int y = j - 1;
+				
+				while (get(x, y) != -1) {
+					
+					if (get(x, y) == 2) {
+						if (get(x + 1, y + 1) == player)
+							break;
+						topleft = 0;
 						break;
-					topleft = 0;
-					break;
-				}
+					}
 
-				if (get(x, y) != player)
-					topleft += 1;
+					if (get(x, y) != player)
+						topleft += 1;
 
-				if (get(x,  y) == player) {
-					if (get(x + 1, y + 1) != player)
+					if (get(x, y) == player) {
+						if (get(x + 1, y + 1) != player)
+							break;
+						topleft = 0;
 						break;
-					topleft = 0;
-					break;
+					}
+					x--; y--;
 				}
-				x--; 
-				y--;
+				break;
 			}
 
-			/*int x = i - 1;
-			int y = j - 1;
-
-			while (x >= 0 && y >= 0) {
-				if (get(x, y) == 2) {
-					if (get(x-1, y-1) == player)
+			while (i < getNRows() && j < getNColumns()) {
+				
+				int x = i + 1;
+				int y = j + 1;
+				
+				while (get(x, y) != -1) {
+					
+					if (get(x, y) == 2) {
+						if (get(x - 1, y - 1) == player)
+							break;
+						downright = 0;
 						break;
-					downright = 0;
-					break;
-				}
+					}
 
-				if (get(x, y) != player)
-					downright += 1;
+					if (get(x, y) != player)
+						downright += 1;
 
-				if (get(x, y) == player) {
-					if (get(x-1, y-1) != player)
+					if (get(x, y) == player) {
+						if (get(x - 1, y - 1) != player)
+							break;
+						downright = 0;
 						break;
-					downright = 0;
-					break;
+					}
+					x++; y++;
 				}
+				break;
 			}
 
-			int x = i - 1;
-			int y = j - 1;
+			while (i < getNRows() && j < getNColumns()) {
+				
+				int x = i - 1;
+				int y = j + 1;
+				
+				while (get(x, y) != -1) {
 
-			while (x >= 0 && y >= 0) {
-				if (get(x, y) == 2) {
-					if (get(x+1, y-1) == player)
+					if (get(x, y) == 2) {
+						if (get(x + 1, y - 1) == player)
+							break;
+						topright = 0;
 						break;
-					topright = 0;
-					break;
-				}
+					}
 
-				if (get(x, y) != player)
-					topright += 1;
+					if (get(x, y) != player)
+						topright += 1;
 
-				if (get(x, y) == player) {
-					if (get(x+1, y-1) != player)
+					if (get(x, y) == player) {
+						if (get(y + 1, x - 1) != player)
+							break;
+						topright = 0;
 						break;
-					topright = 0;
-					break;
+					}
+					x--; y++;
 				}
+				break;
 			}
 
-
-			int x = i - 1;
-			int y = j - 1;
-
-			while (x >= 0 && y >= 0) {
-				if (get(x, y) == 2) {
-					if (get(x-1, y+1) == player)
+			while (i < getNRows() && j < getNColumns()) {
+				
+				int x = i + 1;
+				int y = j - 1;
+				
+				while (get(x, y) != -1) {
+					
+					if (get(x, y) == 2) {
+						if (get(x - 1, y + 1) == player)
+							break;
+						downleft = 0;
 						break;
-					downleft = 0;
-					break;
-				}
+					}
 
-				if (get(x, y) != player)
-					downleft += 1;
+					if (get(x, y) != player)
+						downleft += 1;
 
-				if (get(x, y) == player) {
-					if (get(x-1, y+1) != player)
+					if (get(x, y) == player) {
+						if (get(x - 1, y + 1) != player)
+							break;
+						downleft = 0;
 						break;
-					downleft = 0;
-					break;
+					}
+					x++; y--;
 				}
-			}*/
-
+				break;
+			}
+			
 		if (up != 0 || down != 0 || left != 0 || right != 0 || topleft != 0
 				|| downright != 0 || topright != 0 || downleft != 0)
 			return true;
@@ -299,11 +323,11 @@ public class Othello extends Game {
 
 	public void converter(int i, int j, int player) {
 		int[][] array = getGameTable();
-
+		
 		if (basisCheck(i, j, player) == true) {
-
+			
 			if (up != 0) {
-				int x = i-1;
+				int x = i - 1;
 				while (up > 0) {
 					array[x][j] = player;
 					up -= 1;
@@ -312,7 +336,7 @@ public class Othello extends Game {
 			}
 
 			if (down != 0) {
-				int x = i+1;
+				int x = i + 1;
 				while (down > 0) {
 					array[x][j] = player;
 					down -= 1;
@@ -321,7 +345,7 @@ public class Othello extends Game {
 			}
 
 			if (left != 0) {
-				int y = j-1;
+				int y = j - 1;
 				while (left > 0) {
 					array[i][y] = player;
 					left -= 1;
@@ -330,7 +354,7 @@ public class Othello extends Game {
 			}
 
 			if (right != 0) {
-				int y = j+1;
+				int y = j + 1;
 				while (right > 0) {
 					array[i][y] = player;
 					right -= 1;
@@ -340,8 +364,8 @@ public class Othello extends Game {
 
 
 			if (topleft != 0) {
-				int x = i-1;
-				int y = j-1;
+				int x = i - 1;
+				int y = j - 1;
 				while (topleft > 0) {
 					array[x][y] = player;
 					topleft -= 1;
@@ -351,8 +375,8 @@ public class Othello extends Game {
 			}
 
 			if (downright != 0) {
-				int x = i+1;
-				int y = j+1;
+				int x = i + 1;
+				int y = j + 1;
 				while (downright > 0) {
 					array[x][y] = player;
 					downright -= 1;
@@ -362,8 +386,8 @@ public class Othello extends Game {
 			}
 
 			if (topright != 0) {
-				int x = i-1;
-				int y = j+1;
+				int x = i - 1;
+				int y = j + 1;
 				while (topright > 0) {
 					array[x][y] = player;
 					topright -= 1;
@@ -373,8 +397,8 @@ public class Othello extends Game {
 			}
 
 			if (downleft != 0) {
-				int x = i+1;
-				int y = j-1;
+				int x = i + 1;
+				int y = j - 1;
 				while (downleft > 0) {
 					array[x][y] = player;
 					downleft -= 1;
@@ -383,6 +407,11 @@ public class Othello extends Game {
 				}
 			}
 		}
+	}
+	
+	public void changePlayer() {
+		setActualPlayer((getActualPlayer() == 1) ? 0 : 1);
+		displayPlayer();
 	}
 	
 	/**
@@ -419,6 +448,69 @@ public class Othello extends Game {
 
 		return countplayer2;
 	}
+	
+	public void choiceOfPlayers() {
+		try {
+			@SuppressWarnings("resource")
+			Scanner sc = new Scanner(System.in);
+			System.out.println("######################");
+			System.out.println("###### PLAYER 1 ######");
+			System.out.println("######################\n");
+			System.out.println("1. Human");
+			System.out.println("2. Computer");
+			int player1 = sc.nextInt();
+			List<Object> list = new ArrayList<Object>();	
+			
+			AI ai;
+
+			while (true) {
+				switch (player1) {
+				case 1:
+					list.add(new Player());
+					break;
+
+				case 2:
+					ai = new AI(this);
+					ai.setGameTable(getGameTable());
+					list.add(ai);
+					break;
+
+				default:
+					System.out.println("Please, choose a number between 1 and 2\n");
+					choiceOfPlayers();
+				}
+
+				System.out.println("######################");
+				System.out.println("###### PLAYER 2 ######");
+				System.out.println("######################\n");
+				System.out.println("1. Human");
+				System.out.println("2. Computer");
+				int player2 = sc.nextInt();
+
+				switch (player2) {
+				case 1:
+					list.add(new Player());
+					break;
+
+				case 2:
+					ai = new AI(this);
+					ai.setGameTable(getGameTable());
+					list.add(ai);
+					
+					break;
+
+				default:
+					System.out.println("Please, choose a number between 1 and 2\n");
+					choiceOfPlayers();
+				}
+				break;
+			}
+			setListPlayer(list);
+		} catch (Exception e) {
+			System.out.println("ERROR: Invalid Type - Please, enter an integer number\n");
+			choiceOfPlayers();
+		}	
+	}
 		
 	/**
 	 * <b> Method that make possible to play to the game. </b> 
@@ -430,7 +522,7 @@ public class Othello extends Game {
 	@Override
 	public void letsPlay() throws BoundOutreachedException {
 		int[][] array = getGameTable();
-		//choiceofPlayer();
+		choiceOfPlayers();
 		arrayGenerator();
 		do {
 			displayArray();

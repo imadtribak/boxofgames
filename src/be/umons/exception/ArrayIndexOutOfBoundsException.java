@@ -1,11 +1,11 @@
 /**
- ****************************************************
- * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
- * @email      : agozzino.pizzirusso@gmail.com
- * @file       : ArrayIndexOuOfBoundsException.java
- * @date       : 15 May 2014
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : ArrayIndexOutOfBoundsException.java
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ ***************************************************
  */
 
 package be.umons.exception;
@@ -13,15 +13,14 @@ package be.umons.exception;
 /**
  * <b> Exception call when the user try to use an existing location. </b>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
 public class ArrayIndexOutOfBoundsException extends Exception {
 	
 	private static final long serialVersionUID = 1L;
 
-	public ArrayIndexOutOfBoundsException()
-	{
+	public ArrayIndexOutOfBoundsException() {
 		System.out.println("You are out of the array, please chooce an other position");
 	}
 }

@@ -1,11 +1,11 @@
 /**
- ****************************************************
- * @author     : AGOZZINO Terencio
+ **************************************************
+ * @author     : AGOZZINO Terencio 
  * @email      : agozzino.terencio@gmail.com
  * @file       : AI.java
- * @date       : 15 May 2014
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ ***************************************************
  */
 
 package be.umons.model;
@@ -324,9 +324,6 @@ public class AI extends Player {
 		}
 
 		if (ttt.getActualPlayer() == 1) {
-			
-			this.gameTable[0][0] = 1;
-			this.gameTable[0][1] = 1;
 			
 			if (
 					checkRows(1) == 1 ||

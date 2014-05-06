@@ -1,16 +1,15 @@
 /**
- ****************************************************
- * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
- * @email      : agozzino.pizzirusso@gmail.com
- * @file       : Game.java
- * @date       : 15 May 2014
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : AGame.java
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ ***************************************************
  */
 
 package be.umons.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -84,6 +83,7 @@ public abstract class AGame {
 	/**
 	 * <b> This method make possible to choice the players. </b>
 	 */
+	
 	public abstract void choiceOfPlayers();
 
 	/**

@@ -171,7 +171,7 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 				public void run() {
 					try { 
 						sound = new Sound("Ressource/Sound/Arcis - Pallas.mp3");
-						//sound.play();
+						sound.play();
 					} catch (Exception ex) {}
 				}
 			}).start();
@@ -186,7 +186,7 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 	                public void run() {
 	                    try { 
 	                        sound2 = new Sound("Ressource/Sound/Arcis - Arcis.mp3");
-	                       // sound2.play();
+	                        sound2.play();
 	                    } catch (Exception ex) {}
 	                }
 	            }).start();
@@ -202,7 +202,7 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 	                public void run() {
 	                    try { 
 	                    	sound3 = new Sound("Ressource/Sound/Arcis - Sonny Rico.mp3");
-	                    	//sound3.play();
+	                    	sound3.play();
 	                    } catch (Exception ex) {}
 	                }
 	            }).start();
@@ -232,8 +232,7 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 				public void run() {
 					try { 
 						Sound sound = new Sound("Ressource/Sound/Ok.mp3");
-						System.out.println(sound);
-						//sound.play();
+						sound.play();
 					} catch (Exception ex) {
 						System.out.println("File no found");
 					}
@@ -247,7 +246,7 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 					public void run() {
 						try { 
 							Sound sound = new Sound("Ressource/Sound/Ok.mp3");
-							//sound.play();
+							sound.play();
 						} catch (Exception ex) {
 							System.out.println("File no found");
 						}
@@ -262,7 +261,7 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 					public void run() {
 						try { 
 							Sound sound = new Sound("Ressource/Sound/Ok.mp3");
-							//sound.play();
+							sound.play();
 						} catch (Exception ex) {
 							System.out.println("File no found");
 						}

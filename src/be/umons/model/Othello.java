@@ -1,11 +1,11 @@
 /**
- ****************************************************
+ **************************************************
  * @author     : AGOZZINO Terencio 
  * @email      : agozzino.terencio@gmail.com
  * @file       : Othello.java
- * @date       : 15 May 2014
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ ***************************************************
  */
 
 package be.umons.model;

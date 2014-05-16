@@ -1,11 +1,11 @@
 /**
- ****************************************************
- * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
- * @email      : agozzino.pizzirusso@gmail.com
- * @file       : IGamesMenu.java
- * @date       : 15 May 2014
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : GamesMenu.java
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ ***************************************************
  */
 
 package be.umons.view;
@@ -34,7 +34,7 @@ import be.umons.view.FourInARowMenu;
 import be.umons.view.OthelloMenu;
 
 /**
- * <b> IGamesMenu is the super-class that initialize the menu of the three games: </b>
+ * <b> GamesMenu is the super-class that initialize the menu of the three games: </b>
  * 
  * <p> Tic-Tac-Toe </p>
  * 
@@ -42,7 +42,7 @@ import be.umons.view.OthelloMenu;
  * 
  * <p> Othello </p>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
 public class GamesMenu extends JFrame implements ActionListener, MouseListener {

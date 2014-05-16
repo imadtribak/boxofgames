@@ -1,3 +1,13 @@
+/**
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : JTicTacToeBackGround.java
+ * @date       : 16 May 2014
+ * @project    : BoxOfGames
+ ***************************************************
+ */
+
 package be.umons.view;
 
 import be.umons.model.TicTacToe;
@@ -5,34 +15,25 @@ import be.umons.model.TicTacToe;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 import javax.swing.border.Border;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+
+/**
+ * <b> JTicTacToeBackGround is the main panel of a Tic-Tac-Toe game </b>
+ * 
+ * @author AGOZZINO Terencio
+ */
 
 public class JTicTacToeBackGround extends JPanel {
 
 	private JFrame frame;
-	private TicTacToeGame game;
 	private List<Object> list;
 	
 	Border white = BorderFactory.createLineBorder(Color.WHITE, 1);
@@ -87,7 +88,6 @@ public class JTicTacToeBackGround extends JPanel {
 				
 		this.list = list;
 		
-		System.out.println("CA VA BUG !");
 		this.addMouseListener(new TicTacToeMouseListener(this, ttt, list, frame, this, X, O));
 	}
 	

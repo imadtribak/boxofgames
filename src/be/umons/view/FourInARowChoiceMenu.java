@@ -1,11 +1,11 @@
 /**
- **************************************************
+ *************************************************
  * @author     : AGOZZINO Terencio 
  * @email      : agozzino.terencio@gmail.com
- * @file       : TicTacToeChoiceMenu.java
+ * @file       : FourInARowChoiceMenu.java
  * @date       : 16 May 2014
  * @project    : BoxOfGames
- **************************************************
+ *************************************************
  */
 
 package be.umons.view;
@@ -35,10 +35,9 @@ import javax.swing.JToggleButton;
 
 import be.umons.model.AI;
 import be.umons.model.FourInARow;
-import be.umons.model.TicTacToe;
 
 /**
- * <b> TicTacToeChoiceMenu is the GUI class of a Tic-Tac-Toe menu choice. </b>
+ * <b> FourInARowChoiceMenu is the GUI class of a Four-In-A-Row menu choice. </b>
  * 
  * @author AGOZZINO Terencio
  */
@@ -262,7 +261,6 @@ public class FourInARowChoiceMenu extends JFrame implements ActionListener {
 			    };
 			    
 		    if (btnAI.isSelected() && btnAI.isSelected()) {
-		        	System.out.println("ok");
 		        	lab3.setIcon(new ImageIcon("Ressource/Games/FourInARow/choicetheme4.png"));
 		        	lab3.repaint();
 		    }

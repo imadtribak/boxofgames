@@ -1,3 +1,14 @@
+/**
+ ****************************************************
+
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : OthelloOptions.java
+ * @date       : 16 May 2014
+ * @project    : BoxOfGames
+ *****************************************************
+ */
+
 package be.umons.view;
 
 import java.awt.Color;
@@ -21,6 +32,12 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import be.umons.utility.Sound;
+
+/**
+ * <b> OthelloOptions is the GUI class of a Othello menu choice. </b>
+ * 
+ * @author AGOZZINO Terencio
+ */
 
 public class OthelloOptions extends JFrame implements ActionListener, MouseListener {
 

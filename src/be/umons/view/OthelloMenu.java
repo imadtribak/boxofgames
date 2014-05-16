@@ -1,11 +1,12 @@
 /**
- ****************************************************
- * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
- * @email      : agozzino.pizzirusso@gmail.com
- * @file       : IMainMenuOthello.java
- * @date       : 15 May 2014
+ **************************************************
+
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : OthelloMenu.java
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ ***************************************************
  */
 
 package be.umons.view;
@@ -28,13 +29,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
-import be.umons.model.Othello;
 import be.umons.utility.Sound;
 
 /**
- * <b> IMainMenuOthello is the class that initialize the menu of the Othello game. </b>
+ * <b> OthelloMenu is the class that initialize the menu of the Othello game. </b>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
 public class OthelloMenu extends JFrame implements ActionListener, MouseListener {

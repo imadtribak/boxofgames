@@ -1,7 +1,17 @@
+/**
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : TicTacToeOptions.java
+ * @date       : 16 May 2014
+ * @project    : BoxOfGames
+ ***************************************************
+ */
+
 package be.umons.view;
 
 import java.awt.Color;
-import java.awt.Image;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,11 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,6 +32,13 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import be.umons.utility.Sound;
+
+
+/**
+ * <b> TicTacToeOptions is the class that initialize the menu of the TicTacToe options </b>
+ * 
+ * @author AGOZZINO Terencio
+ */
 
 public class TicTacToeOptions extends JFrame implements ActionListener, MouseListener {
 

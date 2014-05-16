@@ -15,10 +15,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import be.umons.model.AI;
+
 /**
  * <b> Game is the superclass of all games. </b>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
 public abstract class AGame {

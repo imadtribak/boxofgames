@@ -11,17 +11,11 @@
 package be.umons.view;
 
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
 
 /**
  * <b> ITicTacToe is the GUI class of a Tic-Tac-Toe board. </b>
@@ -67,18 +61,6 @@ public class OthelloGame extends JFrame {
 		panel.add(panel2);
 		panel2.setLayout(null);
 		panel2.setOpaque(false);
-		
-		
-		final GamesMenu lol = new GamesMenu();
-		new Thread(new Runnable() {
-			public void run() {
-				try { 
-					lol.getSound().stop();
-				} catch (Exception ex) {
-					System.out.println("File no found");
-				}
-			}
-		}).start();
 	}
 
 	public JLabel getText() {

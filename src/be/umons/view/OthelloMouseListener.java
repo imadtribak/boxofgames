@@ -1,3 +1,13 @@
+/**
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : OthelloMouseListener.java
+ * @date       : 16 May 2014
+ * @project    : BoxOfGames
+ ***************************************************
+ */
+
 package be.umons.view;
 
 import java.awt.event.MouseEvent;
@@ -11,9 +21,13 @@ import javax.swing.JPanel;
 
 import be.umons.model.AI;
 import be.umons.model.Othello;
-import be.umons.model.Player;
-import be.umons.model.TicTacToe;
 import be.umons.utility.Sound;
+
+/**
+ * <b> OthelloMouseListener is the class that permit to play to a Othello game. </b>
+ * 
+ * @author AGOZZINO Terencio
+ */
 
 public class OthelloMouseListener implements MouseListener {
 

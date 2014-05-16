@@ -1,3 +1,13 @@
+/**
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : FourInARowMouseListener.java
+ * @date       : 16 May 2014
+ * @project    : BoxOfGames
+ ***************************************************
+ */
+
 package be.umons.view;
 
 import java.awt.event.MouseEvent;
@@ -11,8 +21,13 @@ import javax.swing.JPanel;
 
 import be.umons.model.AI;
 import be.umons.model.FourInARow;
-import be.umons.model.TicTacToe;
 import be.umons.utility.Sound;
+
+/**
+ * <b> FourInARowMouseListener is the class that permit to play to a Four-In-ARow game </b>
+ * 
+ * @author AGOZZINO Terencio
+ */
 
 public class FourInARowMouseListener implements MouseListener {
 

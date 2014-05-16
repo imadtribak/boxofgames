@@ -1,13 +1,21 @@
+/**
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : TicTacToeMouseListener.java
+ * @date       : 16 May 2014
+ * @project    : BoxOfGames
+ ***************************************************
+ */
+
 package be.umons.view;
 
-import java.awt.Image;
 import java.awt.event.MouseEvent;
 
 import be.umons.view.JTicTacToeBackGround;
 
 import java.awt.event.MouseListener;
 import java.util.List;
-import java.util.Observable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,6 +25,12 @@ import javax.swing.JPanel;
 import be.umons.model.AI;
 import be.umons.model.TicTacToe;
 import be.umons.utility.Sound;
+
+/**
+ * <b> TicTacToeMouseListener is the class that permit to play to a TicTacToe game </b>
+ * 
+ * @author AGOZZINO Terencio
+ */
 
 public class TicTacToeMouseListener implements MouseListener {
 

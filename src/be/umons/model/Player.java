@@ -13,18 +13,12 @@ package be.umons.model;
 /**
  * <b> Player is the class that permit to initialize a player with his informations. </b>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
 public class Player {
 	
 	private String name;
-	
-	// NOTES: array, each place is a different game. 0 for TicTacToe, 
-	// 1 for Four In A Line and 2 for Othello
-	
-	private int[] points;
-	private int[] pointsIA;
 	private int position;
 	
 	/**
@@ -41,11 +35,8 @@ public class Player {
 	 * 			Points of the IA
 	 */
 	
-	public Player(String name/*, int[] points, int[] pointsIA*/)
-	{
+	public Player(String name) {
 		this.name = name;
-		//this.points = points;
-		//this.pointsIA = pointsIA;*/
 	}
 	
 	/**
@@ -63,8 +54,7 @@ public class Player {
 	 * 			Position of a player
 	 */
 
-	public int getPosition()
-	{
+	public int getPosition() {
 		return position;
 	}
 	
@@ -75,8 +65,7 @@ public class Player {
 	 * 			Generate a position
 	 */
 	
-	public void setPosition(int position)
-	{
+	public void setPosition(int position) {
 		this.position = position;
 	}
 	
@@ -87,8 +76,7 @@ public class Player {
 	 * 			Name of a player
 	 */
 	
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 	
@@ -99,8 +87,7 @@ public class Player {
 	 * 			Name of a player
 	 */
 
-	public void setName(String name)
-	{
+	public void setName(String name) {
 		this.name = name;
 	}
 }

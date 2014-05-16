@@ -1,35 +1,25 @@
 /**
- ****************************************************
+ **************************************************
  * @author     : AGOZZINO Terencio 
  * @email      : agozzino.terencio@gmail.com
- * @file       : TicTacToeBoard.java
- * @date       : 15 May 2014
+ * @file       : TicTacToeGame.java
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ ***************************************************
  */
 
 package be.umons.view;
 
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
-
-import be.umons.model.AI;
-import be.umons.model.TicTacToe;
-import be.umons.utility.Sound;
 
 /**
- * <b> ITicTacToe is the GUI class of a Tic-Tac-Toe board. </b>
+ * <b> TicTacToeGame is the GUI class of a Tic-Tac-Toe game </b>
  * 
  * @author AGOZZINO Terencio
  */
@@ -73,17 +63,6 @@ public class TicTacToeGame extends JFrame {
 		panel.add(panel2);
 		panel2.setLayout(null);
 		panel2.setOpaque(false);
-		
-		final GamesMenu lol = new GamesMenu();
-		new Thread(new Runnable() {
-			public void run() {
-				try { 
-					lol.getSound().stop();
-				} catch (Exception ex) {
-					System.out.println("File no found");
-				}
-			}
-		}).start();
 	}
 
 	public JLabel getText() {

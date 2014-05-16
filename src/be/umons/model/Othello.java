@@ -508,9 +508,6 @@ public class Othello extends AGame {
 		
 	/**
 	 * <b> Method that make possible to play to the game. </b> 
-	 * 
-	 * @throws BoundOutreachedException 
-	 * 			Generate exception
 	 */
 	
 	@Override

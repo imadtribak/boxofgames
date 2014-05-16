@@ -1,11 +1,11 @@
 /**
- ****************************************************
- * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
- * @email      : agozzino.pizzirusso@gmail.com
+ **************************************************
+ * @author     : AGOZZINO Terencio
+ * @email      : agozzino.terencio@gmail.com
  * @file       : JPanelBackground.java
- * @date       : 15 May 2014
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ ***************************************************
  */
 
 package be.umons.view;
@@ -18,9 +18,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
- * <b> JPanelBackground is the class that set a background to a JFrame. </b>
+ * <b> JPanelBackGround is the class that set a background to a panel </b>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
 public class JPanelBackGround extends JPanel {

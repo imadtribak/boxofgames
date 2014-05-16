@@ -19,7 +19,7 @@ import java.util.Scanner;
  * 
  * <p> This class extend the class Game. </p>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
 public class TicTacToe extends AGame {
@@ -211,9 +211,6 @@ public class TicTacToe extends AGame {
 
 	/**
 	 * <b> Method that make possible to play to the game. </b>
-	 * 
-	 * @throws BoundOutreachedException 
-	 * 			Generate exception
 	 */
 	
 	@Override

@@ -1,29 +1,24 @@
 /**
- ****************************************************
+ **************************************************
  * @author     : AGOZZINO Terencio 
  * @email      : agozzino.terencio@gmail.com
- * @file       : TicTacToeBoard.java
- * @date       : 15 May 2014
+ * @file       : FourInARowGame.java
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ **************************************************
  */
 
 package be.umons.view;
 
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
 
 /**
- * <b> ITicTacToe is the GUI class of a Tic-Tac-Toe board. </b>
+ * <b> FourInARowGame is the GUI class of a Four-In-A-Row game. </b>
  * 
  * @author AGOZZINO Terencio
  */

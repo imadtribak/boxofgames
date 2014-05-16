@@ -1,3 +1,13 @@
+/**
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : JOthelloBackGround.java
+ * @date       : 16 May 2014
+ * @project    : BoxOfGames
+ ***************************************************
+ */
+
 package be.umons.view;
 
 import be.umons.model.Othello;
@@ -21,10 +31,15 @@ import javax.swing.border.Border;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <b> JOthelloBackGround is the main panel of a Othello game </b>
+ * 
+ * @author AGOZZINO Terencio
+ */
+
 public class JOthelloBackGround extends JPanel {
 	
 	private JFrame frame;
-	private OthelloGame game;
 	private List<Object> list;
 	
 	Border white = BorderFactory.createLineBorder(Color.WHITE, 1);

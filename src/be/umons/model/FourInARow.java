@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * <b> FourInARow is the class that permit to play to the Four in a Row game. </b>
+ * <b> FourInARow is the class that permit to play to the Four-In-A-Row game. </b>
  * 
  * <p> This class extend the class Game. </p>
  * 
@@ -296,9 +296,6 @@ public class FourInARow extends AGame {
 	
 	/**
 	 * <b> Method that make possible to play to the game. </b>
-	 * 
-	 * @throws BoundOutreachedException 
-	 * 			Generate exception
 	 */
 	
 	@Override

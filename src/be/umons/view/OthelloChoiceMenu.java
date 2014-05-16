@@ -35,7 +35,6 @@ import javax.swing.JToggleButton;
 
 import be.umons.model.AI;
 import be.umons.model.Othello;
-import be.umons.model.TicTacToe;
 
 /**
  * <b> TicTacToeChoiceMenu is the GUI class of a Tic-Tac-Toe menu choice. </b>
@@ -403,7 +402,6 @@ public class OthelloChoiceMenu extends JFrame implements ActionListener {
 				try {
 					OthelloGame frame = new OthelloGame(list, pawn1, pawn2, 0, 0);
 					frame.setVisible(true);
-					System.out.println(list);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

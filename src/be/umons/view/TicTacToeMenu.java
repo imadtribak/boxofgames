@@ -1,11 +1,11 @@
 /**
- ****************************************************
- * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
- * @email      : agozzino.pizzirusso@gmail.com
- * @file       : IMainMenuTicTacToe.java
- * @date       : 15 May 2014
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : TicTacToeMenu.java
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ ***************************************************
  */
 
 package be.umons.view;
@@ -18,8 +18,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.border.Border;
@@ -30,13 +28,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
-import be.umons.model.TicTacToe;
 import be.umons.utility.Sound;
 
 /**
- * <b> IMainMenuTicTacToe is the class that initialize the menu of the Tic-Tac-Toe game. </b>
+ * <b> TicTacToeMenu is the GUI class that initialize the menu of the Tic-Tac-Toe game. </b>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
 public class TicTacToeMenu extends JFrame implements ActionListener, MouseListener {

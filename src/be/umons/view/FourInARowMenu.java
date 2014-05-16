@@ -1,11 +1,11 @@
 /**
- ****************************************************
- * @author     : AGOZZINO Terencio - PIZZIRUSSO Loris
- * @email      : agozzino.pizzirusso@gmail.com
- * @file       : IMainMenuFourInARow.java
- * @date       : 15 May 2014
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : FourInARowMenu.java
+ * @date       : 16 May 2014
  * @project    : BoxOfGames
- *****************************************************
+ **************************************************
  */
 
 package be.umons.view;
@@ -28,13 +28,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
-import be.umons.model.FourInARow;
 import be.umons.utility.Sound;
 
 /**
- * <b> IMainMenuFourInARow is the class that initialize the menu of the FourInARow game. </b>
+ * <b> FourInARowMenu is the GUI class that initialize the menu of the Four-In-A-Row game. </b>
  * 
- * @author AGOZZINO Terencio - PIZZIRUSSO Loris
+ * @author AGOZZINO Terencio
  */
 
 public class FourInARowMenu extends JFrame implements ActionListener, MouseListener {

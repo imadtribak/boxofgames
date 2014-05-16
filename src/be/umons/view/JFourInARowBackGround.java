@@ -1,16 +1,21 @@
+/**
+ **************************************************
+ * @author     : AGOZZINO Terencio 
+ * @email      : agozzino.terencio@gmail.com
+ * @file       : JFourInARowBackGround.java
+ * @date       : 16 May 2014
+ * @project    : BoxOfGames
+ ***************************************************
+ */
+
 package be.umons.view;
 
 import be.umons.model.FourInARow;
-import be.umons.model.TicTacToe;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -18,13 +23,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * <b> JFourInARowBackGround is the main panel of a Four-In-A-Row game </b>
+ * 
+ * @author AGOZZINO Terencio
+ */
 
 public class JFourInARowBackGround extends JPanel {
 	
 	private JFrame frame;
-	private FourInARowGame game;
 	private List<Object> list;
 	
 	Border white = BorderFactory.createLineBorder(Color.WHITE, 1);

@@ -10,9 +10,13 @@
 
 package be.umons.view;
 
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -25,55 +29,42 @@ import javax.swing.KeyStroke;
  */
 
 public class FourInARowGame extends JFrame {
-
-	public JMenuBar MenuBar;
-	public JMenu MenuFile;
-	public JMenuItem ItemNew, ItemSave, ItemLoad, ItemClose;
 	
-	public FourInARowGame() {
+	private static String OS = System.getProperty("os.name").toLowerCase();
+
+	public 	JLabel text = new JLabel();
+
+	private List<Object> list;
+	
+	public ImageIcon P1 = null;	
+	public ImageIcon P2 = null;
+	
+	public FourInARowGame(List<Object> list, ImageIcon P1, ImageIcon P2, int result, int result2) {
+		this.list = list;
+		this.P1 = P1;
+		this.P2 = P2;
 		setTitle("Four in a Row");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1000, 520);
 		setLocationRelativeTo(null);
 		
+
+		if (OS.indexOf("win") >= 0)
+			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
+		
+		if (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 ||
+				OS.indexOf("aix") >= 0 || OS.indexOf("mac") >= 0 ||
+				OS.indexOf("sunos") >= 0)
+			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
+		
 		JPanelBackGround panel = new JPanelBackGround("Ressource/Games/FourInARow/gameboard.png");
 		panel.setLayout(null);
 		setContentPane(panel);
 		
-		JFourInARowBackGround panel2 = new JFourInARowBackGround(this);
+		JFourInARowBackGround panel2 = new JFourInARowBackGround(this, list, P1, P2, result, result2);
 		panel.add(panel2);
 		panel2.setLayout(null);
 		panel2.setOpaque(false);
-		
-		MenuBar = new JMenuBar();
-        setJMenuBar(MenuBar);
-        
-        MenuFile = new JMenu("File");
-        MenuFile.setMnemonic(KeyEvent.VK_F);
-        MenuBar.add(MenuFile);
-        
-        JMenu ItemNew = new JMenu("New");
-        
-        ItemNew.add("Tic-Tac-Toe");
-        ItemNew.add("Four in a Row");
-        ItemNew.add("Othello");
-        
-        MenuFile.add(ItemNew);
-        
-        ItemSave = new JMenuItem("Save", KeyEvent.VK_S);
-        KeyStroke ctrlSKeyStroke = KeyStroke.getKeyStroke("control S");
-        ItemSave.setAccelerator(ctrlSKeyStroke);
-        MenuFile.add(ItemSave);
-        
-        ItemLoad = new JMenuItem("Load", KeyEvent.VK_L);
-        KeyStroke ctrlLKeyStroke = KeyStroke.getKeyStroke("control L");
-        ItemLoad.setAccelerator(ctrlLKeyStroke);
-        MenuFile.add(ItemLoad);
-        
-        ItemClose = new JMenuItem("Close", KeyEvent.VK_W);
-        KeyStroke ctrlWKeyStroke = KeyStroke.getKeyStroke("control W");
-        ItemClose.setAccelerator(ctrlWKeyStroke);
-        MenuFile.add(ItemClose);
 	}
 }

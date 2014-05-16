@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import be.umons.utility.Sound;
+
 
 /**
  * <b> AI is the class that permit to play versus a computer with different
@@ -28,6 +30,9 @@ public class AI extends Player {
 	private FourInARow fiar;
 	private Othello othello;
 	private int difficulty;
+	
+	Sound sound1;
+	Sound sound2;
 	
 	private int[][] gameTable;
 	
@@ -58,28 +63,26 @@ public class AI extends Player {
 	 * 			Position in the array.	
 	 */
 
-	public int easyAITicTacToe() {	
+	public void easyAITicTacToe() {	
 		Random r = new Random();
 		boolean success = true;
 		do {
 			int x = r.nextInt(3);
 			int y = r.nextInt(3);
 			
-			if (this.gameTable[x][y] == 2) {
+			if (ttt.gameTable[x][y] == 2) {
 				success = false;
 				ttt.setLastX(x); 
 				ttt.setLastY(y);
 				if (ttt.getActualPlayer() == 0) {
-					ttt.delay(1);
-					return this.gameTable[x][y] = 0;
+					ttt.gameTable[x][y] = 0;
 				}
 				else {
-					ttt.delay(1);
-					return this.gameTable[x][y] = 1;
+					ttt.gameTable[x][y] = 1;
 				}
 			}
 		} while (success);
-		return -1;
+		ttt.changePlayer();
 	}
 	
 	int row = 0;
@@ -89,16 +92,16 @@ public class AI extends Player {
 		int x = 0;
 		for (int i = 0; i < ttt.getNRows(); i ++) {
 			for (int j = 0; j < ttt.getNColumns(); j ++) {
-				if (this.gameTable[row][column] == player)
+				if (ttt.gameTable[row][column] == player)
 					x ++;
 
-				if (this.gameTable[row][column] == 2) {
+				if (ttt.gameTable[row][column] == 2) {
 					row = i;
 					column = j;
 				}
 			}
 
-			if (x == 2 && gameTable[row][column] == 2)
+			if (x == 2 && ttt.gameTable[row][column] == 2)
 				return 1;
 			
 			else {
@@ -114,16 +117,16 @@ public class AI extends Player {
 		int x = 0;
 		for (int j = 0; j < ttt.getNRows(); j ++) {
 			for (int i = 0; i < ttt.getNColumns(); i ++) {
-				if (this.gameTable[row][column] == player)
+				if (ttt.gameTable[row][column] == player)
 					x ++;
 
-				if (this.gameTable[row][column] == 2) {
+				if (ttt.gameTable[row][column] == 2) {
 					row = i;
 					column = j;
 				}
 			}
 
-			if (x == 2 && gameTable[row][column] == 2) {
+			if (x == 2 && ttt.gameTable[row][column] == 2) {
 				return 1;
 			}
 			
@@ -140,16 +143,16 @@ public class AI extends Player {
 		int x = 0;
 		for (int i = 0; i < ttt.getNRows(); i ++) {
 			for (int j = 0; j < ttt.getNColumns(); j ++) {
-				if (this.gameTable[Math.abs(j - 2)][j] == player)
+				if (ttt.gameTable[Math.abs(j - 2)][j] == player)
 					x ++;
 
-				if (this.gameTable[Math.abs(j - 2)][j] == 2) {
+				if (ttt.gameTable[Math.abs(j - 2)][j] == 2) {
 					row = Math.abs(j - 2);
 					column = j;
 				}
 			}
 
-			if (x == 2 && gameTable[row][column] == 2)
+			if (x == 2 && ttt.gameTable[row][column] == 2)
 				return 1;
 			
 			else {
@@ -165,16 +168,16 @@ public class AI extends Player {
 		int x = 0;
 		for (int i = 0; i < ttt.getNRows(); i ++) {
 			for (int j = 0; j < ttt.getNColumns(); j ++ ) {
-				if (this.gameTable[row][column] == player)
+				if (ttt.gameTable[row][column] == player)
 					x ++;
 
-				if (this.gameTable[row][column] == 2) {
+				if (ttt.gameTable[row][column] == 2) {
 					row = j;
 					column = j;
 				}
 			}
 
-			if (x == 2 && gameTable[row][column] == 2) {
+			if (x == 2 && ttt.gameTable[row][column] == 2) {
 				return 1;
 			}
 			
@@ -187,7 +190,7 @@ public class AI extends Player {
 		return -1;
 	}
 	
-	public int hardAITicTacToe() {
+	public void hardAITicTacToe() {
 
 		Random r = new Random();
 		int result;
@@ -205,119 +208,119 @@ public class AI extends Player {
 					) {
 				ttt.setLastX(row);
 				ttt.setLastY(column);
-				return this.gameTable[row][column] = 0;
+				ttt.gameTable[row][column] = 0;
 			}
 
 			else {
-				if (this.gameTable[1][0] == 1) {
+				if (ttt.gameTable[1][0] == 1) {
 					result = r.nextInt(2);
 					if (result == 0) {
-						if (this.gameTable[0][0] == 2) {
+						if (ttt.gameTable[0][0] == 2) {
 							ttt.setLastX(0);
 							ttt.setLastY(0);
-							return this.gameTable[0][0] = 0;
+							ttt.gameTable[0][0] = 0;
 						}
 					}
 
-					if (this.gameTable[0][2] == 2) {
+					if (ttt.gameTable[0][2] == 2) {
 						ttt.setLastX(0);
 						ttt.setLastY(2);
-						return this.gameTable[0][2] = 0;
+						ttt.gameTable[0][2] = 0;
 					}
 				}
 
-				if (this.gameTable[2][1] == 1) {
+				if (ttt.gameTable[2][1] == 1) {
 					result = r.nextInt(2);
 					if (result == 0) {
 						if (this.gameTable[2][0] == 2) {
 							ttt.setLastX(2);
 							ttt.setLastY(0);
-							return this.gameTable[2][0] = 0;
+							ttt.gameTable[2][0] = 0;
 						}
 					}
 
-					if (this.gameTable[2][2] == 2) {
+					if (ttt.gameTable[2][2] == 2) {
 						ttt.setLastX(2);
 						ttt.setLastY(2);
-						return this.gameTable[2][2] = 0;
+						ttt.gameTable[2][2] = 0;
 					}
 				}
 
-				if (this.gameTable[1][2] == 1) {
+				if (ttt.gameTable[1][2] == 1) {
 					result = r.nextInt(2);
 					if (result == 0) {
-						if (this.gameTable[0][2] == 2) {
+						if (ttt.gameTable[0][2] == 2) {
 							ttt.setLastX(0);
 							ttt.setLastY(2);
-							return this.gameTable[0][2] = 0;
+							ttt.gameTable[0][2] = 0;
 						}
 					}
 
-					if (this.gameTable[2][2] == 2) {
+					if (ttt.gameTable[2][2] == 2) {
 						ttt.setLastX(2);
 						ttt.setLastY(2);
-						return this.gameTable[2][2] = 0;
+						ttt.gameTable[2][2] = 0;
 					}
 				}
 
-				if (this.gameTable[0][1] == 1) {
+				if (ttt.gameTable[0][1] == 1) {
 					result = r.nextInt(2);
 					if (result == 0) {
 						if (this.gameTable[0][0] == 2) {
 							ttt.setLastX(0);
 							ttt.setLastY(0);
-							return this.gameTable[0][2] = 0;
+							ttt.gameTable[0][2] = 0;
 						}
 					}
 
-					if (this.gameTable[0][2] == 2) {
+					if (ttt.gameTable[0][2] == 2) {
 						ttt.setLastX(0);
 						ttt.setLastY(2);
-						return this.gameTable[0][2] = 0;
+						ttt.gameTable[0][2] = 0;
 					}
 				}
 
-				if (this.gameTable[1][1] == 2) {
+				if (ttt.gameTable[1][1] == 2) {
 					ttt.setLastX(1);
 					ttt.setLastY(1);
-					return this.gameTable[1][1] = 0;
+					ttt.gameTable[1][1] = 0;
 				}
 
-				if (this.gameTable[2][2] == 2) {
+				if (ttt.gameTable[2][2] == 2) {
 					ttt.setLastX(2);
 					ttt.setLastY(2);
-					return this.gameTable[2][2] = 0;
+					ttt.gameTable[2][2] = 0;
 				}
 
-				if (this.gameTable[0][0] == 1) {
+				if (ttt.gameTable[0][0] == 1) {
 					if (this.gameTable[2][2] == 2) {
 						ttt.setLastX(2);
 						ttt.setLastY(2);
-						return this.gameTable[2][2] = 0;
+						ttt.gameTable[2][2] = 0;
 					}
 				}
 
-				if (this.gameTable[0][2] == 1) {
+				if (ttt.gameTable[0][2] == 1) {
 					if (this.gameTable[2][0] == 2) {
 						ttt.setLastX(2);
 						ttt.setLastY(0);
-						return this.gameTable[2][0] = 0;
+						ttt.gameTable[2][0] = 0;
 					}
 				}
 
-				if (this.gameTable[2][0] == 1) {
+				if (ttt.gameTable[2][0] == 1) {
 					if (this.gameTable[0][2] == 2) {
 						ttt.setLastX(0);
 						ttt.setLastY(2);
-						return this.gameTable[0][2] = 0;
+						ttt.gameTable[0][2] = 0;
 					}
 				}
 
-				if (this.gameTable[2][2] == 1) {
+				if (ttt.gameTable[2][2] == 1) {
 					if (this.gameTable[0][0] == 2) {
 						ttt.setLastX(0);
 						ttt.setLastY(0);
-						return this.gameTable[0][0] = 0;
+						ttt.gameTable[0][0] = 0;
 					}
 				}
 			}
@@ -337,156 +340,155 @@ public class AI extends Player {
 					) {
 				ttt.setLastX(row);
 				ttt.setLastY(column);
-				return this.gameTable[row][column] = 1;
+				ttt.gameTable[row][column] = 1;
 			}
 
 			else {
-				if (this.gameTable[1][1] == 2) {
+				if (ttt.gameTable[1][1] == 2) {
 					ttt.setLastX(1);
 					ttt.setLastY(1);
-					return this.gameTable[1][1] = 1;
+					ttt.gameTable[1][1] = 1;
 				}
 				
-				if (this.gameTable[1][1] == 0) {
+				if (ttt.gameTable[1][1] == 0) {
 
 					result = r.nextInt(4);
 
 					if (result == 0) {
-						if (this.gameTable[0][0] == 2) {
+						if (ttt.gameTable[0][0] == 2) {
 							ttt.setLastX(0);
 							ttt.setLastY(0);
-							return this.gameTable[0][0] = 1;
+							ttt.gameTable[0][0] = 1;
 						}
 					}
 
 					if (result == 1) {
-						if (this.gameTable[0][2] == 2) {
+						if (ttt.gameTable[0][2] == 2) {
 							ttt.setLastX(0);
 							ttt.setLastY(0);
-							return this.gameTable[0][2] = 1;
+							ttt.gameTable[0][2] = 1;
 						}
 					}
 
 					if (result == 2) {
-						if (this.gameTable[2][0] == 2) {
+						if (ttt.gameTable[2][0] == 2) {
 							ttt.setLastX(2);
 							ttt.setLastY(0);
-							return this.gameTable[2][0] = 1;
+							ttt.gameTable[2][0] = 1;
 						}
 					}
 
 					if (result == 3) {
-						if (this.gameTable[2][2] == 2) {
+						if (ttt.gameTable[2][2] == 2) {
 							ttt.setLastX(2);
 							ttt.setLastY(2);
-							return this.gameTable[2][2] = 1;
+							ttt.gameTable[2][2] = 1;
 						}
 					}
 				}
 				else {
-					if (this.gameTable[1][0] == 0) {
+					if (ttt.gameTable[1][0] == 0) {
 						result = r.nextInt(2);
 						if (result == 0) {
-							if (this.gameTable[0][0] == 2) {
+							if (ttt.gameTable[0][0] == 2) {
 								ttt.setLastX(0);
 								ttt.setLastY(0);
-								return this.gameTable[0][0] = 1;
+								ttt.gameTable[0][0] = 1;
 							}
 						}
 
-						if (this.gameTable[0][2] == 2) {
+						if (ttt.gameTable[0][2] == 2) {
 							ttt.setLastX(0);
 							ttt.setLastY(2);
-							return this.gameTable[0][2] = 1;
+							ttt.gameTable[0][2] = 1;
 						}
 					}
 
-					if (this.gameTable[2][1] == 0) {
+					if (ttt.gameTable[2][1] == 0) {
 						result = r.nextInt(2);
 						if (result == 0) {
-							if (this.gameTable[2][0] == 2) {
+							if (ttt.gameTable[2][0] == 2) {
 								ttt.setLastX(2);
 								ttt.setLastY(0);
-								return this.gameTable[2][0] = 1;
+								ttt.gameTable[2][0] = 1;
 							}
 						}
 
-						if (this.gameTable[2][2] == 2) {
+						if (ttt.gameTable[2][2] == 2) {
 							ttt.setLastX(2);
 							ttt.setLastY(2);
-							return this.gameTable[2][2] = 1;
+							ttt.gameTable[2][2] = 1;
 						}
 					}
 
-					if (this.gameTable[1][2] == 0) {
+					if (ttt.gameTable[1][2] == 0) {
 						result = r.nextInt(2);
 						if (result == 0) {
 							if (this.gameTable[0][2] == 2) {
 								ttt.setLastX(0);
 								ttt.setLastY(2);
-								return this.gameTable[0][2] = 1;
+								ttt.gameTable[0][2] = 1;
 							}
 						}
 
-						if (this.gameTable[2][2] == 2) {
+						if (ttt.gameTable[2][2] == 2) {
 							ttt.setLastX(2);
 							ttt.setLastY(2);
-							return this.gameTable[2][2] = 1;
+							ttt.gameTable[2][2] = 1;
 						}
 					}
 
-					if (this.gameTable[0][1] == 0) {
+					if (ttt.gameTable[0][1] == 0) {
 						result = r.nextInt(2);
 						if (result == 0) {
-							if (this.gameTable[0][0] == 2) {
+							if (ttt.gameTable[0][0] == 2) {
 								ttt.setLastX(0);
 								ttt.setLastY(0);
-								return this.gameTable[0][2] = 1;
+								ttt.gameTable[0][2] = 1;
 							}
 						}
 
-						if (this.gameTable[0][2] == 2) {
+						if (ttt.gameTable[0][2] == 2) {
 							ttt.setLastX(0);
 							ttt.setLastY(2);
-							return this.gameTable[0][2] = 1;
+							ttt.gameTable[0][2] = 1;
 						}
 					}
 
-					if (this.gameTable[0][0] == 0) {
-						if (this.gameTable[0][1] == 2) {
+					if (ttt.gameTable[0][0] == 0) {
+						if (ttt.gameTable[0][1] == 2) {
 							ttt.setLastX(2);
 							ttt.setLastY(2);
-							return this.gameTable[0][1] = 1;
+							ttt.gameTable[0][1] = 1;
 						}
 					}
 
-					if (this.gameTable[0][2] == 0) {
-						if (this.gameTable[0][1] == 2) {
+					if (ttt.gameTable[0][2] == 0) {
+						if (ttt.gameTable[0][1] == 2) {
 							ttt.setLastX(2);
 							ttt.setLastY(0);
-							return this.gameTable[0][1] = 1;
+							ttt.gameTable[0][1] = 1;
 						}
 					}
 
-					if (this.gameTable[2][0] == 0) {
-						if (this.gameTable[1][0] == 2) {
+					if (ttt.gameTable[2][0] == 0) {
+						if (ttt.gameTable[1][0] == 2) {
 							ttt.setLastX(0);
 							ttt.setLastY(2);
-							return this.gameTable[1][0] = 2;
+							ttt.gameTable[1][0] = 2;
 						}
 					}
 
-					if (this.gameTable[2][2] == 0) {
-						if (this.gameTable[1][2] == 2) {
+					if (ttt.gameTable[2][2] == 0) {
+						if (ttt.gameTable[1][2] == 2) {
 							ttt.setLastX(1);
 							ttt.setLastY(2);
-							return this.gameTable[1][2] = 1;
+							ttt.gameTable[1][2] = 1;
 						}
 					}
 				}
 			}
 		}
-		return -1;
 	}		
 
 	public int mediumAITicTacToe() {
@@ -505,13 +507,13 @@ public class AI extends Player {
 					) {
 				ttt.setLastX(row);
 				ttt.setLastY(column);
-				return this.gameTable[row][column] = 0;
+				return ttt.gameTable[row][column] = 0;
 			}
 			
-			if (this.gameTable[1][1] == 2) {
+			if (ttt.gameTable[1][1] == 2) {
 				ttt.setLastX(1);
 				ttt.setLastY(1);
-				return this.gameTable[1][1] = 0;
+				return ttt.gameTable[1][1] = 0;
 			}
 			
 			boolean success = true;
@@ -519,11 +521,11 @@ public class AI extends Player {
 				int x = r.nextInt(3);
 				int y = r.nextInt(3);
 
-				if (this.gameTable[x][y] == 2) {
+				if (ttt.gameTable[x][y] == 2) {
 					success = false;
 					ttt.setLastX(x); 
 					ttt.setLastY(y);
-					return this.gameTable[x][y] = 0;
+					return ttt.gameTable[x][y] = 0;
 				}
 			} while (success);
 		}
@@ -542,13 +544,13 @@ public class AI extends Player {
 					) {
 				ttt.setLastX(row);
 				ttt.setLastY(column);
-				return this.gameTable[row][column] = 1;
+				return ttt.gameTable[row][column] = 1;
 			}
 			
 			if (this.gameTable[1][1] == 2) {
 				ttt.setLastX(1);
 				ttt.setLastY(1);
-				return this.gameTable[1][1] = 1;
+				return ttt.gameTable[1][1] = 1;
 			}
 			
 			boolean success = true;
@@ -560,7 +562,7 @@ public class AI extends Player {
 					success = false;
 					ttt.setLastX(x); 
 					ttt.setLastY(y);
-					return this.gameTable[x][y] = 1;
+					return ttt.gameTable[x][y] = 1;
 				}
 			} while (success);
 		}
@@ -574,7 +576,7 @@ public class AI extends Player {
 	 * 			Position in the array.	
 	 */
 	
-	public int easyAIFourInARow() {
+	public void easyAIFourInARow() {
 		int[][] array = fiar.getGameTable();
 		Random r = new Random();
 		int x = 5;
@@ -587,12 +589,10 @@ public class AI extends Player {
 					fiar.setLastX(x);
 					fiar.setLastY(y);
 					if (fiar.getActualPlayer() == 0) {
-						fiar.delay(1);
-						return array[x][y] = 0;
+						fiar.gameTable[x][y] = 0;
 					}
 					else {
-						fiar.delay(1);
-						return array[x][y] = 1;
+						fiar.gameTable[x][y] = 1;
 					}
 				}
 				else {
@@ -609,17 +609,15 @@ public class AI extends Player {
 					fiar.setLastX(x);
 					fiar.setLastY(y);
 					if (fiar.getActualPlayer() == 0) {
-						fiar.delay(0);
-						return array[x][y] = 0;
+						fiar.gameTable[x][y] = 0;
 					}
 					else {
-						fiar.delay(0);
-						return array[x][y] = 1;
+						fiar.gameTable[x][y] = 1;
 					}
 				}
 			}
 		} while (success);
-		return -1;
+		fiar.changePlayer();
 	}
 
 	
@@ -639,7 +637,8 @@ public class AI extends Player {
 	 * 			Position in the array.	
 	 */
 
-	public int easyAIOthello() {
+	public void easyAIOthello() {
+		System.out.println("putain de merde");
 		int[][] array = othello.getGameTable();
 		Random r = new Random();
 		boolean success = true;
@@ -652,16 +651,14 @@ public class AI extends Player {
 				othello.setLastX(x);
 				othello.setLastY(y);
 				if (othello.getActualPlayer() == 0) {
-					othello.delay(1);
-					return array[x][y] = 0;
+					othello.gameTable[x][y] = 0;
 				}
 				else {
-					othello.delay(1);
-					return array[x][y] = 1;
+					othello.gameTable[x][y] = 1;
 				}
 			}
 		} while (success);
-		return -1;
+		othello.changePlayer();
 	}
 	
 	public int mediumAIOthello() {
@@ -690,39 +687,4 @@ public class AI extends Player {
 		else 
 			hardAITicTacToe();
 	}
-	
-	/**
-	 * <b> Method that implement an AI with AlphaBetaNegaMax algorithm. </b>
-	 * 
-	 * @param depth
-	 * 			Deep
-	 * 
-	 * @param alpha
-	 * 			alpha
-	 * 
-	 * @param beta
-	 * 			beta
-	 */
-
-	// NOTE: Cette méthode ne marche pas !
-
-	/*public int alphaBetaNega(int depth, int alpha, int beta) {
-
-		if (depth == 0 || gameTable[i][j] == 0)
-			return heuristic(gameTable[i][j]);
-
-		for (gameTable[x][y]) {
-			beta = Math.max(alpha, -alphaBetaNega(depth -1, -alpha, -beta));
-			if (alpha >= beta)
-				return alpha;
-			alpha = Math.max(alpha, beta);	
-		}
-		return alpha;
-	}
-
-	public void heuristic(int depth)
-	{
-		if(gameTable[x][y] == getActualPlayer())
-			return -1000;
-	 */
 }

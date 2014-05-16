@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 import be.umons.model.AI;
+import be.umons.model.Othello;
 import be.umons.model.TicTacToe;
 
 /**
@@ -68,17 +71,29 @@ public class OthelloChoiceMenu extends JFrame implements ActionListener {
 	private JTextField name = new JTextField("Player 1");
 	private JTextField name2 = new JTextField("Player 2");
 	
-	private TicTacToe ttt;
+	private Othello othello;
 	
 	JLabel lab3 = new JLabel(new ImageIcon("Ressource/Games/Othello/choicetheme.png"));
 	
 	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
 	
+	public ImageIcon pawn1 = null;
+	public ImageIcon pawn2 = null;
+	
+	private boolean canPass;
+	
+	private JLabel lab;
+	private JLabel lab2;
+	
 	/**
 	 * Create the frame.
 	 */
 	
-	public OthelloChoiceMenu() {
+	public OthelloChoiceMenu(final ImageIcon pawn1, final ImageIcon pawn2) {
+		this.pawn1 = pawn1;
+		this.pawn2 = pawn2;
+		lab = new JLabel(pawn1);
+		lab2 = new JLabel(pawn2);
 		setTitle("Menu of Players");
 		setResizable(false);
 		setBounds(100, 100, 450, 300);
@@ -88,6 +103,14 @@ public class OthelloChoiceMenu extends JFrame implements ActionListener {
 		lab3.setLayout(null);
 		setLocationRelativeTo(null);
 			
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				dispose();
+				OthelloMenu frame = new OthelloMenu(pawn1, pawn2) ;
+				frame.setVisible(true);
+			}
+		});
+		
 		name.setForeground(Color.GRAY);
 		name2.setForeground(Color.GRAY);
 		
@@ -121,129 +144,126 @@ public class OthelloChoiceMenu extends JFrame implements ActionListener {
 		 ActionListener radiobtnActionListener = new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {	
 			        
-		          if (btnHuman.isSelected()) {
-		        	    lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme.png"));
-			        	lab3.repaint();
-			        	
-			    		name.setBounds(220, 39, 115, 23);
-			    		name.setColumns(10);
-			        	name.setVisible(true);
-			        	lab3.add(name);
-			        	
-			        	btnEasy.setVisible(false);
-			        	btnMedium.setVisible(false);
-			        	btnHard.setVisible(false);
-			        }
-			        
-			        if (btnHuman2.isSelected()) {
-			        	lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme.png"));
-			        	lab3.repaint();
-			        	
-			    		name2.setBounds(220, 140, 115, 23);
-			    		name2.setColumns(10);
-			        	name2.setVisible(true);
-			        	lab3.add(name2);
-			        	
-			        	btnEasy2.setVisible(false);
-			        	btnMedium2.setVisible(false);
-			        	btnHard2.setVisible(false);
-			        }			    			     
-			        
-			        if (btnAI.isSelected()) {
-			        	lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme2.png"));
-			        	lab3.repaint();
-			        	
-			        	btnEasy.setBounds(194, 78, 56, 23);
-			    		btnEasy.setFocusPainted(false);
-			    		btnEasy.setOpaque(false);
-			    		btnEasy.setForeground(Color.WHITE);
-			    		btnEasy.setVisible(true);
-			    		lab3.add(btnEasy);
-			    		
-			    		btnMedium.setBounds(252, 78, 77, 23);
-			    		btnMedium.setFocusPainted(false);
-			    		btnMedium.setOpaque(false);
-			    		btnMedium.setForeground(Color.WHITE);
-			    		btnMedium.setVisible(true);
-			    		lab3.add(btnMedium);
-			    		
-			    		btnHard.setBounds(331, 78, 66, 23);
-			    		btnHard.setFocusPainted(false);
-			    		btnHard.setOpaque(false);
-			    		btnHard.setForeground(Color.WHITE);
-			    		btnHard.setVisible(true);
-			    		lab3.add(btnHard);
-			    		
-			        	name.setVisible(false);
-			        	name.setText("");
-			        }
-			        
-			        if (btnAI2.isSelected()) {
-			        	lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme3.png"));
-			        	lab3.repaint();
-			        	
-			    		btnEasy2.setBounds(194, 179, 56, 23);
-			    		btnEasy2.setFocusPainted(false);
-			    		btnEasy2.setOpaque(false);
-			    		btnEasy2.setForeground(Color.WHITE);
-			    		btnEasy2.setVisible(true);
-			    		lab3.add(btnEasy2);
-			    		
-			    		btnMedium2.setBounds(252, 179, 77, 23);
-			    		btnMedium2.setFocusPainted(false);
-			    		btnMedium2.setOpaque(false);
-			    		btnMedium2.setForeground(Color.WHITE);
-			    		btnMedium2.setVisible(true);
-			    		lab3.add(btnMedium2);
-			    		
-			    		btnHard2.setBounds(331, 179, 66, 23);
-			    		btnHard2.setFocusPainted(false);
-			    		btnHard2.setOpaque(false);
-			    		btnHard2.setForeground(Color.WHITE);
-			    		btnHard2.setVisible(true);
-			    		lab3.add(btnHard2);
-			    		
-			        	name2.setVisible(false);
-			        	name2.setText("");
-			        }
-			        
-			        if (btnAI.isSelected() && btnAI2.isSelected()) {
-		    			lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme4.png"));
-		    			lab3.repaint();		
-		    			
-	    				btnEasy2.setBounds(194, 179, 56, 23);
-	    				btnEasy2.setFocusPainted(false);
-	    				btnEasy2.setOpaque(false);
-	    				btnEasy2.setForeground(Color.WHITE);
-	    				btnEasy2.setVisible(true);
-	    				lab3.add(btnEasy2);
+		    	  if (btnHuman.isSelected()) {
+		    			lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme.png"));
+		    			lab3.repaint();
 
-	    				btnMedium2.setBounds(252, 179, 77, 23);
-	    				btnMedium2.setFocusPainted(false);
-	    				btnMedium2.setOpaque(false);
-	    				btnMedium2.setForeground(Color.WHITE);
-	    				btnMedium2.setVisible(true);
-	    				lab3.add(btnMedium2);
+		    			name.setBounds(220, 39, 115, 23);
+		    			name.setColumns(10);
+		    			name.setVisible(true);
+		    			lab3.add(name);
 
-	    				btnHard2.setBounds(331, 179, 66, 23);
-	    				btnHard2.setFocusPainted(false);
-	    				btnHard2.setOpaque(false);
-	    				btnHard2.setForeground(Color.WHITE);
-	    				btnHard2.setVisible(true);
-	    				lab3.add(btnHard2);
-	    				
-	    				name2.setVisible(false);
-	    				name2.setText("");	    				
+		    			btnEasy.setVisible(false);
+		    			btnMedium.setVisible(false);
+		    			btnHard.setVisible(false);
 		    		}
-			      }
-			    };
-			    
-		    if (btnAI.isSelected() && btnAI.isSelected()) {
-		        	System.out.println("ok");
-		        	lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme4.png"));
-		        	lab3.repaint();
-		    }
-			
+
+		    		if (btnHuman2.isSelected()) {
+		    			lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme.png"));
+		    			lab3.repaint();
+
+		    			name2.setBounds(220, 140, 115, 23);
+		    			name2.setColumns(10);
+		    			name2.setVisible(true);
+		    			lab3.add(name2);
+
+		    			btnEasy2.setVisible(false);
+		    			btnMedium2.setVisible(false);
+		    			btnHard2.setVisible(false);
+		    		}		
+
+		    		if (btnAI.isSelected() || btnAI2.isSelected()) {
+
+		    			if (btnAI.isSelected()) {	    				
+		    				lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme2.png"));
+		    				lab3.repaint();
+
+		    				btnEasy.setBounds(194, 78, 56, 23);
+		    				btnEasy.setFocusPainted(false);
+		    				btnEasy.setOpaque(false);
+		    				btnEasy.setForeground(Color.WHITE);
+		    				btnEasy.setVisible(true);
+		    				lab3.add(btnEasy);
+
+		    				btnMedium.setBounds(252, 78, 77, 23);
+		    				btnMedium.setFocusPainted(false);
+		    				btnMedium.setOpaque(false);
+		    				btnMedium.setForeground(Color.WHITE);
+		    				btnMedium.setVisible(true);
+		    				lab3.add(btnMedium);
+
+		    				btnHard.setBounds(331, 78, 66, 23);
+		    				btnHard.setFocusPainted(false);
+		    				btnHard.setOpaque(false);
+		    				btnHard.setForeground(Color.WHITE);
+		    				btnHard.setVisible(true);
+		    				lab3.add(btnHard);
+
+		    				name.setVisible(false);
+		    				name.setText("");
+		    			}
+
+		    			else {
+		    				lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme3.png"));
+		    				lab3.repaint();
+
+		    				btnEasy2.setBounds(194, 179, 56, 23);
+		    				btnEasy2.setFocusPainted(false);
+		    				btnEasy2.setOpaque(false);
+		    				btnEasy2.setForeground(Color.WHITE);
+		    				btnEasy2.setVisible(true);
+		    				lab3.add(btnEasy2);
+
+		    				btnMedium2.setBounds(252, 179, 77, 23);
+		    				btnMedium2.setFocusPainted(false);
+		    				btnMedium2.setOpaque(false);
+		    				btnMedium2.setForeground(Color.WHITE);
+		    				btnMedium2.setVisible(true);
+		    				lab3.add(btnMedium2);
+
+		    				btnHard2.setBounds(331, 179, 66, 23);
+		    				btnHard2.setFocusPainted(false);
+		    				btnHard2.setOpaque(false);
+		    				btnHard2.setForeground(Color.WHITE);
+		    				btnHard2.setVisible(true);
+		    				lab3.add(btnHard2);
+
+		    				name2.setVisible(false);
+		    				name2.setText("");
+		    			}
+		    			
+			    		if (btnAI.isSelected() && btnAI2.isSelected()) {
+			    			lab3.setIcon(new ImageIcon("Ressource/Games/Othello/choicetheme4.png"));
+			    			lab3.repaint();		
+			    			
+		    				btnEasy2.setBounds(194, 179, 56, 23);
+		    				btnEasy2.setFocusPainted(false);
+		    				btnEasy2.setOpaque(false);
+		    				btnEasy2.setForeground(Color.WHITE);
+		    				btnEasy2.setVisible(true);
+		    				lab3.add(btnEasy2);
+
+		    				btnMedium2.setBounds(252, 179, 77, 23);
+		    				btnMedium2.setFocusPainted(false);
+		    				btnMedium2.setOpaque(false);
+		    				btnMedium2.setForeground(Color.WHITE);
+		    				btnMedium2.setVisible(true);
+		    				lab3.add(btnMedium2);
+
+		    				btnHard2.setBounds(331, 179, 66, 23);
+		    				btnHard2.setFocusPainted(false);
+		    				btnHard2.setOpaque(false);
+		    				btnHard2.setForeground(Color.WHITE);
+		    				btnHard2.setVisible(true);
+		    				lab3.add(btnHard2);
+		    				
+		    				name2.setVisible(false);
+		    				name2.setText("");	    				
+			    		}
+		    		}
+		    	}
+		    };
+			        		
 			btnHuman.setBounds(148, 39, 66, 23);
 			btnHuman.setFocusPainted(false);
 			btnHuman.setOpaque(false);
@@ -284,11 +304,9 @@ public class OthelloChoiceMenu extends JFrame implements ActionListener {
 		player2.setFont(new Font("Fixedsys", Font.BOLD, 13));
 		lab3.add(player2);
 
-		JLabel lab = new JLabel(new ImageIcon("Ressource/Games/Othello/Black.png"));
 		lab.setBounds(10, 25, 56, 51);
 		lab3.add(lab);
 
-		JLabel lab2 = new JLabel(new ImageIcon("Ressource/Games/Othello/White.png"));
 		lab2.setBounds(10, 121, 56, 51);
 		lab3.add(lab2);
 
@@ -321,44 +339,87 @@ public class OthelloChoiceMenu extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
-		
 		if (source == btnOk) {
 			dispose();
 			list.add(name.getText());
 			list.add(name2.getText());		
-			
-			AI ai = new AI(ttt);
-			//ai.setGameTable(//);
-					
-			if (btnEasy.isSelected() || btnEasy2.isSelected()) {
-				ai.setDifficulty(1);
-				list.add(ai);
+
+			if (btnAI.isSelected()) {
+				AI ai = new AI(othello);
+				if (btnEasy.isSelected()) {
+					list.set(0, "EASY AI");
+					ai.setDifficulty(0);
+				}
+
+				if (btnMedium.isSelected()) {
+					list.set(0, "MEDIUM AI");
+					ai.setDifficulty(1);
+				}
+
+				if (btnHard.isSelected()) {
+					list.set(0, "HARD AI");
+					ai.setDifficulty(2);
+				}
 			}
 
-			if (btnMedium.isSelected() || btnMedium2.isSelected()) {
-				ai.setDifficulty(2);
-				list.add(ai);
+
+			if (btnAI2.isSelected()) {
+				AI ai2 = new AI(othello);
+				if (btnEasy2.isSelected()) {
+					list.set(1, "EASY AI");	
+					ai2.setDifficulty(0);
+				}
+
+				if (btnMedium2.isSelected()) {
+					list.set(1, "MEDIUM AI");	
+					ai2.setDifficulty(1);
+				}
+
+				if (btnHard2.isSelected()) {
+					list.set(1, "HARD AI");	
+					ai2.setDifficulty(2);
+				}
 			}
 
-			if (btnHard.isSelected() || btnHard2.isSelected()) {
-				ai.setDifficulty(3);;
-				list.add(ai);
-			}
-
-			if (list.get(0).equals("")) {
-				JOptionPane.showMessageDialog (null, "An error occurred when selecting players", "ERROR", JOptionPane.WARNING_MESSAGE);
-				OthelloChoiceMenu frame = new OthelloChoiceMenu();			
+			else if (name.getDocument().getLength() > 15) {
+				JOptionPane.showMessageDialog (null, "The length of the name of the first player is too long !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				OthelloChoiceMenu frame = new OthelloChoiceMenu(pawn1, pawn2);			
 				frame.setVisible(true);
 			}
 
+			else if (name2.getDocument().getLength() > 15) {
+				JOptionPane.showMessageDialog (null, "The length of the name of the second player is too long !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				OthelloChoiceMenu frame = new OthelloChoiceMenu(pawn1, pawn2);			
+				frame.setVisible(true);
+			}
+
+			else if (list.get(0).equals("")) {
+				JOptionPane.showMessageDialog (null, "An error occurred when selecting players", "ERROR", JOptionPane.WARNING_MESSAGE);
+				OthelloChoiceMenu frame = new OthelloChoiceMenu(pawn1, pawn2);			
+				frame.setVisible(true);
+			}
+			
+			if (list.get(0) != null && list.get(1) != null) {
+				try {
+					OthelloGame frame = new OthelloGame(list, pawn1, pawn2, 0, 0);
+					frame.setVisible(true);
+					System.out.println(list);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
 			else {
+				if (canPass = true) {
 					try {
-						OthelloGame frame = new OthelloGame();
+						OthelloGame frame = new OthelloGame(list, pawn1, pawn2, 0, 0);
 						frame.setVisible(true);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				}
 			}
 		}
 	}

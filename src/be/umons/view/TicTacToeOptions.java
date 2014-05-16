@@ -1,21 +1,31 @@
 package be.umons.view;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import be.umons.utility.Sound;
 
 public class TicTacToeOptions extends JFrame implements ActionListener, MouseListener {
 
@@ -37,7 +47,7 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 	private JLabel lblPiece13 = new JLabel("");
 	private JLabel lblPiece14 = new JLabel("");
 	
-
+	boolean canPass = true;
 	
 	private JButton btnOff = new JButton("OFF");
 	private JButton btnOn = new JButton("ON");
@@ -46,11 +56,30 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 	
 	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
 	Border white = BorderFactory.createLineBorder(Color.WHITE, 1);
-	
+
+	ImageIcon pawn1 = new ImageIcon("Ressource/Games/TicTacToe/XRed.png");
+	ImageIcon pawn2 = new ImageIcon("Ressource/Games/TicTacToe/XBlue.png");
+	ImageIcon pawn3 = new ImageIcon("Ressource/Games/TicTacToe/XGreen.png");
+	ImageIcon pawn4 = new ImageIcon("Ressource/Games/TicTacToe/XOrange.png");
+	ImageIcon pawn5 = new ImageIcon("Ressource/Games/TicTacToe/XLightBlue.png");
+	ImageIcon pawn6 = new ImageIcon("Ressource/Games/TicTacToe/XYellow.png");
+	ImageIcon pawn7 = new ImageIcon("Ressource/Games/TicTacToe/XViolet.png");
+	ImageIcon pawn8 = new ImageIcon("Ressource/Games/TicTacToe/ORed.png");
+	ImageIcon pawn9 = new ImageIcon("Ressource/Games/TicTacToe/OBlue.png");
+	ImageIcon pawn10 = new ImageIcon("Ressource/Games/TicTacToe/OGreen.png");
+	ImageIcon pawn11 = new ImageIcon("Ressource/Games/TicTacToe/OOrange.png");
+	ImageIcon pawn12 = new ImageIcon("Ressource/Games/TicTacToe/OLightBlue.png");
+	ImageIcon pawn13 = new ImageIcon("Ressource/Games/TicTacToe/OYellow.png");
+	ImageIcon pawn14 = new ImageIcon("Ressource/Games/TicTacToe/OViolet.png");
+
+	ImageIcon actualX = pawn1;
+	ImageIcon actualO = pawn9;
+		
 	/**
 	 * Create the frame.
 	 */
-	public TicTacToeOptions() {
+	
+	public TicTacToeOptions() {		
 		setTitle("Options Menu");
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -62,6 +91,14 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 		contentPane.setLayout(null);
 		contentPane.setBackground(Color.BLACK);
 		setLocationRelativeTo(null);
+		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				dispose();
+				TicTacToeMenu frame = new TicTacToeMenu(actualX, actualO) ;
+				frame.setVisible(true);
+			}
+		});
 		
 		btnOn.setBounds(86, 31, 89, 23);
 		btnOn.setBackground(Color.BLACK);
@@ -89,38 +126,38 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 		lblPlayers1.setForeground(Color.WHITE);
 		contentPane.add(lblPlayers1);
 		
-		lblPiece1 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/XRed.png"));
+		lblPiece1 = new JLabel(pawn1);
 		lblPiece1.setBounds(15, 111, 50, 50);
 		lblPiece1.setBorder(white);
 		lblPiece1.addMouseListener(this);
 		contentPane.add(lblPiece1);
 
-		lblPiece2 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/XBlue.png"));
+		lblPiece2 = new JLabel(pawn2);
 		lblPiece2.setBounds(75, 111, 50, 50);
 		lblPiece2.addMouseListener(this);
 		contentPane.add(lblPiece2);
 
-		lblPiece3 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/XGreen.png"));
+		lblPiece3 = new JLabel(pawn3);
 		lblPiece3.setBounds(135, 111, 50, 50);
 		lblPiece3.addMouseListener(this);
 		contentPane.add(lblPiece3 );
 
-		lblPiece4 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/XOrange.png"));
+		lblPiece4 = new JLabel(pawn4);
 		lblPiece4.setBounds(195, 111, 50, 50);
 		lblPiece4.addMouseListener(this);
 		contentPane.add(lblPiece4);
 		
-		lblPiece5 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/XLightBlue.png"));
+		lblPiece5 = new JLabel(pawn5);
 		lblPiece5.setBounds(255, 111, 50, 50);
 		lblPiece5.addMouseListener(this);
 		contentPane.add(lblPiece5);
 
-		lblPiece6 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/XYellow.png"));
+		lblPiece6 = new JLabel(pawn6);
 		lblPiece6.setBounds(315, 111, 50, 50);
 		lblPiece6.addMouseListener(this);
 		contentPane.add(lblPiece6);
 		
-		lblPiece7 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/XViolet.png"));
+		lblPiece7 = new JLabel(pawn7);
 		lblPiece7.setBounds(375, 111, 50, 50);
 		lblPiece7.addMouseListener(this);
 		contentPane.add(lblPiece7);
@@ -130,38 +167,38 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 		lblPlayers2.setForeground(Color.WHITE);
 		contentPane.add(lblPlayers2);
 		
-		lblPiece8 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/ORed.png"));
+		lblPiece8 = new JLabel(pawn8);
 		lblPiece8.setBounds(15, 197, 50, 50);
-		lblPiece8.setBorder(white);
 		lblPiece8.addMouseListener(this);
 		contentPane.add(lblPiece8);
 		
-		lblPiece9 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/OBlue.png"));
+		lblPiece9 = new JLabel(pawn9);
 		lblPiece9.setBounds(75, 197, 50, 50);
+		lblPiece9.setBorder(white);
 		lblPiece9.addMouseListener(this);
 		contentPane.add(lblPiece9);
 		
-		lblPiece10 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/OGreen.png"));
+		lblPiece10 = new JLabel(pawn10);
 		lblPiece10.setBounds(135, 197, 50, 50);
 		lblPiece10.addMouseListener(this);
 		contentPane.add(lblPiece10);
 		
-		lblPiece11 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/OOrange.png"));
+		lblPiece11 = new JLabel(pawn11);
 		lblPiece11.setBounds(195, 197, 50, 50);
 		lblPiece11.addMouseListener(this);
 		contentPane.add(lblPiece11);
 
-		lblPiece12 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/OLightBlue.png"));
+		lblPiece12 = new JLabel(pawn12);
 		lblPiece12.setBounds(255, 197, 50, 50);
 		lblPiece12.addMouseListener(this);
 		contentPane.add(lblPiece12);
 		
-		lblPiece13 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/OYellow.png"));
+		lblPiece13 = new JLabel(pawn13);
 		lblPiece13.setBounds(315, 197, 50, 50);
 		lblPiece13.addMouseListener(this);
 		contentPane.add(lblPiece13);
 		
-		lblPiece14 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/OViolet.png"));
+		lblPiece14 = new JLabel(pawn14);
 		lblPiece14.setBounds(375, 197, 50, 50);
 		lblPiece14.addMouseListener(this);
 		contentPane.add(lblPiece14);
@@ -183,8 +220,6 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
 	}
 	
-	TicTacToeChoiceMenu menu = new TicTacToeChoiceMenu();
-	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object source = e.getSource();
@@ -196,6 +231,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			actualX = pawn1;
 		}
 		
 		if (source == lblPiece2) {
@@ -207,9 +244,7 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
 			
-			JLabel lab = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/XBlue.png"));
-			menu.setLab(lab);
-			lab.repaint();
+			actualX = pawn2;
 		}
 		
 		if (source == lblPiece3) {
@@ -220,6 +255,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			actualX = pawn3;
 		}
 		
 		if (source == lblPiece4) {
@@ -230,6 +267,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			actualX = pawn4;
 		}
 		
 		if (source == lblPiece5) {
@@ -240,6 +279,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece5.setBorder(white);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			actualX = pawn5;
 		}
 		
 		if (source == lblPiece6) {
@@ -250,6 +291,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(white);
 			lblPiece7.setBorder(null);
+			
+			actualX = pawn6;
 		}
 		
 		if (source == lblPiece7) {
@@ -260,6 +303,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(white);
+			
+			actualX = pawn7;
 		}
 		
 		if (source == lblPiece8) {
@@ -270,6 +315,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualO = pawn8;
 		}
 		
 		if (source == lblPiece9) {
@@ -280,6 +327,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualO = pawn9;
 		}
 		
 		if (source == lblPiece10) {
@@ -290,6 +339,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualO = pawn10;
 		}
 		
 		if (source == lblPiece11) {
@@ -300,6 +351,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualO = pawn11;
 		}
 		
 		if (source == lblPiece12) {
@@ -310,6 +363,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece12.setBorder(white);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualO = pawn12;
 		}
 		
 		if (source == lblPiece13) {
@@ -320,6 +375,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(white);
 			lblPiece14.setBorder(null);
+			
+			actualO = pawn13;
 		}
 		
 		if (source == lblPiece14) {
@@ -330,6 +387,8 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(white);
+			
+			actualO = pawn14;
 		}	
 	}
 
@@ -369,7 +428,144 @@ public class TicTacToeOptions extends JFrame implements ActionListener, MouseLis
 		}
 		
 		if (source == btnOk) {
-		dispose();
+			
+			if (actualX == pawn1 && actualO == pawn8) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				TicTacToeOptions frame = new TicTacToeOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualX == pawn2 && actualO == pawn9) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				TicTacToeOptions frame = new TicTacToeOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualX == pawn3 && actualO == pawn10) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				TicTacToeOptions frame = new TicTacToeOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualX == pawn4 && actualO == pawn11) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				TicTacToeOptions frame = new TicTacToeOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualX == pawn5 && actualO == pawn12) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				TicTacToeOptions frame = new TicTacToeOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualX == pawn6 && actualO == pawn13) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				TicTacToeOptions frame = new TicTacToeOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualX == pawn7 && actualO == pawn14) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				TicTacToeOptions frame = new TicTacToeOptions();			
+				frame.setVisible(true);
+			}
+			
+			else {
+				if (canPass = true) {
+					try {
+						dispose();
+						TicTacToeMenu menu = new TicTacToeMenu(actualX, actualO);
+						menu.setVisible(true);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 }

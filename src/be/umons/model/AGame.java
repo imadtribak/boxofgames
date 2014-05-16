@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import be.umons.model.AI;
-import be.umons.exception.BoundOutreachedException;
-
 /**
  * <b> Game is the superclass of all games. </b>
  * 
@@ -29,7 +27,7 @@ public abstract class AGame {
 	private static String DISPLAYP2 = "o";
 
 	private int actualPlayer = 1;
-	private int[][] gameTable;
+	public int[][] gameTable;
 	private int lastX = -1, lastY = -1;
 	private int lastPlayer;
 
@@ -37,7 +35,7 @@ public abstract class AGame {
 	
 	private TicTacToe ttt;
 
-	public abstract void letsPlay() throws BoundOutreachedException;
+	public abstract void letsPlay();
 
 	/**
 	 * <b> Constructor that initialize an array. </b>
@@ -150,16 +148,6 @@ public abstract class AGame {
 
 	public void changePlayer() {
 		actualPlayer = (actualPlayer == 1) ? 0 : 1;
-		if (!(listPlayer.get(getActualPlayer()) instanceof AI)) {
-			displayPlayer();
-			select(getActualPlayer());
-			//lastPlayer = 1;
-		
-		} else {
-			displayPlayer();
-			((AI) listPlayer.get(getActualPlayer())).mediumAITicTacToe();
-			((AI) listPlayer.get(getActualPlayer())).setGameTable(gameTable); 
-		}
 	}
 
 	/**
@@ -251,12 +239,12 @@ public abstract class AGame {
 	/**
 	 * <b> Method that make possible to have a delay. </b>
 	 * 
-	 * @param seconds
+	 * @param d
 	 * 			Time in seconds
 	 */
 
-	public void delay(int seconds) {
-		int time = (int) seconds * 1000;
+	public void delay(double d) {
+		int time = (int) d * 1000;
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {

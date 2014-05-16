@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import be.umons.exception.BoundOutreachedException;
-
 /**
  * <b> FourInARow is the class that permit to play to the Four in a Row game. </b>
  * 
@@ -304,7 +302,7 @@ public class FourInARow extends AGame {
 	 */
 	
 	@Override
-	public void letsPlay() throws BoundOutreachedException {
+	public void letsPlay() {
 		choiceOfPlayers();
 		do {
 			displayArray();

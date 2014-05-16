@@ -14,10 +14,10 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.border.Border;
@@ -28,8 +28,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
-import be.umons.exception.BoundOutreachedException;
 import be.umons.model.Othello;
+import be.umons.utility.Sound;
 
 /**
  * <b> IMainMenuOthello is the class that initialize the menu of the Othello game. </b>
@@ -37,7 +37,7 @@ import be.umons.model.Othello;
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
-public class OthelloMenu extends JFrame implements ActionListener {
+public class OthelloMenu extends JFrame implements ActionListener, MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private static String OS = System.getProperty("os.name").toLowerCase();
@@ -48,11 +48,16 @@ public class OthelloMenu extends JFrame implements ActionListener {
 
 	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
 	
+	ImageIcon lab5 = new ImageIcon("Ressource/Games/Othello/Black.png");
+	ImageIcon lab6 = new ImageIcon("Ressource/Games/Othello/White.png");
+	
 	/**
 	 * <b> Constructor that create the frame. </b>
 	 */
 
-	public OthelloMenu() {
+	public OthelloMenu(ImageIcon lab5, ImageIcon lab6) {
+		this.lab5 = lab5;
+		this.lab6 = lab6;
 		setTitle("Othello Menu");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,6 +90,7 @@ public class OthelloMenu extends JFrame implements ActionListener {
 		btnPlay.setBounds(200, 166, 165, 165);
 		panel.add(btnPlay);
 		btnPlay.addActionListener(this);
+		btnPlay.addMouseListener(this);
 		btnPlay.setRolloverIcon(new ImageIcon("Ressource/Games/Othello/btnPlay2.png"));
 		btnPlay.setBorder(grey);
 		
@@ -92,6 +98,7 @@ public class OthelloMenu extends JFrame implements ActionListener {
 		btnOptions.setBounds(417, 166, 165, 165);
 		panel.add(btnOptions);
 		btnOptions.addActionListener(this);
+		btnOptions.addMouseListener(this);
 		btnOptions.setRolloverIcon(new ImageIcon("Ressource/Games/Othello/btnOptions2.png"));
 		btnOptions.setBorder(grey);
 		
@@ -99,24 +106,25 @@ public class OthelloMenu extends JFrame implements ActionListener {
 		btnQuit.setBounds(635, 166, 165, 165);
 		panel.add(btnQuit);
 		btnQuit.addActionListener(this);
+		btnQuit.addMouseListener(this);
 		btnQuit.setRolloverIcon(new ImageIcon("Ressource/Games/Othello/btnQuit2.png"));
 		btnQuit.setBorder(grey);
 		
 		JLabel lab = new JLabel(new ImageIcon("Ressource/copyright.png"));
-		lab.setBounds(243, 370, 517, 64);
+		lab.setBounds(220, 370, 517, 64);
 		panel.add(lab);
 
 		JLabel lab2 = new JLabel(new ImageIcon("Ressource/Games/Othello/header.png"));
 		lab2.setBounds(313, 34, 447, 98);
 		panel.add(lab2);
 		
-		JLabel lab3 = new JLabel(new ImageIcon("Ressource/picture.jpg"));
-		lab3.setBounds(230, 370, 60, 60);
+		JLabel lab3 = new JLabel(new ImageIcon("Ressource/me.png"));
+		lab3.setBounds(200, 350, 100, 100);
 		panel.add(lab3);
 		
-		JLabel lab4 = new JLabel(new ImageIcon("Ressource/picture2.jpg"));
-		lab4.setBounds(650, 370, 60, 60);
-		panel.add(lab4);
+		JLabel lab4 = new JLabel(new ImageIcon("Ressource/me.png"));
+		lab4.setBounds(650, 350, 100, 100);
+		panel.add(lab4);	
 		
 		if (OS.indexOf("win") >= 0)
 			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
@@ -135,15 +143,18 @@ public class OthelloMenu extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource(); 
 		if (source == btnPlay) {
-			OthelloChoiceMenu frame = new OthelloChoiceMenu();
+			dispose();
+			OthelloChoiceMenu frame = new OthelloChoiceMenu(lab5, lab6);
 			frame.setVisible(true);
 		}
 
 		else if (source ==  btnOptions) {
+			dispose();
 			OthelloOptions frame = new OthelloOptions();
 			frame.setVisible(true);
 		}
 
+		
 		else if (source == btnQuit) {
 			int answer = JOptionPane.showConfirmDialog(null,
 					"Do you want back to the main menu ?",
@@ -155,5 +166,76 @@ public class OthelloMenu extends JFrame implements ActionListener {
 			}
 			dispose();
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		Object source = e.getSource();
+		if (source == btnPlay) {
+			new Thread(new Runnable() {
+				public void run() {
+					try { 
+						Sound sound = new Sound("Ressource/Sound/menu.mp3");
+						sound.play();
+					} catch (Exception ex) {
+						System.out.println("File no found");
+					}
+				}
+			}).start();
+		}
+
+		else if (source ==  btnOptions) {
+			if (source == btnOptions) {
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/menu.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+			}
+		}
+
+		else if (source == btnQuit) { 
+			if (source == btnQuit) {
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/menu.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+			}
+		}		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

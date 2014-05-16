@@ -35,11 +35,11 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
-		List <Object> list = new ArrayList <Object>();
+		/*List <Object> list = new ArrayList <Object>();
 		TicTacToe ttt = new TicTacToe(list);
-		ttt.letsPlay();
-		//GamesMenu frame = new GamesMenu();
-		//frame.setVisible(true);
+		ttt.letsPlay();*/
+		GamesMenu frame = new GamesMenu();
+		frame.setVisible(true);
 		//Sound sound = new Sound("Ressource/Sound/Welcome.mp3");
 		//sound.play();
 	}		

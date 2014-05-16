@@ -14,10 +14,10 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.border.Border;
@@ -28,17 +28,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
-import be.umons.exception.BoundOutreachedException;
 import be.umons.model.FourInARow;
+import be.umons.utility.Sound;
 
 /**
- * <b> IMainMenuFourInARow is the class that initialize the menu of the
- * Four in a Row game. </b>
+ * <b> IMainMenuFourInARow is the class that initialize the menu of the FourInARow game. </b>
  * 
  * @author AGOZZINO Terencio - PIZZIRUSSO Loris
  */
 
-public class FourInARowMenu extends JFrame implements ActionListener {
+public class FourInARowMenu extends JFrame implements ActionListener, MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private static String OS = System.getProperty("os.name").toLowerCase();
@@ -46,15 +45,20 @@ public class FourInARowMenu extends JFrame implements ActionListener {
 	private JToggleButton btnPlay = new JToggleButton("Play");
 	private JToggleButton btnOptions = new JToggleButton("Options");
 	private JToggleButton btnQuit = new JToggleButton("Quit");
-	
-	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
 
+	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
+	
+	ImageIcon lab5 = new ImageIcon("Ressource/Games/FourInARow/P1Red.png");
+	ImageIcon lab6 = new ImageIcon("Ressource/Games/FourInARow/P2Yellow.png");
+	
 	/**
-	 * <b> Constructor that create the frame </b>
+	 * <b> Constructor that create the frame. </b>
 	 */
 
-	public FourInARowMenu() {
-		setTitle("Four in a Row Menu");
+	public FourInARowMenu(ImageIcon lab5, ImageIcon lab6) {
+		this.lab5 = lab5;
+		this.lab6 = lab6;
+		setTitle("FourInARow Menu");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
@@ -79,13 +83,14 @@ public class FourInARowMenu extends JFrame implements ActionListener {
 		panel.setLayout(null);
 		setLocationRelativeTo(null);
 		panel.setBorder(black);
-
+		
 		Border grey = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2);
 
 		btnPlay = new JToggleButton(new ImageIcon("Ressource/Games/FourInARow/btnPlay.png"));
 		btnPlay.setBounds(200, 166, 165, 165);
 		panel.add(btnPlay);
 		btnPlay.addActionListener(this);
+		btnPlay.addMouseListener(this);
 		btnPlay.setRolloverIcon(new ImageIcon("Ressource/Games/FourInARow/btnPlay2.png"));
 		btnPlay.setBorder(grey);
 		
@@ -93,6 +98,7 @@ public class FourInARowMenu extends JFrame implements ActionListener {
 		btnOptions.setBounds(417, 166, 165, 165);
 		panel.add(btnOptions);
 		btnOptions.addActionListener(this);
+		btnOptions.addMouseListener(this);
 		btnOptions.setRolloverIcon(new ImageIcon("Ressource/Games/FourInARow/btnOptions2.png"));
 		btnOptions.setBorder(grey);
 		
@@ -100,24 +106,25 @@ public class FourInARowMenu extends JFrame implements ActionListener {
 		btnQuit.setBounds(635, 166, 165, 165);
 		panel.add(btnQuit);
 		btnQuit.addActionListener(this);
+		btnQuit.addMouseListener(this);
 		btnQuit.setRolloverIcon(new ImageIcon("Ressource/Games/FourInARow/btnQuit2.png"));
 		btnQuit.setBorder(grey);
 		
 		JLabel lab = new JLabel(new ImageIcon("Ressource/copyright.png"));
-		lab.setBounds(243, 370, 517, 64);
+		lab.setBounds(220, 370, 517, 64);
 		panel.add(lab);
 
 		JLabel lab2 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/header.png"));
-		lab2.setBounds(300, 11, 517, 144);
+		lab2.setBounds(313, 34, 457, 98);
 		panel.add(lab2);
 		
-		JLabel lab3 = new JLabel(new ImageIcon("Ressource/picture.jpg"));
-		lab3.setBounds(230, 370, 60, 60);
+		JLabel lab3 = new JLabel(new ImageIcon("Ressource/me.png"));
+		lab3.setBounds(200, 350, 100, 100);
 		panel.add(lab3);
 		
-		JLabel lab4 = new JLabel(new ImageIcon("Ressource/picture2.jpg"));
-		lab4.setBounds(650, 370, 60, 60);
-		panel.add(lab4);
+		JLabel lab4 = new JLabel(new ImageIcon("Ressource/me.png"));
+		lab4.setBounds(650, 350, 100, 100);
+		panel.add(lab4);	
 		
 		if (OS.indexOf("win") >= 0)
 			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
@@ -136,15 +143,18 @@ public class FourInARowMenu extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource(); 
 		if (source == btnPlay) {
-			FourInARowChoiceMenu frame = new FourInARowChoiceMenu();
+			dispose();
+			FourInARowChoiceMenu frame = new FourInARowChoiceMenu(lab5, lab6);
 			frame.setVisible(true);
 		}
 
 		else if (source ==  btnOptions) {
+			dispose();
 			FourInARowOptions frame = new FourInARowOptions();
 			frame.setVisible(true);
 		}
 
+		
 		else if (source == btnQuit) {
 			int answer = JOptionPane.showConfirmDialog(null,
 					"Do you want back to the main menu ?",
@@ -156,5 +166,76 @@ public class FourInARowMenu extends JFrame implements ActionListener {
 			}
 			dispose();
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		Object source = e.getSource();
+		if (source == btnPlay) {
+			new Thread(new Runnable() {
+				public void run() {
+					try { 
+						Sound sound = new Sound("Ressource/Sound/menu.mp3");
+						sound.play();
+					} catch (Exception ex) {
+						System.out.println("File no found");
+					}
+				}
+			}).start();
+		}
+
+		else if (source ==  btnOptions) {
+			if (source == btnOptions) {
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/menu.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+			}
+		}
+
+		else if (source == btnQuit) { 
+			if (source == btnQuit) {
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/menu.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+			}
+		}		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

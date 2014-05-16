@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import be.umons.exception.BoundOutreachedException;
-
 /**
  * <b> Othello is the class that permit to play to the Othello game. </b>
  * 
@@ -109,8 +107,7 @@ public class Othello extends AGame {
 	
 	public boolean basisCheck(int i, int j, int player) {
 
-			for (int x = i - 1; x >= 0; x--) {
-
+			for (int x = i - 1; get(x, j) != -1; x--) {
 				if (get(x, j) == 2) {
 					if (get(x + 1, j) == player)
 						break;
@@ -118,7 +115,7 @@ public class Othello extends AGame {
 					break;
 				}
 
-				if (get(x, j) != player)		
+				if (get(x, j) != player && get(x + 1, j) != 2) 		
 					up += 1;
 
 				if (get(x, j) == player) {
@@ -129,7 +126,7 @@ public class Othello extends AGame {
 				}
 			}
 
-			for (int x = i + 1; x >= 0; x++) {
+			for (int x = i + 1; get(x, j) != -1; x++) {
 
 				if (get(x, j) == 2) {
 					if (get(x - 1, j) == player)
@@ -138,7 +135,7 @@ public class Othello extends AGame {
 					break;
 				}
 
-				if (get(x, j) != player)
+				if (get(x, j) != player)	
 					down += 1;
 
 				if (get(x, j) == player) {
@@ -149,7 +146,7 @@ public class Othello extends AGame {
 				}
 			}
 
-			for (int y = j - 1; y >= 0; y--) {
+			for (int y = j - 1; get(i, y) != -1; y--) {
 
 				if (get(i, y) == 2) {
 					if (get(i, y + 1) == player)
@@ -169,7 +166,7 @@ public class Othello extends AGame {
 				}
 			}
 
-			for (int y = j + 1; y >= 0; y++) {
+			for (int y = j + 1; get(i, y) != -1; y++) {
 
 				if (get(i, y) == 2) {
 					if (get(i, y - 1) == player)
@@ -180,6 +177,7 @@ public class Othello extends AGame {
 
 				if (get(i, y) != player)
 					right += 1;
+					
 
 				if (get(i, y) == player) {
 					if (get(i, y - 1) != player)
@@ -323,8 +321,6 @@ public class Othello extends AGame {
 
 	public void converter(int i, int j, int player) {
 		int[][] array = getGameTable();
-		
-		if (basisCheck(i, j, player) == true) {
 			
 			if (up != 0) {
 				int x = i - 1;
@@ -407,11 +403,9 @@ public class Othello extends AGame {
 				}
 			}
 		}
-	}
 	
 	public void changePlayer() {
 		setActualPlayer((getActualPlayer() == 1) ? 0 : 1);
-		displayPlayer();
 	}
 	
 	/**
@@ -520,7 +514,7 @@ public class Othello extends AGame {
 	 */
 	
 	@Override
-	public void letsPlay() throws BoundOutreachedException {
+	public void letsPlay() {
 		int[][] array = getGameTable();
 		choiceOfPlayers();
 		arrayGenerator();

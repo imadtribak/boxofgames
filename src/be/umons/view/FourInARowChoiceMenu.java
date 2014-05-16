@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 import be.umons.model.AI;
+import be.umons.model.FourInARow;
 import be.umons.model.TicTacToe;
 
 /**
@@ -68,9 +71,17 @@ public class FourInARowChoiceMenu extends JFrame implements ActionListener {
 	private JTextField name = new JTextField("Player 1");
 	private JTextField name2 = new JTextField("Player 2");
 	
-	private TicTacToe ttt;
-	
 	JLabel lab3 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/choicetheme.png"));
+	
+	private FourInARow fiar;
+	
+	public ImageIcon P1 = null;
+	public ImageIcon P2 = null;
+	
+	private boolean canPass;
+	
+	private JLabel lab;
+	private JLabel lab2;
 	
 	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
 	
@@ -78,7 +89,11 @@ public class FourInARowChoiceMenu extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	
-	public FourInARowChoiceMenu() {
+	public FourInARowChoiceMenu(final ImageIcon P1, final ImageIcon P2) {
+		this.P1 = P1;
+		this.P2 = P2;
+		lab = new JLabel(P1);
+		lab2 = new JLabel(P2);
 		setTitle("Menu of Players");
 		setResizable(false);
 		setBounds(100, 100, 450, 300);
@@ -87,6 +102,14 @@ public class FourInARowChoiceMenu extends JFrame implements ActionListener {
 		lab3.setBorder(black);
 		lab3.setLayout(null);
 		setLocationRelativeTo(null);
+		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				dispose();
+				FourInARowMenu frame = new FourInARowMenu(P1, P2) ;
+				frame.setVisible(true);
+			}
+		});
 			
 		name.setForeground(Color.GRAY);
 		name2.setForeground(Color.GRAY);
@@ -284,11 +307,9 @@ public class FourInARowChoiceMenu extends JFrame implements ActionListener {
 		player2.setFont(new Font("Fixedsys", Font.BOLD, 13));
 		lab3.add(player2);
 
-		JLabel lab = new JLabel(new ImageIcon("Ressource/Games/FourInAROw/P1Red.png"));
 		lab.setBounds(10, 25, 56, 51);
 		lab3.add(lab);
 
-		JLabel lab2 = new JLabel(new ImageIcon("Ressource/Games/FourInAROw/P2Yellow.png"));
 		lab2.setBounds(10, 121, 56, 51);
 		lab3.add(lab2);
 
@@ -317,7 +338,7 @@ public class FourInARowChoiceMenu extends JFrame implements ActionListener {
 	}
 
 	List<Object> list = new ArrayList<Object>();
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
@@ -326,39 +347,75 @@ public class FourInARowChoiceMenu extends JFrame implements ActionListener {
 			dispose();
 			list.add(name.getText());
 			list.add(name2.getText());		
-			
-			AI ai = new AI(ttt);
-			//ai.setGameTable(//);
 					
-			if (btnEasy.isSelected() || btnEasy2.isSelected()) {
-				ai.setDifficulty(1);
-				list.add(ai);
+			if (btnAI.isSelected()) {
+				AI ai = new AI(fiar);
+				if (btnEasy.isSelected()) {
+					list.set(0, "EASY AI");
+					ai.setDifficulty(0);
+				}
+
+				if (btnMedium.isSelected()) {
+					list.set(0, "MEDIUM AI");
+					ai.setDifficulty(1);
+				}
+
+				if (btnHard.isSelected()) {
+					list.set(0, "HARD AI");
+					ai.setDifficulty(2);
+				}
 			}
 
-			if (btnMedium.isSelected() || btnMedium2.isSelected()) {
-				ai.setDifficulty(2);
-				list.add(ai);
+
+			if (btnAI2.isSelected()) {
+				AI ai2 = new AI(fiar);
+				if (btnEasy2.isSelected()) {
+					list.set(1, "EASY AI");	
+					ai2.setDifficulty(0);
+				}
+
+				if (btnMedium2.isSelected()) {
+					list.set(1, "MEDIUM AI");	
+					ai2.setDifficulty(1);
+				}
+
+				if (btnHard2.isSelected()) {
+					list.set(1, "HARD AI");	
+					ai2.setDifficulty(2);
+				}
 			}
 
-			if (btnHard.isSelected() || btnHard2.isSelected()) {
-				ai.setDifficulty(3);;
-				list.add(ai);
+			else if (name.getDocument().getLength() > 15) {
+				canPass = false;
+				JOptionPane.showMessageDialog (null, "The length of the name of the first player is too long !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				FourInARowChoiceMenu frame = new FourInARowChoiceMenu(P1, P2);			
+				frame.setVisible(true);
 			}
-
-			if (list.get(0).equals("")) {
+			
+			else if (name2.getDocument().getLength() > 15) {
+				canPass = false;
+				JOptionPane.showMessageDialog (null, "The length of the name of the second player is too long !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				FourInARowChoiceMenu frame = new FourInARowChoiceMenu(P1, P2);		
+				frame.setVisible(true);
+			}
+			
+			else if (list.get(0).equals("")) {
+				canPass = false;
 				JOptionPane.showMessageDialog (null, "An error occurred when selecting players", "ERROR", JOptionPane.WARNING_MESSAGE);
-				FourInARowChoiceMenu frame = new FourInARowChoiceMenu();			
+				FourInARowChoiceMenu frame = new FourInARowChoiceMenu(P1, P2);		
 				frame.setVisible(true);
 			}
 
 			else {
+				if (canPass = true) {
 					try {
-						FourInARowGame frame = new FourInARowGame();
+						FourInARowGame frame = new FourInARowGame(list, P1, P2, 0, 0);
 						frame.setVisible(true);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				}
 			}
 		}
 	}

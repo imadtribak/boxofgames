@@ -6,16 +6,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import be.umons.utility.Sound;
 
 public class OthelloOptions extends JFrame implements ActionListener, MouseListener {
 
@@ -45,10 +50,30 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
 	Border white = BorderFactory.createLineBorder(Color.WHITE, 1);
 	
+	ImageIcon pawn1 = new ImageIcon("Ressource/Games/Othello/Black.png");
+	ImageIcon pawn2 = new ImageIcon("Ressource/Games/Othello/Blue.png");
+	ImageIcon pawn3 = new ImageIcon("Ressource/Games/Othello/Red.png");
+	ImageIcon pawn4 = new ImageIcon("Ressource/Games/Othello/Orange.png");
+	ImageIcon pawn5 = new ImageIcon("Ressource/Games/Othello/LightBlue.png");
+	ImageIcon pawn6 = new ImageIcon("Ressource/Games/Othello/Yellow.png");
+	ImageIcon pawn7 = new ImageIcon("Ressource/Games/Othello/Mauve.png");
+	ImageIcon pawn8 = new ImageIcon("Ressource/Games/Othello/White.png");
+	ImageIcon pawn9 = new ImageIcon("Ressource/Games/Othello/Blue.png");
+	ImageIcon pawn10 = new ImageIcon("Ressource/Games/Othello/Red.png");
+	ImageIcon pawn11 = new ImageIcon("Ressource/Games/Othello/Orange.png");
+	ImageIcon pawn12 = new ImageIcon("Ressource/Games/Othello/LightBlue.png");
+	ImageIcon pawn13 = new ImageIcon("Ressource/Games/Othello/Yellow.png");
+	ImageIcon pawn14 = new ImageIcon("Ressource/Games/Othello/Mauve.png");
+
+	ImageIcon actualPawn1 = pawn1;
+	ImageIcon actualPawn2 = pawn8;
+	
+	boolean canPass = true;
+	
 	/**
 	 * Create the frame.
 	 */
-	public OthelloOptions() {
+	public OthelloOptions() {	
 		setTitle("Options Menu");
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -60,6 +85,14 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 		contentPane.setLayout(null);
 		contentPane.setBackground(Color.BLACK);
 		setLocationRelativeTo(null);
+		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				dispose();
+				OthelloMenu frame = new OthelloMenu(actualPawn1, actualPawn2) ;
+				frame.setVisible(true);
+			}
+		});
 		
 		btnOn.setBounds(86, 31, 89, 23);
 		btnOn.setBackground(Color.BLACK);
@@ -87,38 +120,38 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 		lblPlayers1.setForeground(Color.WHITE);
 		contentPane.add(lblPlayers1);
 		
-		lblPiece1 = new JLabel(new ImageIcon("Ressource/Games/Othello/Black.png"));
+		lblPiece1 = new JLabel(pawn1);
 		lblPiece1.setBounds(15, 111, 50, 50);
 		lblPiece1.setBorder(white);
 		lblPiece1.addMouseListener(this);
 		contentPane.add(lblPiece1);
-
-		lblPiece2 = new JLabel(new ImageIcon("Ressource/Games/Othello/Blue.png"));
+		
+		lblPiece2 = new JLabel(pawn2);
 		lblPiece2.setBounds(75, 111, 50, 50);
 		lblPiece2.addMouseListener(this);
 		contentPane.add(lblPiece2);
 
-		lblPiece3 = new JLabel(new ImageIcon("Ressource/Games/Othello/Red.png"));
+		lblPiece3 = new JLabel(pawn3);
 		lblPiece3.setBounds(135, 111, 50, 50);
 		lblPiece3.addMouseListener(this);
 		contentPane.add(lblPiece3 );
 
-		lblPiece4 = new JLabel(new ImageIcon("Ressource/Games/Othello/Orange.png"));
+		lblPiece4 = new JLabel(pawn4);
 		lblPiece4.setBounds(195, 111, 50, 50);
 		lblPiece4.addMouseListener(this);
 		contentPane.add(lblPiece4);
 		
-		lblPiece5 = new JLabel(new ImageIcon("Ressource/Games/Othello/LightBlue.png"));
+		lblPiece5 = new JLabel(pawn5);
 		lblPiece5.setBounds(255, 111, 50, 50);
 		lblPiece5.addMouseListener(this);
 		contentPane.add(lblPiece5);
 
-		lblPiece6 = new JLabel(new ImageIcon("Ressource/Games/Othello/Yellow.png"));
+		lblPiece6 = new JLabel(pawn6);
 		lblPiece6.setBounds(315, 111, 50, 50);
 		lblPiece6.addMouseListener(this);
 		contentPane.add(lblPiece6);
 		
-		lblPiece7 = new JLabel(new ImageIcon("Ressource/Games/Othello/Mauve.png"));
+		lblPiece7 = new JLabel(pawn7);
 		lblPiece7.setBounds(375, 111, 50, 50);
 		lblPiece7.addMouseListener(this);
 		contentPane.add(lblPiece7);
@@ -128,38 +161,38 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 		lblPlayers2.setForeground(Color.WHITE);
 		contentPane.add(lblPlayers2);
 		
-		lblPiece8 = new JLabel(new ImageIcon("Ressource/Games/Othello/White.png"));
+		lblPiece8 = new JLabel(pawn8);
 		lblPiece8.setBounds(15, 197, 50, 50);
 		lblPiece8.setBorder(white);
 		lblPiece8.addMouseListener(this);
 		contentPane.add(lblPiece8);
 		
-		lblPiece9 = new JLabel(new ImageIcon("Ressource/Games/Othello/Blue.png"));
+		lblPiece9 = new JLabel(pawn9);
 		lblPiece9.setBounds(75, 197, 50, 50);
 		lblPiece9.addMouseListener(this);
 		contentPane.add(lblPiece9);
 		
-		lblPiece10 = new JLabel(new ImageIcon("Ressource/Games/Othello/Red.png"));
+		lblPiece10 = new JLabel(pawn10);
 		lblPiece10.setBounds(135, 197, 50, 50);
 		lblPiece10.addMouseListener(this);
 		contentPane.add(lblPiece10);
 		
-		lblPiece11 = new JLabel(new ImageIcon("Ressource/Games/Othello/Orange.png"));
+		lblPiece11 = new JLabel(pawn11);
 		lblPiece11.setBounds(195, 197, 50, 50);
 		lblPiece11.addMouseListener(this);
 		contentPane.add(lblPiece11);
 
-		lblPiece12 = new JLabel(new ImageIcon("Ressource/Games/Othello/Lightblue.png"));
+		lblPiece12 = new JLabel(pawn12);
 		lblPiece12.setBounds(255, 197, 50, 50);
 		lblPiece12.addMouseListener(this);
 		contentPane.add(lblPiece12);
 		
-		lblPiece13 = new JLabel(new ImageIcon("Ressource/Games/Othello/Yellow.png"));
+		lblPiece13 = new JLabel(pawn13);
 		lblPiece13.setBounds(315, 197, 50, 50);
 		lblPiece13.addMouseListener(this);
 		contentPane.add(lblPiece13);
 		
-		lblPiece14 = new JLabel(new ImageIcon("Ressource/Games/Othello/Mauve.png"));
+		lblPiece14 = new JLabel(pawn14);
 		lblPiece14.setBounds(375, 197, 50, 50);
 		lblPiece14.addMouseListener(this);
 		contentPane.add(lblPiece14);
@@ -169,6 +202,7 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 		btnOk.setForeground(Color.WHITE);
 		btnOk.setBorder(white);
 		btnOk.setFocusPainted(false);
+		btnOk.addActionListener(this);
 		contentPane.add(btnOk);
 		
 		if (OS.indexOf("win") >= 0)
@@ -178,18 +212,6 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 				OS.indexOf("aix") >= 0 || OS.indexOf("mac") >= 0 ||
 				OS.indexOf("sunos") >= 0)
 			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
-		
-		if (source == btnOn) {
-			
-		}
-		
-		if (source == btnOff) {
-			
-		}
 	}
 
 	@Override
@@ -203,6 +225,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			actualPawn1 = pawn1;
 		}
 		
 		if (source == lblPiece2) {
@@ -213,6 +237,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			actualPawn1 = pawn2;
 		}
 		
 		if (source == lblPiece3) {
@@ -223,6 +249,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			actualPawn1 = pawn3;
 		}
 		
 		if (source == lblPiece4) {
@@ -233,6 +261,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			actualPawn1 = pawn4;
 		}
 		
 		if (source == lblPiece5) {
@@ -243,6 +273,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece5.setBorder(white);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			actualPawn1 = pawn5;
 		}
 		
 		if (source == lblPiece6) {
@@ -253,6 +285,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(white);
 			lblPiece7.setBorder(null);
+			
+			actualPawn1 = pawn6;
 		}
 		
 		if (source == lblPiece7) {
@@ -263,6 +297,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(white);
+			
+			actualPawn1 = pawn7;
 		}
 		
 		if (source == lblPiece8) {
@@ -273,6 +309,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualPawn2 = pawn8;
 		}
 		
 		if (source == lblPiece9) {
@@ -283,6 +321,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualPawn2 = pawn9;
 		}
 		
 		if (source == lblPiece10) {
@@ -293,6 +333,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualPawn2 = pawn10;
 		}
 		
 		if (source == lblPiece11) {
@@ -303,6 +345,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualPawn2 = pawn11;
 		}
 		
 		if (source == lblPiece12) {
@@ -313,6 +357,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece12.setBorder(white);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			actualPawn2 = pawn12;
 		}
 		
 		if (source == lblPiece13) {
@@ -323,6 +369,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(white);
 			lblPiece14.setBorder(null);
+			
+			actualPawn2 = pawn13;
 		}
 		
 		if (source == lblPiece14) {
@@ -333,6 +381,8 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(white);
+			
+			actualPawn2 = pawn14;
 		}	
 	}
 
@@ -358,5 +408,141 @@ public class OthelloOptions extends JFrame implements ActionListener, MouseListe
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		
+		if (source == btnOn) {
+			
+		}
+		
+		if (source == btnOff) {
+			
+		}
+		
+		if (source == btnOk) {
+			
+			if (actualPawn1 == pawn2 && actualPawn2 == pawn9) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				OthelloOptions frame = new OthelloOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualPawn1 == pawn3 && actualPawn2 == pawn10) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				OthelloOptions frame = new OthelloOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualPawn1 == pawn4 && actualPawn2 == pawn11) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				OthelloOptions frame = new OthelloOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualPawn1 == pawn5 && actualPawn2 == pawn12) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				OthelloOptions frame = new OthelloOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualPawn1 == pawn6 && actualPawn2 == pawn13) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				OthelloOptions frame = new OthelloOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (actualPawn1 == pawn7 && actualPawn2 == pawn14) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				OthelloOptions frame = new OthelloOptions();			
+				frame.setVisible(true);
+			}
+			
+			else {
+				if (canPass = true) {
+					try {
+						dispose();
+						OthelloMenu menu = new OthelloMenu(pawn1, pawn2);
+						menu.setVisible(true);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		}
 	}
 }

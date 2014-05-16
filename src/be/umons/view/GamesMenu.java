@@ -59,6 +59,13 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 	private Sound sound2;
 	private Sound sound3;
 	
+	ImageIcon lab5 = new ImageIcon("Ressource/Games/TicTacToe/XRed.png");
+	ImageIcon lab6 = new ImageIcon("Ressource/Games/TicTacToe/OBlue.png");
+	ImageIcon lab7 = new ImageIcon("Ressource/Games/FourInARow/P1Red.png");
+	ImageIcon lab8 = new ImageIcon("Ressource/Games/FourInARow/P2Yellow.png");
+	ImageIcon lab9 = new ImageIcon("Ressource/Games/Othello/Black.png");
+	ImageIcon lab10 = new ImageIcon("Ressource/Games/Othello/White.png");
+	
 	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
 
 	/**
@@ -126,12 +133,12 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 		lab2.setBounds(313, 34, 447, 98);
 		panel.add(lab2);
 		
-		JLabel lab3 = new JLabel(new ImageIcon("Ressource/picture.jpg"));
-		lab3.setBounds(230, 370, 60, 60);
+		JLabel lab3 = new JLabel(new ImageIcon("Ressource/me.png"));
+		lab3.setBounds(200, 350, 100, 100);
 		panel.add(lab3);
 		
-		JLabel lab4 = new JLabel(new ImageIcon("Ressource/picture2.jpg"));
-		lab4.setBounds(650, 370, 60, 60);
+		JLabel lab4 = new JLabel(new ImageIcon("Ressource/me.png"));
+		lab4.setBounds(650, 350, 100, 100);
 		panel.add(lab4);
 		
 		
@@ -165,13 +172,13 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 		Object source = e.getSource(); 
 		if (source == btnTicTacToe) {
 			dispose();
-			TicTacToeMenu frame = new TicTacToeMenu();
+			TicTacToeMenu frame = new TicTacToeMenu(lab5, lab6);
 			frame.setVisible(true);
 			new Thread(new Runnable() {
 				public void run() {
 					try { 
-						sound = new Sound("Ressource/Sound/Arcis - Pallas.mp3");
-						sound.play();
+						//sound = new Sound("Ressource/Sound/Arcis - Pallas.mp3");
+						//sound.play();
 					} catch (Exception ex) {}
 				}
 			}).start();
@@ -179,14 +186,14 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 
 		else if (source ==  btnFourInARow) {
 			dispose();
-			FourInARowMenu frame = new FourInARowMenu();
+			FourInARowMenu frame = new FourInARowMenu(lab7, lab8);
 			frame.setVisible(true);
 			if (activateSound == true) {
 	            new Thread(new Runnable() {
 	                public void run() {
 	                    try { 
-	                        sound2 = new Sound("Ressource/Sound/Arcis - Arcis.mp3");
-	                        sound2.play();
+	                        //sound2 = new Sound("Ressource/Sound/Arcis - Arcis.mp3");
+	                        //sound2.play();
 	                    } catch (Exception ex) {}
 	                }
 	            }).start();
@@ -195,14 +202,14 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 
 		else if (source == btnOthello) { 
 			dispose();
-			OthelloMenu frame = new OthelloMenu();
+			OthelloMenu frame = new OthelloMenu(lab9, lab10);
 			frame.setVisible(true);
 			if (activateSound == true) {
 	            new Thread(new Runnable() {
 	                public void run() {
 	                    try { 
-	                    	sound3 = new Sound("Ressource/Sound/Arcis - Sonny Rico.mp3");
-	                    	sound3.play();
+	                    	//sound3 = new Sound("Ressource/Sound/Arcis - Sonny Rico.mp3");
+	                    	//sound3.play();
 	                    } catch (Exception ex) {}
 	                }
 	            }).start();
@@ -231,7 +238,7 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 			new Thread(new Runnable() {
 				public void run() {
 					try { 
-						Sound sound = new Sound("Ressource/Sound/Ok.mp3");
+						Sound sound = new Sound("Ressource/Sound/menu.mp3");
 						sound.play();
 					} catch (Exception ex) {
 						System.out.println("File no found");
@@ -245,7 +252,7 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 				new Thread(new Runnable() {
 					public void run() {
 						try { 
-							Sound sound = new Sound("Ressource/Sound/Ok.mp3");
+							Sound sound = new Sound("Ressource/Sound/menu.mp3");
 							sound.play();
 						} catch (Exception ex) {
 							System.out.println("File no found");
@@ -260,7 +267,7 @@ public class GamesMenu extends JFrame implements ActionListener, MouseListener {
 				new Thread(new Runnable() {
 					public void run() {
 						try { 
-							Sound sound = new Sound("Ressource/Sound/Ok.mp3");
+							Sound sound = new Sound("Ressource/Sound/menu.mp3");
 							sound.play();
 						} catch (Exception ex) {
 							System.out.println("File no found");

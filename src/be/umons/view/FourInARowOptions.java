@@ -1,21 +1,31 @@
 package be.umons.view;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import be.umons.utility.Sound;
 
 public class FourInARowOptions extends JFrame implements ActionListener, MouseListener {
 
@@ -40,15 +50,36 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 	private JButton btnOff = new JButton("OFF");
 	private JButton btnOn = new JButton("ON");
 	
+	boolean canPass = true;
+	
 	private JToggleButton btnOk = new JToggleButton("OK");
 	
 	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
 	Border white = BorderFactory.createLineBorder(Color.WHITE, 1);
-	
+
+	ImageIcon pawn1 = new ImageIcon("Ressource/Games/FourInARow/P1Red.png");
+	ImageIcon pawn2 = new ImageIcon("Ressource/Games/FourInARow/P1Blue.png");
+	ImageIcon pawn3 = new ImageIcon("Ressource/Games/FourInARow/P1Green.png");
+	ImageIcon pawn4 = new ImageIcon("Ressource/Games/FourInARow/P1Orange.png");
+	ImageIcon pawn5 = new ImageIcon("Ressource/Games/FourInARow/P1LightBlue.png");
+	ImageIcon pawn6 = new ImageIcon("Ressource/Games/FourInARow/P1Yellow.png");
+	ImageIcon pawn7 = new ImageIcon("Ressource/Games/FourInARow/P1Mauve.png");
+	ImageIcon pawn8 = new ImageIcon("Ressource/Games/FourInARow/P2Red.png");
+	ImageIcon pawn9 = new ImageIcon("Ressource/Games/FourInARow/P2Blue.png");
+	ImageIcon pawn10 = new ImageIcon("Ressource/Games/FourInARow/P2Green.png");
+	ImageIcon pawn11 = new ImageIcon("Ressource/Games/FourInARow/P2Orange.png");
+	ImageIcon pawn12 = new ImageIcon("Ressource/Games/FourInARow/P2LightBlue.png");
+	ImageIcon pawn13 = new ImageIcon("Ressource/Games/FourInARow/P2Yellow.png");
+	ImageIcon pawn14 = new ImageIcon("Ressource/Games/FourInARow/P2Mauve.png");
+
+	ImageIcon P1 = pawn1;
+	ImageIcon P2 = pawn13;
+		
 	/**
 	 * Create the frame.
 	 */
-	public FourInARowOptions() {
+	
+	public FourInARowOptions() {		
 		setTitle("Options Menu");
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -60,6 +91,14 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 		contentPane.setLayout(null);
 		contentPane.setBackground(Color.BLACK);
 		setLocationRelativeTo(null);
+		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				dispose();
+				TicTacToeMenu frame = new TicTacToeMenu(P1, P2) ;
+				frame.setVisible(true);
+			}
+		});
 		
 		btnOn.setBounds(86, 31, 89, 23);
 		btnOn.setBackground(Color.BLACK);
@@ -87,38 +126,38 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 		lblPlayers1.setForeground(Color.WHITE);
 		contentPane.add(lblPlayers1);
 		
-		lblPiece1 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P1Red.png"));
+		lblPiece1 = new JLabel(pawn1);
 		lblPiece1.setBounds(15, 111, 50, 50);
 		lblPiece1.setBorder(white);
 		lblPiece1.addMouseListener(this);
 		contentPane.add(lblPiece1);
 
-		lblPiece2 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P1Blue.png"));
+		lblPiece2 = new JLabel(pawn2);
 		lblPiece2.setBounds(75, 111, 50, 50);
 		lblPiece2.addMouseListener(this);
 		contentPane.add(lblPiece2);
 
-		lblPiece3 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P1Green.png"));
+		lblPiece3 = new JLabel(pawn3);
 		lblPiece3.setBounds(135, 111, 50, 50);
 		lblPiece3.addMouseListener(this);
 		contentPane.add(lblPiece3 );
 
-		lblPiece4 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P1Orange.png"));
+		lblPiece4 = new JLabel(pawn4);
 		lblPiece4.setBounds(195, 111, 50, 50);
 		lblPiece4.addMouseListener(this);
 		contentPane.add(lblPiece4);
 		
-		lblPiece5 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P1LightBlue.png"));
+		lblPiece5 = new JLabel(pawn5);
 		lblPiece5.setBounds(255, 111, 50, 50);
 		lblPiece5.addMouseListener(this);
 		contentPane.add(lblPiece5);
 
-		lblPiece6 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P1Yellow.png"));
+		lblPiece6 = new JLabel(pawn6);
 		lblPiece6.setBounds(315, 111, 50, 50);
 		lblPiece6.addMouseListener(this);
 		contentPane.add(lblPiece6);
 		
-		lblPiece7 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P1Mauve.png"));
+		lblPiece7 = new JLabel(pawn7);
 		lblPiece7.setBounds(375, 111, 50, 50);
 		lblPiece7.addMouseListener(this);
 		contentPane.add(lblPiece7);
@@ -128,38 +167,38 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 		lblPlayers2.setForeground(Color.WHITE);
 		contentPane.add(lblPlayers2);
 		
-		lblPiece8 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P2Red.png"));
+		lblPiece8 = new JLabel(pawn8);
 		lblPiece8.setBounds(15, 197, 50, 50);
 		lblPiece8.addMouseListener(this);
 		contentPane.add(lblPiece8);
 		
-		lblPiece9 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P2Blue.png"));
+		lblPiece9 = new JLabel(pawn9);
 		lblPiece9.setBounds(75, 197, 50, 50);
 		lblPiece9.addMouseListener(this);
 		contentPane.add(lblPiece9);
 		
-		lblPiece10 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P2Green.png"));
+		lblPiece10 = new JLabel(pawn10);
 		lblPiece10.setBounds(135, 197, 50, 50);
 		lblPiece10.addMouseListener(this);
 		contentPane.add(lblPiece10);
 		
-		lblPiece11 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P2Orange.png"));
+		lblPiece11 = new JLabel(pawn11);
 		lblPiece11.setBounds(195, 197, 50, 50);
 		lblPiece11.addMouseListener(this);
 		contentPane.add(lblPiece11);
 
-		lblPiece12 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P2LightBlue.png"));
+		lblPiece12 = new JLabel(pawn12);
 		lblPiece12.setBounds(255, 197, 50, 50);
 		lblPiece12.addMouseListener(this);
 		contentPane.add(lblPiece12);
 		
-		lblPiece13 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P2Yellow.png"));
+		lblPiece13 = new JLabel(pawn13);
 		lblPiece13.setBounds(315, 197, 50, 50);
 		lblPiece13.setBorder(white);
 		lblPiece13.addMouseListener(this);
 		contentPane.add(lblPiece13);
 		
-		lblPiece14 = new JLabel(new ImageIcon("Ressource/Games/FourInARow/P2Mauve.png"));
+		lblPiece14 = new JLabel(pawn14);
 		lblPiece14.setBounds(375, 197, 50, 50);
 		lblPiece14.addMouseListener(this);
 		contentPane.add(lblPiece14);
@@ -169,6 +208,7 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 		btnOk.setForeground(Color.WHITE);
 		btnOk.setBorder(white);
 		btnOk.setFocusPainted(false);
+		btnOk.addActionListener(this);
 		contentPane.add(btnOk);
 		
 		if (OS.indexOf("win") >= 0)
@@ -179,19 +219,7 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 				OS.indexOf("sunos") >= 0)
 			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
 	}
-
-	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
-		
-		if (source == btnOn) {
-			
-		}
-		
-		if (source == btnOff) {
-			
-		}
-	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object source = e.getSource();
@@ -203,6 +231,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			P1 = pawn1;
 		}
 		
 		if (source == lblPiece2) {
@@ -213,6 +243,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			P1 = pawn2;
 		}
 		
 		if (source == lblPiece3) {
@@ -223,6 +255,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			P1 = pawn3;
 		}
 		
 		if (source == lblPiece4) {
@@ -233,6 +267,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			P1 = pawn4;
 		}
 		
 		if (source == lblPiece5) {
@@ -243,6 +279,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece5.setBorder(white);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(null);
+			
+			P1 = pawn5;
 		}
 		
 		if (source == lblPiece6) {
@@ -253,6 +291,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(white);
 			lblPiece7.setBorder(null);
+			
+			P1 = pawn6;
 		}
 		
 		if (source == lblPiece7) {
@@ -263,6 +303,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece5.setBorder(null);
 			lblPiece6.setBorder(null);
 			lblPiece7.setBorder(white);
+			
+			P1 = pawn7;
 		}
 		
 		if (source == lblPiece8) {
@@ -273,6 +315,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			P2 = pawn8;
 		}
 		
 		if (source == lblPiece9) {
@@ -283,6 +327,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			P2 = pawn9;
 		}
 		
 		if (source == lblPiece10) {
@@ -293,6 +339,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			P2 = pawn10;
 		}
 		
 		if (source == lblPiece11) {
@@ -303,6 +351,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			P2 = pawn11;
 		}
 		
 		if (source == lblPiece12) {
@@ -313,6 +363,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece12.setBorder(white);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(null);
+			
+			P2 = pawn12;
 		}
 		
 		if (source == lblPiece13) {
@@ -323,6 +375,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(white);
 			lblPiece14.setBorder(null);
+			
+			P2 = pawn13;
 		}
 		
 		if (source == lblPiece14) {
@@ -333,6 +387,8 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 			lblPiece12.setBorder(null);
 			lblPiece13.setBorder(null);
 			lblPiece14.setBorder(white);
+			
+			P2 = pawn14;
 		}	
 	}
 
@@ -358,5 +414,159 @@ public class FourInARowOptions extends JFrame implements ActionListener, MouseLi
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		
+		if (source == btnOn) {
+			
+		}
+		
+		if (source == btnOff) {
+			
+		}
+		
+		if (source == btnOk) {
+			
+			if (P1 == pawn1 && P2== pawn8) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				FourInARowOptions frame = new FourInARowOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (P1 == pawn2 && P2 == pawn9) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				FourInARowOptions frame = new FourInARowOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (P1 == pawn3 && P2 == pawn10) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				FourInARowOptions frame = new FourInARowOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (P1 == pawn4 && P2 == pawn11) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				FourInARowOptions frame = new FourInARowOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (P1 == pawn5 && P2 == pawn12) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				FourInARowOptions frame = new FourInARowOptions();				
+				frame.setVisible(true);
+			}
+			
+			else if (P1 == pawn6 && P2 == pawn13) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				FourInARowOptions frame = new FourInARowOptions();			
+				frame.setVisible(true);
+			}
+			
+			else if (P1 == pawn7 && P2 == pawn14) {
+				canPass = false;
+				new Thread(new Runnable() {
+					public void run() {
+						try { 
+							Sound sound = new Sound("Ressource/Sound/error.mp3");
+							sound.play();
+						} catch (Exception ex) {
+							System.out.println("File no found");
+						}
+					}
+				}).start();
+				JOptionPane.showMessageDialog (null, "You can't choice two same colors !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				dispose();
+				FourInARowOptions frame = new FourInARowOptions();				
+				frame.setVisible(true);
+			}
+			
+			else {
+				if (canPass = true) {
+					try {
+						dispose();
+						FourInARowMenu menu = new FourInARowMenu(pawn1, pawn2);
+						menu.setVisible(true);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		}
 	}
 }

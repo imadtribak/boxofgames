@@ -11,12 +11,15 @@
 package be.umons.view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -69,18 +73,29 @@ public class TicTacToeChoiceMenu extends JFrame implements ActionListener {
 	private JTextField name2 = new JTextField("Player 2");
 	
 	private TicTacToe ttt;
+	public int level;
 	
-	JLabel lab = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/XRed.png"));
-	JLabel lab2 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/ORed.png"));
 	JLabel lab3 = new JLabel(new ImageIcon("Ressource/Games/TicTacToe/choicetheme.png"));
 	
 	Border black = BorderFactory.createLineBorder(Color.BLACK, 1);
 	
+	public ImageIcon X = null;
+	public ImageIcon O = null;
+	
+	boolean canPass = true;
+	
+	private JLabel lab;
+	private JLabel lab2;
+
 	/**
 	 * Create the frame.
 	 */
 	
-	public TicTacToeChoiceMenu() {
+	public TicTacToeChoiceMenu(final ImageIcon X, final ImageIcon O) {
+		this.X = X;
+		this.O = O;
+		lab = new JLabel(X);
+		lab2 = new JLabel(O);
 		setTitle("Menu of Players");
 		setResizable(false);
 		setBounds(100, 100, 450, 300);
@@ -89,7 +104,15 @@ public class TicTacToeChoiceMenu extends JFrame implements ActionListener {
 		lab3.setBorder(black);
 		lab3.setLayout(null);
 		setLocationRelativeTo(null);
-			
+		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				dispose();
+				TicTacToeMenu frame = new TicTacToeMenu(X, O) ;
+				frame.setVisible(true);
+			}
+		});
+		
 		name.setForeground(Color.GRAY);
 		name2.setForeground(Color.GRAY);
 		
@@ -304,7 +327,6 @@ public class TicTacToeChoiceMenu extends JFrame implements ActionListener {
 			this.setIconImage(Toolkit.getDefaultToolkit().getImage("Ressource\\logo.png"));
 	}
 	
-	
 	public List<Object> getList() {
 		return list;
 	}
@@ -338,44 +360,80 @@ public class TicTacToeChoiceMenu extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
-		
+
 		if (source == btnOk) {
 			dispose();
 			list.add(name.getText());
 			list.add(name2.getText());		
+
+			if (btnAI.isSelected()) {
+				AI ai = new AI(ttt);
+				if (btnEasy.isSelected()) {
+					list.set(0, "EASY AI");
+					ai.setDifficulty(0);
+				}
+
+				if (btnMedium.isSelected()) {
+					list.set(0, "MEDIUM AI");
+					ai.setDifficulty(1);
+				}
+
+				if (btnHard.isSelected()) {
+					list.set(0, "HARD AI");
+					ai.setDifficulty(2);
+				}
+			}
+
+
+			if (btnAI2.isSelected()) {
+				AI ai2 = new AI(ttt);
+				if (btnEasy2.isSelected()) {
+					list.set(1, "EASY AI");	
+					ai2.setDifficulty(0);
+				}
+
+				if (btnMedium2.isSelected()) {
+					list.set(1, "MEDIUM AI");	
+					ai2.setDifficulty(1);
+				}
+
+				if (btnHard2.isSelected()) {
+					list.set(1, "HARD AI");	
+					ai2.setDifficulty(2);
+				}
+			}
 			
-			AI ai = new AI(ttt);
-			//ai.setGameTable(//);
-					
-			if (btnEasy.isSelected() || btnEasy2.isSelected()) {
-				ai.setDifficulty(1);
-				list.add(ai);
-			}
-
-			if (btnMedium.isSelected() || btnMedium2.isSelected()) {
-				ai.setDifficulty(2);
-				list.add(ai);
-			}
-
-			if (btnHard.isSelected() || btnHard2.isSelected()) {
-				ai.setDifficulty(3);;
-				list.add(ai);
-			}
-
-			if (list.get(0).equals("")) {
-				JOptionPane.showMessageDialog (null, "An error occurred when selecting players", "ERROR", JOptionPane.WARNING_MESSAGE);
-				TicTacToeChoiceMenu frame = new TicTacToeChoiceMenu();			
+			else if (name.getDocument().getLength() > 15) {
+				canPass = false;
+				JOptionPane.showMessageDialog (null, "The length of the name of the first player is too long !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				TicTacToeChoiceMenu frame = new TicTacToeChoiceMenu(X, O);			
 				frame.setVisible(true);
 			}
 
+			else if (name2.getDocument().getLength() > 15) {
+				canPass = false;
+				JOptionPane.showMessageDialog (null, "The length of the name of the second player is too long !", "ERROR", JOptionPane.WARNING_MESSAGE);
+				TicTacToeChoiceMenu frame = new TicTacToeChoiceMenu(X, O);			
+				frame.setVisible(true);
+			}
+
+			else if (list.get(0).equals("") || list.get(1).equals("")) {
+				canPass = false;
+				JOptionPane.showMessageDialog (null, "An error occurred when selecting players", "ERROR", JOptionPane.WARNING_MESSAGE);
+				TicTacToeChoiceMenu frame = new TicTacToeChoiceMenu(X, O);			
+				frame.setVisible(true);
+			}
+			
 			else {
+				if (canPass = true) {
 					try {
-						TicTacToeGame frame = new TicTacToeGame(list);
+						TicTacToeGame frame = new TicTacToeGame(list, X, O, 0, 0);
 						frame.setVisible(true);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				}
 			}
 		}
 	}
